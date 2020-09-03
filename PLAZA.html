@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLAZA</title>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="assets/css/bootstrap-grid.css">
+  <link rel="stylesheet" href="assets/css/index.css">
+ 
+</head>
+<body>
+
+<!-- 
+<div class="container">
+  <div class="row">
+    <div class="col-6"></div>
+    <div class="col-6"></div>
+    <div class="col-6"></div>
+  </div>
+</div> -->
+
+
+
+<!-- №1 кнопка с выездом -->
+<span>кнопка с выездом</span>
+<div id="btn-slide">
+  <a href="#" class="  btn__hover-red btn-6">
+    <span></span>
+    кнопка js
+  </a>
+</div>
+<!--  -->
+<hr>
+<span>подключение инстаграмма</span>
+<!--№2 подключение инстаграмма --чтобы подключить аккаунт инстаграмма нужно в поле дата ввести продолжение адреса. например если сайт https://www.instagram.com/plsza то нужно ввести data-username="plaza"  data-count="4" это количество снимков -->
+<div class="instagram-images -one" data-username="instagram" data-count="4"></div>
+<!--  -->
+<hr>
+<!-- ----№7-------- -->
+<div class="sliding-text scrolling__text" id="Caramba">
+  блок выезжает-заезжает  по скролу страницы
+</div>
+<hr>
+
+<!-- №4------блок поверх блока. если не задавать высоту и ширину он станет размером с блок. ---- -->
+<span>блок поверх блока. top0 left0 bottom0 right0 если не задавать высоту и ширину он станет размером с блок.</span>
+<div class="test-wrap">
+  <div class="test">
+  </div>
+  <div class="test2">
+  </div>
+</div>
+<!--  -->
+<hr>
+<!-- -№5 -блок выезжает по ховеру на другой блок. можно этому блоку задать k.st свойства даже через js / например заставить его распологаться в нужном месте независимо от расположения родителя.-->
+<span>блок выезжает по ховеру на другой блок. можно этому блоку задать k.st свойства даже через js / например заставить его
+распологаться в нужном месте экрана независимо от расположения родителя</span>
+<div class="sliding-wrap" id="sliding-wrap">
+  навести курсор сюда
+  <div class="sliding" id="sliding">
+  </div>
+</div>
+
+<!-- -- -->
+<hr>
+<!--№3 счетчик. листает цифры от 0 до заданного значения. цифры постепенно меняют прозрачность через скрипты 
+spincrement-  
+и еще один скрипт указан в index.js
+-->
+<span>счетчик. листает цифры от 0 до заданного значения</span>
+<span data-from="0" data-to="100" data-dp="2" class="spincrement">
+</span>
+<!--  -->
+<hr>
+<!-- #6 счетчик spincrement -->
+<div class="int-fact-counters">
+  <div class="int-fct-item">
+    <p>такой же счетчик но немного другое написание кода</p>
+    <div class="fct-count"><span class="spincrement">100</span></div>
+    <div class="fct-text">years to our club</div>
+  </div>
+</div>
+<!-- /#6 счетчик spincrement -->
+<hr>
+
+<!-- ---------#7------------------------------------------------- -->
+<div class="sliding-text scrolling__text" id="some-text">
+  блок выезжает по скролу страницы
+</div>
+
+
+<script src="assets/js/jquery.js"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  -->
+<script src="assets/js/jquery.spincrement.min.js"></script>
+<script src="assets/js/index.js"></script>
+
+
+</body>
+</html>

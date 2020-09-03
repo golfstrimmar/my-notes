@@ -1,0 +1,565 @@
+lg: 1200px
+md: 992px
+sm: 767px
+xs: 576px
+
+
+название сайта --jkpark
+имя пользователя ---yushinbox
+пароль --- 8eftH6adJGg3X6qC!B
+
+
+
+
+
+\===================woocommerce=========================================
+
+https://www.youtube.com/watch?v=1SBQpXrMAOY&list=PLzFj4L-LMRzt5BsX_ho5rt5hCc5ynnReu&index=2
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=====================================================================================================================================
++++++++++++++++++++++++++++++++++++++++++++++++++ алгоритм +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+=====================================================================================================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+https://www.youtube.com/watch?v=C1vnS8dkmd8&list=PLyKl7JlkPve6wRFRgVgImBWZ3xMQnYUQa&index=6
+
+-----важно
+после загрузки темы anderscores нужно создать страницу главная .
+потом изменить настройки чтения на статическую страницу.
+поменять страницу главная на главную
+в корне ДОЛЖЕН лежать файл style.css он пустой, но с комментами
+/*!
+Theme Name: Transitive
+*/
+
+
+дальше нужно использовать шаблоны страниц. если их не создавать,
+то будет использован для страницы шаблон по умолчанию ---page.php
+index.php используется когда не используются другие шаблоны
+в него можно положить верстку и прописать связь с header и footer/
+ниже есть описание по page.php
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\создание шаблонов
+страниц\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+https://misha.blog/wordpress/page-templates.html
+создается новый файл например page-contacts.php. его можно даже поместить в папку template-parts.
+только нужно переназначить снова шаблон на странице настроек страниц
+туда заносится нужная верстка.
+!!!!главное в нем должен быть коментарий
+<?php
+/*
+Template Name: контакты
+*/
+?>
+
+теперь при создании новой страницы появится виджет выбора шаблона.
+так создаются разные шаблоны для разных страниц
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\functions.php\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++стили скрипты++++
+function loft_scripts() {
+wp_enqueue_style( 'loft-style', get_template_directory_uri(). '/assets/css/style.css');--!!!--если создал папку assets и
+туда сбросил всю статику
+wp_enqueue_script( 'loft-scripts', get_template_directory_uri() . '/assets/js/app.js', array(),true );--!!!--если создал
+папку assets и туда сбросил всю статику
+
+
+if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+wp_enqueue_script( 'comment-reply' );
+}
+}
+add_action( 'wp_enqueue_scripts', 'loft_scripts' );
+
+
+еще вариант когда jquery и остальные скрипты и стили проводятся отдельно
+function transitive_scripts() {
+wp_enqueue_style( 'transitive-style', get_template_directory_uri(). '/assets/css/main.css', false , time());
+
+wp_enqueue_script( 'transitive-jguery', get_template_directory_uri() . '/assets/js/jquery.min.js','transitive-jguery',
+null,true );
+wp_enqueue_script( 'transitive-scrollex', get_template_directory_uri() .
+'/assets/js/jquery.scrollex.min.js','transitive-jguery', null,true );
+wp_enqueue_script( 'transitive-scrolly', get_template_directory_uri() .
+'/assets/js/jquery.scrolly.min.js','transitive-jguery', null,true );
+wp_enqueue_script( 'transitive-skel', get_template_directory_uri() . '/assets/js/skel.min.js','transitive-jguery',
+null,true );
+wp_enqueue_script( 'transitive-util', get_template_directory_uri() . '/assets/js/util.js', 'transitive-jguery',null,true
+);
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+------вот эта запись работает хорошо-------------------------
+wp_enqueue_style( 'one-style', get_template_directory_uri(). '/assets/css/main.css' );
+
+wp_enqueue_script( 'one-script', get_template_directory_uri().'/assets/js/main.js', [], $version, true );
+----------------------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+add_action( 'wp_enqueue_scripts', 'transitive_scripts' );
+
+
+
+\\\\\\\\\\удаление ненужного стиля\\\\\\\\\\
+remove_action( 'wp_head', 'wp_generator' );
+
+\\\\\\\\\\\\\\\\\\\\\удаление скрипта отвечающего за поддержку видео youtube если не нужен\\\\\\\\\\\\\\\\\\\
+// --------удаление ненужного скрипта--------
+function my_deregister_scripts(){
+wp_deregister_script( 'wp-embed' );
+}
+add_action( 'wp_footer', 'my_deregister_scripts' );
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++вывод логотипа. названия сайта.миниатюр запсей+++
+// подписываемся на момент формирования контента
+add_action( 'after_setup_theme', 'loft_setup' );
+function loft_setup(){
+// выводит логотип
+add_theme_support('custom-logo');
+// выводит название сайта
+add_theme_support('title-tag');
+// выводит миниатюру записи
+add_theme_support('post-thumbnails');
+}
+
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\показать-скрыть админпанель\\\\\\\\\\\\\\\\\\\\
+add_filter('show_admin_bar', '__return_false');
+----------------------------------------------------------------------------------ibg--поставить в самый низ. после него
+ничего не работает
+на сервере не работает в той форме. изменить на
+$(Document).ready(function ibg(){
+$.each($('.ibg'),function(index,val){
+if($(this).find('img').length>0){
+$(this).css('background-image','url("'+$(this).find('img').attr('src')+'")');
+}
+});
+});
+---------------------------------------------------------------------------------------картинки
+в замене набирать img/
+менять на <?php echo get_template_directory_uri()?>/assets/img/
+<img src="<?php echo get_template_directory_uri()?>/assets/img/logo/logo.svg" alt="logo">
+
+еще можно сделать функцию в functions.php и заменить ею все пути к картинкам.
+но это неудобно потому как все картинки сразу не поменять!! это делается так
+
+function loft_images($name){
+echo get_template_directory_uri() . '/assets/img/' . $name;
+}
+и прописывать путь к картинке <img src="<?php loft_images("bg-head.gif");?>" alt="bg-head">
+
+---------------sidebar----------------------------------
+register_sidebar(
+array(
+'name' => esc_html__( 'sidebar-header', 'jkpark' ),
+'id' => 'sidebar-header',
+'description' => esc_html__( 'Добавьте здесь виджеты', 'jkpark' ),
+// 'before_widget' => '<section id="%1$s" class="widget %2$s">',
+  // 'after_widget' => '</section>',
+// 'before_title' => '<h2 class="widget-title">',
+  // 'after_title' => '</h2>',
+)
+);
+
+вывод сайтбара
+<?php if ( is_active_sidebar( 'sidebar-header' ) ) : ?>
+<div id="sidebar-header">
+  <?php dynamic_sidebar( 'sidebar-header' ); ?>
+</div>
+<?php endif; ?>
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\header header header header header header header
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+--------------для header ---- в админке--внешний вид--темы---настроить-----------------------------
+
+<body <?php body_class(); ?>> эта штука может подвести. вывести body нулевой ширины
+  <?php language_attributes();?> --менять язык сайта <html <?php language_attributes();?>>
+  <? bloginfo('charset'); ?> --менять кодировку сайта
+  <meta charset="<? bloginfo('charset'); ?>">
+  <?php wp_head(); ?> --для связи с файлом index.php вставлять перед </head>
+  <?php the_custom_logo();?> --для вывода логотипа из админки.
+  этим нужно заменить всю ссылку для логотипа. например такую
+  <a href="#">
+    <img src="<?php loft_images("icons/logo.gif");?>" alt="logo">
+  </a>
+
+  \\------------------https://www.youtube.com/watch?v=wJwjWF87aF4 27sec
+  здесь проверка- если страница главная, то нет ссылки. если не главная то есть ссылка на главную
+  картинка сделана полями carbon fields
+
+  <?php if ( is_front_page())  :	?>
+  <img class="logo__img " src="<?php echo wp_get_attachment_image_url(carbon_get_theme_option( 'site_logo' )); ?>">
+  <?php
+else:
+?>
+  <a href="<?php echo get_home_url() ?>">
+    <img class="logo__img " src="<?php echo wp_get_attachment_image_url(carbon_get_theme_option( 'site_logo' )); ?>">
+  </a>
+
+  <?php
+endif;
+?>
+
+
+  
+
+
+  /////////////////////////////регистрация кастомных полей: //////////////////////////
+
+  https://www.youtube.com/watch?v=eNURjX3L7oM
+  https://www.youtube.com/watch?v=O9j-R-GwCt4
+  https://wp-kama.ru/function/register_post_type
+  https://developer.wordpress.org/resource/dashicons/#menu-alt2
+
+
+
+  function my_custom_init(){
+  register_post_type('boards', array(
+  'labels' => array(
+  'name' => 'Борды', // Основное название типа записи
+  'singular_name' => 'Борды слайдера', // отдельное название записи типа Book
+  'add_new' => 'Добавить новый борд',
+  // 'add_new_item' => 'Добавить новую книгу',
+  // 'edit_item' => 'Редактировать книгу',
+  // 'new_item' => 'Новая книга',
+  // 'view_item' => 'Посмотреть книгу',
+  // 'search_items' => 'Найти книгу',
+  // 'not_found' => 'Книг не найдено',
+  // 'not_found_in_trash' => 'В корзине книг не найдено',
+  // 'parent_item_colon' => '',
+  // 'menu_name' => 'Книги'
+
+  ),
+  'public' => true,
+  'menu_position' => 5,
+  'menu_icon' =>'dashicons-palmtree', -----тут меняется иконка на панели возле названия
+  https://developer.wordpress.org/resource/dashicons
+  'supports' => array('title','editor','thumbnail','excerpt','comments','post-format')
+  ) );
+  }
+  add_action('init', 'my_custom_init');
+
+  //--- можно задать размер превью картинки----
+  if (function_exists( 'add_image_size' )){
+  add_image_size('board-slider',225,490,true);
+  }
+
+
+
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\вывод кастомного типа полей в
+  верстку\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+  https://www.youtube.com/watch?v=r84jByqP-B8
+  https://wp-kama.ru/function/get_posts
+  https://wp-kama.ru/search?searchid=1771092&text=getpost&l10n=ru&q=getpost ---get_post
+
+
+  <?php the_field('board_img'); ?> ---это поля acf
+  <?php the_field('price') ?> ---это поля acf
+
+
+
+  \\\\\\\\\\\\\\\\\\\\\\\ вывод записей и страниц по id
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+  создаём страницу где заголовок номер телефона и в шаблоне ее дергаем по id
+  <?php
+$my_id = 44;
+$post_id_44 = get_post($my_id); 
+$post_title = $post_id_44->post_title;
+echo $post_title;
+?>
+  <?php the_title(); ?> --это выведет заголовок поста. это не поле acf
+
+  а вот так выйдет содержимое поста 27
+  <?php
+$post = get_post( 27 );
+$text = $post->post_content; 
+echo apply_filters('the_content', $text); 
+?>
+
+  <?php unset($post_id); $post_id = get_the_ID(); $post = get_post($post_id); $text=$post->post_content; 
+echo apply_filters('the_content', $text);?>
+  --здесь:
+  ---unset($post_id);--сброс переменной $post_id
+  ---$post_id = get_the_ID();--получаем id поста и записываем в переменную
+  ---$post = get_post($post_id);--- получаем весь пост по полученному ранее id
+  ---$text=$post->post_content; ---- из поста вынимаем контент и записываем в переменную.
+  ---- echo apply_filters('the_content', $text); ---распечатаваем через фильтр контент поста
+  ----так можно выводить текст записи например.
+
+  =-=-=-=-=-=-=-=-=-=-=-=-=--=-=--==здесь js класс для slick-=-=--= все что ниже и есть слайдер
+
+  <?php
+global $post;
+$args = array(
+   'post_type'=>'boards',
+   'publish' => true
+  );
+$slider_boards = get_posts($args);
+foreach($slider_boards as $post){
+?>
+
+  <?php
+$type = get_post_meta(get_the_ID(), 'board_type', true);  ------здесь имя из acf
+$price = get_post_meta(get_the_ID(), 'price', true);      -----здесь имя из acf
+?>
+
+
+
+  <div class="slider-shop__slide slider-shop-slide">
+    <div class="slider-shop-slide__body">
+      <div class="slider-shop-slide__main ibg bg">
+
+        <img src="<?php the_field('board_img'); ?>" ---здесь выводится поле acf. в случае вывода изображения ПРИ
+          СОЗДАНИИ ПОЛЯ ОБЯЗАТЕЛЬНО УКАЗЫВАТЬ ОВЗВРАЩАЕМЫЙ ФОРМАТ -ССЫЛКА НА ИЗОБРАЖЕНИЕ <img
+          src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'board-slider');?>" alt=""> ---здесь выводится
+        картинка
+        записи.
+        САМО ПОЯВЛЕНИЕ КАРТИНКИ НУЖНОО ПРОПИСЫВАТЬ В FUNCTIONF.PHP/ ПРИ РЕГИСТРАЦИИ КАСТОМНЫХ ПОЛЕЙ.
+        А ИМЕННО 'supports' => array('title','editor','thumbnail','excerpt','comments','post-format').... это не поле
+        acf
+
+      </div>
+      <div class="slider-shop-slide__small slider-shop-tiny">
+        <div class="slider-shop-tiny__body">
+          <div class="slider-shop-tiny__title">
+
+            <?php the_field('type') ?>
+            <?=$type?> ---можно и так
+          </div>
+          <div class="slider-shop-tiny__text slider-shop-tiny__text_one"><?php the_title(); ?></div>
+          <div class="slider-shop-tiny__text slider-shop-tiny__text_two">
+            <?php the_field('price') ?>
+
+            <?=$price?> --можно и так
+          </div>
+          <div class="slider-shop-tiny__button"><a href="#"><span>Buy</span></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- // include(get_template_directory().'/content_boardsSlider.php'); -->
+
+  <?php	
+}
+wp_reset_postdata();
+?>
+
+
+
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\повторяющиеся части кода\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  6.40 https://www.youtube.com/watch?v=z92F_sZYDV4&list=PLyKl7JlkPve6wRFRgVgImBWZ3xMQnYUQa&index=3
+  если есть несколько разновидностей одного и того же включения(например header) и на разных страницах используется
+  разные header
+  то соджается еще один файл например header-generic.php и тогда уже нужно прописывать в шаблонах с таким header только
+  так:
+  get_header('generic');
+  ! важно --- не header-generic а generic. слово header опускается
+
+
+  кроме header.php и footer.php можно создавать еще файлы и в них заносить повторяющиеся части кода
+  напрример создается файл nav.php
+  <?php  get_template_part('nav') ?> ----это заносится или не заносится в файл нового шаблона в зависимости от дизайна
+
+
+
+
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\шаблон для
+  записей\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  должен содержать такой коментарий
+  <?php
+/**
+*Template Post Type: post, page, product
+*/
+?>
+
+
+
+  \\\\\\\\\\\\\\\\\\\\\\\вставка
+  шорткода\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  <?php echo do_shortcode( '[ваш_шорткод]' ); ?>
+
+
+
+
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\создание своего
+  виджета\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  https://www.youtube.com/watch?v=0WIn_pVyN0c&list=PLY4rE9dstrJyvr3-ssA_ai5xnvSOI5tr6&index=5
+  со*даем папку widgets
+  в нее вкладываем файлы виджетов например widget-sidebar-header.php и файл инициализации widgets.php
+
+  прописываем все это в functions.php
+  /**
+  * Widgets Settings
+  */
+  require get_template_directory() . '/widgets/widget-sidebar-header.php';
+  require get_template_directory() . '/widgets/widgets.php';
+
+  в vidget-sidebar-header заносим код
+  <?php
+// --------------------------------------
+/**
+ * Adds Slide_Widget widget.
+ */
+class Slide_Widget extends WP_Widget {
+
+	/**
+	 * Register widget with WordPress.
+	 */
+	function __construct() {
+		parent::__construct(
+			'Slide_widget', // Base ID-------------менять
+			esc_html__( 'Slide_widget', 'text_domain' ), // Name-------------менять
+			array( 'description' => esc_html__( 'Выезжающий сайтбар с этим виджетом в шапке сайта', 'text_domain' ), ) // Args
+		);
+	}
+
+	/**
+	 * Front-end display of widget.
+	 *
+	 * @see WP_Widget::widget()
+	 *
+	 * @param array $args     Widget arguments.
+	 * @param array $instance Saved values from database.
+	 */
+	public function widget( $args, $instance ) {
+		echo $args['before_widget'];
+		if ( ! empty( $instance['title'] ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+		}
+		echo esc_html__( 'Hello, World!', 'text_domain' );
+		echo $args['after_widget'];
+	}
+
+	/**
+	 * Back-end widget form.
+	 *
+	 * @see WP_Widget::form()
+	 *
+	 * @param array $instance Previously saved values from database.
+	 */
+	public function form( $instance ) {
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
+		?>
+  <p>
+    <label
+      for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
+    <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+      name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text"
+      value="<?php echo esc_attr( $title ); ?>">
+  </p>
+  <?php 
+	}
+
+	/**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
+
+		return $instance;
+	}
+
+} // class Foo_Widget
+
+// ----------------------------------------------------------------------
+
+ в файл widgets заносим код
+<?php
+// register Foo_Widget widget
+function register_foo_widget() {
+    register_widget( 'Slide_Widget' );
+}
+add_action( 'widgets_init', 'register_foo_widget' );
+
+
+
+
+/////////////////////contact form 7/////////////////////
+=======================================================================
+этот код нужно вставлять в functions.php
+он делает переход на страницу спасибо после успешной отправки формы. 
+то есть когда заполнены все обязательные поля
+https://www.youtube.com/watch?v=6Yxjc1o4iy8
+
+// -----------форма с перенаправлением на страницу спасибо после успешной отправки-----
+этот код нужно вставлять в functions.php-----------
+
+
+add_action('wp_footer', function(){
+
+?>
+  <script>
+    // Ищем блок с формой, имеющий класс wpcf7 (его имеют все div с формой)
+    var wpcf7Elm = document.querySelector('.wpcf7');
+    // Мониторим событие wpcf7submit у выбранного блока
+    wpcf7Elm.addEventListener('wpcf7mailsent', function (event) {
+      location.assign('http://j-uno/благодарности/')
+    }, false);
+  </script>
+  <?php
+});
+?>
+  -------------------------------------------------------------------------------
+  ------------------------пример формы для попап окна-------------------------------------
+  <section class="popup-link">
+    <div class="cont-column__form">
+
+      <div class="cont-column__in">
+        [text* text-942 id:username placeholder "Введите имя"]
+        <img src="http://j-uno/wp-content/themes/j-uno/assets/img/link/link-pers.png" alt="img">
+      </div>
+      <div class="cont-column__in">
+        [text* text-773 id:phone placeholder "Ваш телефон"]
+        <img src="http://j-uno/wp-content/themes/j-uno/assets/img/link/link-pers.png" alt="img">
+      </div>
+
+      <div class="cont-column__button">
+        [submit "Отправить"]
+
+      </div>
+    </div>
+    <div class="cont-column__confidence">Нажимая кнопку вы соглашаетесь на
+      <a href="#"> <span> обработку персональных данных </span> </a>
+    </div>
+  </section>
+
+  ///////////////просто вставка видео на сайт без ничего///////////////////////
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/3jT_q7dt-cM" frameborder="0" allowfullscreen>
+  </iframe>
+
+
+  \\\\\\\\\\\\\\\\\\\\\\\\\\carbon-fields\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  https://docs.carbonfields.net/#/plugin-quickstart
+  пункт Without Composer.
+  смотреть на сайте подключение в functions и создание папки includes?
+  помещение в нее самого плагине и папки carbon-fields-options и т.д.
+  http://yushinbox.zzz.com.ua/one/wp-admin
+
+  так можно дебажить в сторонке на page.php
+  <?php echo wp_get_attachment_image_url(carbon_get_theme_option( 'site_logo' )); ?> ----так получим url картинки из
+  поля cf
+  <?php echo carbon_get_theme_option( 'site_phone' ); ?> ---так получим значение поля
+
+  так выводится логотип
+  <?php echo wp_get_attachment_image_url(carbon_get_theme_option( 'site_logo' )); ?>
+
+
+  поля из глобальной переменной
+  <?php print_r($GLOBALS['pizza_time']['address']);?>

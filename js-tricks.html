@@ -1,0 +1,396 @@
+=====================
+при скроле добавляются-убираются классы. можно делать прилипающее меню разное
+=====================
+window.onscroll = function () {
+if (window.pageYOffset > 50)
+{
+document.querySelector('.header').classList.remove('opened');
+document.querySelector('.header').classList.add('bcolor');
+document.querySelector('.header-white').classList.add('bcolor-white');
+document.querySelector('.header-white').classList.remove('bcolor');
+}
+else
+{
+document.querySelector('.header').classList.remove('bcolor');
+document.querySelector('.header').classList.add('opened');
+document.querySelector('.header-white').classList.add('opened');
+document.querySelector('.header-white').classList.remove('bcolor-white');
+}
+
+}
+
+==============================================
+один из вариантов бургера
+==============================================
+
+    (function () {
+    const burger = document.querySelector('.burger-menu'),
+    header = document.querySelector('.header'),
+    header_menu = document.querySelector('.menu'),
+    btn_close = document.querySelector('.menu__close'),
+    homeBanner = document.querySelector('.home-banner');
+    
+    burger.addEventListener('click', function () {
+    header.classList.add('js-opened');
+    header_menu.classList.add('js-opened');
+    body.classList.add('hidden');
+    homeBanner.classList.remove('close-menu');
+    homeBanner.classList.add('open-menu');
+    });
+    btn_close.addEventListener('click', function () {
+    header.classList.remove('js-opened');
+    header_menu.classList.remove('js-opened');
+    body.classList.remove('hidden');
+    homeBanner.classList.remove('open-menu');
+    homeBanner.classList.add('close-menu');
+    });
+    
+    // const checkBody = () => (e) => {
+    // if (!header_menu.contains(e.target)) {
+    // if (header_menu.classList.contains('js-opened')) {
+    // header_menu.classList.remove('js-opened');
+    // body.classList.remove('hidden');
+    // }
+    // }
+    // };
+    
+    $(window).resize(function () {
+    if ($(window).width() > 768) {
+    header_menu.classList.remove('js-opened');
+    body.classList.remove('hidden');
+    }
+    });
+    if ($(window).width() > 768) {
+    header_menu.classList.remove('js-opened');
+    body.classList.remove('hidden');
+    }
+    
+    // document.addEventListener('touchend', checkBody(true));
+    // document.addEventListener('mouseup', checkBody(true));
+    })();
+
+
+    }
+
+=============================================================
+при скроле сдвигается текст влево а при скролле вверх обратно возвращается
+=============================================================
+
+/*
+* this is function for scrolling
+* when scrolling, the text moves horizontally
+*/
+
+{
+let windowOffset;
+let viewPort = window.innerHeight;
+let portfolio = $('#portfolio');
+let design = $('#design');
+let about = $('#about');
+let lastScrollTop2 = 0;
+let lastScrollTop3 = 0;
+let xDesign = 0;
+let xAbout = 0;
+$(window).on('scroll', function () {
+windowOffset = window.pageYOffset;
+
+//Design
+if (windowOffset >= (design.offset().top - viewPort) && windowOffset <= (design.offset().top + 200)) { let
+    st2=$(this).scrollTop(); if (st2> lastScrollTop2) {
+    xDesign += 2;
+    design.parent().css('transform', 'translateX(' + xDesign + 'px)');
+    } else {
+    xDesign -= 2;
+    design.parent().css('transform', 'translateX(' + xDesign + 'px)')
+    }
+    lastScrollTop2 = st2;
+    }
+
+
+    //About Us
+    if (windowOffset >= (about.offset().top - viewPort) && windowOffset <= (about.offset().top + 200)) { let
+        st3=$(this).scrollTop(); if (st3> lastScrollTop3) {
+        xAbout += 2;
+        about.parent().css('transform', 'translateX(' + xAbout + 'px)');
+        } else {
+        xAbout -= 2;
+        about.parent().css('transform', 'translateX(' + xAbout + 'px)')
+        }
+        lastScrollTop3 = st3;
+        }
+
+//Portfollio
+        if (windowOffset >= (portfolio.offset().top - viewPort) && windowOffset <= (portfolio.offset().top + 200)) { let
+            st3=$(this).scrollTop(); if (st3> lastScrollTop3) {
+            xAbout += 2;
+            portfolio.parent().css('transform', 'translateX(' + xAbout + 'px)');
+            } else {
+            xAbout -= 2;
+            portfolio.parent().css('transform', 'translateX(' + xAbout + 'px)')
+            }
+            lastScrollTop3 = st3;
+            }
+}
+
+===========================================================
+табы. по переключению на кнопки добавляются- убираются классы у других блоков
+===========================================================
+
+$('.project__type-switch button').on('click', function () {
+if ($(this).hasClass('active'))
+return;
+$('.project__type-switch button').toggleClass('active');
+});
+$('#mobile').on('click', function () {
+$('.project__frame ').not('.mobile').hide();
+$('.mobile').show();
+$('.sm-visible').addClass('visible');
+});
+$('#desktop').on('click', function () {
+$('.mobile').hide();
+$('.project__frame ').not('.mobile').show();
+$('.sm-visible').removeClass('visible');
+});
+
+=================================================
+такие же табы только кнопки совмещены в одном месте. чистый переключатель.
+=================================================
+
+    $('.project__type-switch button').on('click', function () {
+    if ($(this).hasClass('active'))
+    return;
+    $('.project__type-switch button').toggleClass('active');
+    });
+    $('#mobile').on('click', function () {
+    $('.project__frame ').not('.mobile').hide();
+    $('.mobile').show();
+    $('.sm-visible').addClass('visible');
+    });
+    $('#desktop').on('click', function () {
+    $('.mobile').hide();
+    $('.project__frame ').not('.mobile').show();
+    $('.sm-visible').removeClass('visible');
+    });
+    },
+
+&__type-switch {
+margin: 16px 0 48px;
+height: 48px;
+display: flex;
+align-items: center;
+justify-content: left;
+@include media-breakpoint-only(lg) {
+margin: 0;
+}
+@include media-breakpoint-down(sm) {
+margin: 0 auto;
+}
+@media (max-width: 374px) {
+flex-direction: column;
+height: 116px;
+align-items: flex-start;
+}
+#read-case-info {
+display: inline-flex;
+justify-content: center;
+align-items: center;
+width: 179px;
+height: 48px;
+background-color: #fff;
+@include dm-sans-medium;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 1;
+letter-spacing: 0.4px;
+color: #0d0001;
+@include media-breakpoint-down(sm) {
+width: 156px;
+height: 48px;
+}
+}
+button {
+width: 179px;
+height: 48px;
+@include dm-sans-medium;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 18px;
+letter-spacing: 0.4px;
+color: #0d0001;
+padding: 0;
+@include media-breakpoint-down(sm) {
+width: 156px;
+height: 48px;
+}
+&.active {
+display: none;
+}
+}
+#desktop {
+margin: 0 15px 0 20px;
+@include media-breakpoint-down(sm) {
+margin: 0 15px 0 20px;
+}
+@media (max-width: 374px) {
+margin: 20px 0 0 0;
+}
+}
+#mobile {
+position: absolute;
+width: 179px;
+height: 48px;
+top: 0%;
+left: 199px;
+@include media-breakpoint-down(sm) {
+left: 176px;
+width: 156px;
+}
+@media (max-width: 374px) {
+top: 68px;
+left: 0;
+}
+}
+}
+
+<div class="project__type-switch flex-center col-12 ">
+    <a id="read-case-info" href="#">Read case info </a>
+    <button class="active btn btn__white" id="desktop">
+        Desctop version
+    </button>
+    <button class="btn btn__white" id="mobile">
+        Mobile version
+    </button>
+</div>
+
+=======================================================
+оригинальная кнопка с эффектом волнами на js
+https://codepen.io/kjbrum/pen/wBBLXx  ---здесь несколько еще
+сделал такие на сайте split
+=======================================================
+
+<div class="wrap">
+    <a class="btn-6" href="#">Position Aware<span></span></a>
+</div>  
+
+-------------------------
+a {
+text-decoration: none;
+line-height: 80px;
+color: black;
+}
+
+.wrap {
+width: 50%;
+float: left;
+}
+
+[class^="btn-"] {
+position: relative;
+display: block;
+overflow: hidden;
+width: 100%;
+height: 80px;
+max-width: 250px;
+margin: 1rem auto;
+text-transform: uppercase;
+border: 1px solid currentColor;
+color: #9b41a6;
+}
+
+.btn-6 span {
+position: absolute;
+display: block;
+width: 0;
+height: 0;
+border-radius: 50%;
+background-color: #52135a;
+-webkit-transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+-webkit-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+z-index: -1;
+}
+.btn-6:hover {
+color: #e2c7e5;
+}
+.btn-6:hover span {
+width: 225%;
+height: 562.5px;
+}
+.btn-6:active {
+background-color: #891f96;
+}
+
+// a {
+// text-decoration: none;
+// line-height: 80px;
+// color: black;
+// }
+
+// .wrap {
+// width: 50%;
+// float: left;
+// }
+
+// [class^="btn-"] {
+// position: relative;
+// display: block;
+// overflow: hidden;
+// width: 100%;
+// height: 80px;
+// max-width: 250px;
+// margin: 1rem auto;
+// text-transform: uppercase;
+// border: 1px solid currentColor;
+// color: #9b41a6;
+// }
+
+// .btn-6 span {
+// position: absolute;
+// display: block;
+// width: 0;
+// height: 0;
+// border-radius: 50%;
+// background-color: #52135a;
+// -webkit-transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+// transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+// -webkit-transform: translate(-50%, -50%);
+// transform: translate(-50%, -50%);
+// z-index: -1;
+// }
+// .btn-6:hover {
+// color: #e2c7e5;
+// }
+// .btn-6:hover span {
+// width: 225%;
+// height: 562.5px;
+// }
+// .btn-6:active {
+// background-color: #891f96;
+// }
+
+
+
+--------------
+$(function () {
+$('.btn-6')
+.on('mouseenter', function (e) {
+var parentOffset = $(this).offset(),
+relX = e.pageX - parentOffset.left,
+relY = e.pageY - parentOffset.top;
+$(this).find('span').css({ top: relY, left: relX });
+})
+.on('mouseout', function (e) {
+var parentOffset = $(this).offset(),
+relX = e.pageX - parentOffset.left,
+relY = e.pageY - parentOffset.top;
+$(this).find('span').css({ top: relY, left: relX });
+});
+$('[href=#]').click(function () {
+return false;
+});
+});
+
+

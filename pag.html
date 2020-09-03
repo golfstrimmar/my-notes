@@ -1,0 +1,226 @@
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+mixin work-item(name,img,title,text)
+  div(class="item col-md-4 row no-gutters " + name)
+    .item__img.col-sm-12.col-md-2.align-self-center
+      img(src=img,alt="img")
+    .item__column.col-md-10
+      .item__title
+        h5.text-40-52-bold-0D0D0D=title
+      .item__text.text-28-34-600-fff=text
+
++work-item("work__item","assets/img/work/tie.svg","434","Works witn happy customers")
+
+пример миксины для повторяющегося пункта какого-то блока. 
+здесь можно выводить название класса, картинку , заголовок и текст
+
+
+
+
+
+
+
+
+=======================================================
+============страницы которые пойдут наверх===========================
+----src------------index.pug-------data.pug и т.д.--------------------------
+====================================================================
+/--- extends _layouts/home
+\
+/ block variables
+\ -var bodyClass='index-page'
+/ block styles
+\ link(rel="stylesheet", href="index.css")
+/ block content
+\ h1 это index index index index!
+\ block scripts
+/ link(src='index.js')
+\
+/
+\
+/=========основной шаблон страницы===================
+-------_layouts-----home.pug---------------------------------
+<!DOCTYPE html>
+html(lang="en")
+head
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width, initial-scale=1.0")
+title Document
+block styles
+
+body(class='${bodyClass}')
+/-------include ../_partials/header
+/ block content
+\ include ../_partials/footer ---\
+\ block scripts /
+/ \
+\ /
+/ \
+-------------------_partials-----------------------------------------
+
+header.pug footer.pug
+
+======================================================================
+extends _layouts/home это отверстие через которое целиком пролазит
+весь нижний этаж
+--------------------------------------------------------------
+block это пустые ящики. их заполнят этажом выше.
+---------------------------------------------------------------
+body(class='${bodyClass}') пустая болванка
+которую заполнят этажом выше
+----------------------------------------------------------------
+include ../ самые низшие включения. это полные ящики с содержимым,
+которое находится этажом ниже.здесь только
+их подключают.обычно это общие для всех страниц блоки.
+такие как header,footer,banner
+-----------------------------------------------------------------
+mixin pet(name) \ это обычные миксины. как везде.
+li.pet=name /их в отдельный файл и include <название файла>
+  ----------------- \ миксины-общие для всех страниц.?????
+
+  ul
+  +pet('cat')
+  +pet('dog')
+  +pet('pig')
+  ========================================================================
+  img(src='img/bg/bg-head.gif')
+  IMG(src="~@/img/file.jpg")--если другая директория
+  a(href="#") текст ссылки
+  a(href="#" target="_blank") текст ссылки
+
+  p Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.
+  //- А этот комментарий в html коде не выводится
+
+  nav.menu
+  ul.menu__list
+  each name in ['Главная', 'О компании', 'Услуги', 'Каталог', 'Контакты']
+  li
+  a(href="#")= name
+  -----------------------------------------------------------------------------------------
+  nav.menu
+  ul.menu__list
+  each value, index in {'Главная' : 'home', 'О компании' : 'about', 'Услуги' : 'services', 'Каталог' : 'catalog',
+  'Контакты' : 'contact'}
+  li
+  a(href= "/" + value + ".html")= index
+
+  <nav class="menu">
+    <ul class="menu__list">
+      <li><a href="/home.html">Главная</a></li>
+      <li><a href="/about.html">О компании</a></li>
+      <li><a href="/services.html">Услуги</a></li>
+      <li><a href="/catalog.html">Каталог</a></li>
+      <li><a href="/contact.html">Контакты</a></li>
+    </ul>
+  </nav>
+  -----------------------------------------------------------------------------------------
+  - var i = 0;
+  ul.list
+  while i < 4 li=i++ 
+  
+  
+  <ul class="list">
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    </ul>
+    -----------------------------------------------------------------------------------------
+    //- Mixin declaration
+    mixin listItems
+    ul.list-items
+    li One
+    li Two
+    li Three
+    li Four
+    li Five
+
+    //- Call mixin
+    +listItems
+
+    <ul class="list-items">
+      <li>One</li>
+      <li>Two</li>
+      <li>Three</li>
+      <li>Four</li>
+      <li>Five</li>
+    </ul>
+    ----------------------------------------------------------------------
+    //- Mixin declaration
+    mixin listItem(name)
+    li= name
+
+    //- Call mixin
+    ul.list-items
+    +listItem("One")
+    +listItem("Two")
+    ...
+    +listItem("Five")
+
+    <ul class="list-items">
+      <li>One</li>
+      <li>Two</li>
+      <li>Three</li>
+      <li>Four</li>
+      <li>Five</li>
+    </ul>
+    -----------------------------------------------------------------------
+    Миксины могут выступать в качестве блоков или контейнеров, которые могут содержать различный контент.
+
+    //- Mixin declaration
+    mixin article(title)
+    article.article
+    h1= title
+    if block
+    block
+    else
+    p Нет контента для отображения
+
+    //- Call mixin
+    +article("Заголовок страницы")
+    p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+    <article class="article">
+      <h1>Заголовок страницы</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </article>
+    ------------------------------------------------------------------------
+    неизвестное количество аргументов, используя синтаксис «rest arguments«.
+
+    mixin list(id, ...items)
+    ul(id= id)
+    each item in items
+    li= item
+
+    +list('myList', 1, 2, 3, 4)
+
+    <ul id="myList">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+    --------------------------------------------------------------------
+    существует несколько видов вывода переменных. Давайте обратимся к примеру.
+
+    - var title = "ООО Рога и копыта";
+    - var name = "Владимир";
+    - var state = "старший менеджер";
+
+    h1= title
+    p Компанию "#{title}" представляет #{state} !{name}
+
+    <h1>ООО Рога и копыта</h1>
+    <p>Компанию "ООО Рога и копыта" представляет старший менеджер Владимир</p>
+
+    ---------------------------------------------------------------------------
+    p
+    = 'Строка текста с тегом <strong>выделения</strong>.'
+
+    Выведет…
+
+    <p>Строка текста с тегом &lt;strong&gt;выделения&lt;/strong&gt;.</p>
+
+
