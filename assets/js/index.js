@@ -169,38 +169,137 @@ instagramFeed(".instagram-images");
             thousandSeparator: "",
             duration: 8000,
           });
+
           show = false;
         }
       });
     });
 
- class Spincrement {
-   constructor() {
-     this.selector = ".spincrement";
-     this.duration = 8000;
-   }
-   init() {
-     let self = this;
-     $(this.selector).each(function () {
-       $(window).scroll(() => {
-         const parent = $(this).attr("data-parent");
-         let parentOffset = $(this).attr("data-parent-offset");
-         if (typeof parentOffset === "undefined") {
-           parentOffset = 0;
-         }
-         let offsetTop = $(this).closest(parent).offset().top;
-         let topobgj = offsetTop - parseInt(parentOffset);
-         let scrol = pageYOffset;
-         if (topobgj < scrol) {
-           $(this).spincrement({
-             duration: self.duration,
-           });
-         }
-       });
-     });
-   }
- }
+// class Spincrement {
+//   constructor() {
+//     this.selector = ".spincrement";
+//     this.duration = 8000;
+//   }
 
+//   init() {
+//     let self = this;
+//     $(this.selector).each(function () {
+//       $(window).scroll(() => {
+//         const parent = $(this).attr("data-parent");
+//         let parentOffset = $(this).attr("data-parent-offset");
+//         if (typeof parentOffset === "undefined") {
+//           parentOffset = 0;
+//         }
+//         let offsetTop = $(this).closest(parent).offset().top;
+//         let topobgj = offsetTop - parseInt(parentOffset);
+//         let scrol = pageYOffset;
+//         if (topobgj < scrol) {
+//           $(this).spincrement({
+//             duration: self.duration,
+//           });
+//         }
+//       });
+//     });
+//   }
+// }
+
+// export default new Spincrement();
+
+// ---------рабочий----------------------------
+// $(document).ready(function () {
+    //   var show = true;
+    //   var countbox = ".int-fact-counters";
+    //   $(window).on("scroll load resize", function () {
+    //     if (!show) return false;
+
+    //     var w_top = $(window).scrollTop();
+    //     var e_top = $(countbox).offset().top;
+
+    //     var w_height = $(window).height();
+    //     var d_height = $(document).height();
+
+    //     var e_height = $(countbox).outerHeight();
+
+    //     if (
+    //       w_top + 200 >= e_top ||
+    //       w_height + w_top == d_height ||
+    //       e_height + e_top < w_height
+    //     ) {
+    //       $(".spincrement").spincrement({
+    //         thousandSeparator: "",
+    //         duration: 8000,
+    //       });
+    //       show = false;
+    //     }
+    //   });
+    // });
+// ---------------------------------------------------------------------------------
+
+
+
+
+//  $(document).ready(function () {
+//    var show = true;
+//    var countbox = ".int-fact-counters";
+//    $(window).on("scroll load resize", function () {
+//         $(".spincrement:eq(0)").spincrement();
+//         $(".spincrement:eq(1)").spincrement({
+//           decimalPlaces: 4,
+//         });
+//         $(".spincrement:eq(2)").spincrement({
+//           from: -1.5,
+//         });
+//         $(".spincrement:eq(3)").spincrement({
+//           complete: function (e) {
+//             e.text(e.text() + " ok ");
+//           },
+//         });
+//         $(".spincrement:eq(4)").spincrement();
+//    });
+//  });
+
+// class Spincrement {
+//   constructor() {
+//     this.selector = ".spincrement";
+//     this.duration = 8000;
+//   }
+
+//   init() {
+//     let self = this;
+//     $(this.selector).each(function () {
+//       $(window).scroll(() => {
+//         const parent = $(this).attr("data-parent");
+//         let parentOffset = $(this).attr("data-parent-offset");
+//         if (typeof parentOffset === "undefined") {
+//           parentOffset = 0;
+//         }
+//         let offsetTop = $(this).closest(parent).offset().top;
+//         let topobgj = offsetTop - parseInt(parentOffset);
+//         let scrol = pageYOffset;
+//         if (topobgj < scrol) {
+//           $(this).spincrement({
+//             duration: self.duration,
+//           });
+//         }
+//       });
+//     });
+//   }
+// }
+    //  $("#btn").click(function () {
+    //    $(".spincrement:eq(0)").spincrement();
+    //    $(".spincrement:eq(1)").spincrement({
+    //      decimalPlaces: 4,
+    //    });
+    //    $(".spincrement:eq(2)").spincrement({
+    //      from: -1.5,
+    //    });
+    //    $(".spincrement:eq(3)").spincrement({
+    //      complete: function (e) {
+    //        e.text(e.text() + " ok ");
+    //      },
+    //    });
+    //    $(".spincrement:eq(4)").spincrement();
+    //  });
 
 
 
