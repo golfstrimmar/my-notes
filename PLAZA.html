@@ -43,7 +43,53 @@
   блок выезжает-заезжает  по скролу страницы
 </div>
 <hr>
+<!-- -------------№8-----блок залипает при прокрутке---------------- -->
+<style>
+  .raz {
+    border: 1px solid red;
+    position: relative;
+  }
 
+  .sticky-container {
+  position: absolute;
+  width: auto;
+  height: 100%;
+  top: 0;
+  left: 80px;
+  padding: 50px 0;
+  z-index: 2;
+  
+}
+
+.sticky {
+    /* writing-mode: tb-rl; */
+    transform: rotate(180deg);
+    position: sticky;
+    top: 50px;
+  }
+</style>
+
+<div class="raz">
+  1<br>
+  2<br>
+  3<br>
+  <div class="sticky-container">
+  <div class="sticky">
+    <span>.Text-Style-8=BigLetter</span></div></div>
+  4<br>
+  5<br>
+  6<br>
+  7<br>
+  8<br>
+  9<br>
+  10<br>
+  11<br>
+  12<br>
+  13<br>
+  14<br>
+  15<br>
+</div>
+<hr>
 <!-- №4------блок поверх блока. если не задавать высоту и ширину он станет размером с блок. ---- -->
 <span>блок поверх блока. top0 left0 bottom0 right0 если не задавать высоту и ширину он станет размером с блок.</span>
 <div class="test-wrap">
