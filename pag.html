@@ -15,10 +15,35 @@ mixin work-item(name,img,title,text)
 здесь можно выводить название класса, картинку , заголовок и текст
 
 
+||||||||||||||||||цикл|||||||||||||||||||||||||
+-
+  var nav = [
+  {
+  id: "home",
+  href: "index.html",
+  title: "Home",
+  img: "assets/img/work/tie.svg"
+  },
+  {
+  id: "about",
+  href: "about-us.html",
+  title: "About us",
+  img: "assets/img/work/tie.svg"
+  },
+  {
+  id: "portfolio",
+  href: "portfolio.html",
+  title: "Portfolio",
+  img: "assets/img/work/tie.svg"
+  }
+  ];
 
-
-
-
+nav.menu
+  ul.menu__list
+    each item in nav
+      li.menu__item(id=""+item.id)
+        a.menu__link(href=item.href)=item.title
+          img(src=item.img,alt="img")
 
 
 =======================================================
