@@ -112,15 +112,53 @@ overflow: hidden;
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||
 a(href="#!") не перезагружает страницу
 
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-background-color: @color-bg-a;
-background-image: url(http://www.example.com/bck.png);
-background-image: url(img/bg.jpg);
+
+
+|||||||||||||||||||||||||||||background-image|||||||||||||||||||||||||||||||||||
+
+использовать миксин pug 
+mixin img-bg(src, alt)
+.img-bg.bg(
+  src=src,
+  style=`background-image: url('${src}')`,
+  alt=alt
+)
+
+.img-bg {
+background: {
+repeat: no-repeat;
+size: cover;
+position: center;
+}
+}
+как обычно .bg 
+.bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  img{
+  width: 100%;
+  height: 100%;
+  }
+}
+.test{position: relative;}
+
+
+вписывается прямо внутрь блока(блоку задать position: relative;)
+.test
+  +img-bg("assets/img/group/v-1.svg","image" )
+
+
+----------------
  background-repeat: no-repeat;
  background-position: 10px 10px;
 background-size: cover;
-background-image: url(../img/bg/bg.jpg);
 background-image: linear-gradient(to top, нижний цвет , вер{ }ний цвет);
 
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
