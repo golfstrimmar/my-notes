@@ -28,19 +28,29 @@
 
 
 //- !!!!!!!!!!!!!!!!!!!стоят на сайте board 24!!!!!!!!!!!!!!!!!!
-//-  по клику на тааб- о раскрывается вниз и по клику- закрывается.
-//- let tab = $(".board24_tab-js"); ---элемент триггер
-//- let tabitem = $(".board24_item-js"); ---элемент внутри триггера
+//-  по клику на заголовок вкладки - он раскрывается вниз и по клику на заголовок- закрывается.
+здесь 
+.board24_tab-js   ---класс самого блока
+.board24_item-js  --выпадающая часть например удлиняющая основную
+tab.find(".board24_tab-item__title")  -- у блоа ищется лочерний элемент, например заголовок. по нему клик
+let tabitem = $(this).siblings(".board24_item-js");--- в одной плоскости лежит с заголовком та часть которая выпадает
+tabitem.fadeIn(10).addClass("act");  -- собственно выпадание 
+$(this).find(".icon-arrow_drop_down").css("transform","rotate(180deg)");---переворачивает иконку треугольничек
 
-//- tabitem.fadeOut().removeClass("act");
 
-//- tab.on("click", function () {
-//- if (tabitem.eq($(this).index()).hasClass("act")){
+let tab = $(".board24_tab-js");
+$(".board24_item-js").fadeOut(10);
 
-//- tabitem.eq($(this).index()).fadeOut(10).removeClass("act");
+tab.find(".board24_tab-item__title").on("click", function () {
+let tabitem = $(this).siblings(".board24_item-js");
+if (tabitem.hasClass("act")) {
+tabitem.fadeOut(10).removeClass("act");
+$(this).find(".icon-arrow_drop_down").css("transform", "rotate(0deg)");
+} else {
+tabitem.fadeIn(10).addClass("act");
+$(this).find(".icon-arrow_drop_down").css("transform","rotate(180deg)");
+}
 
-//- }else{
-//- tabitem.eq($(this).index()).fadeIn(10).addClass("act");
-//- }
-//- });
+});
+
 //- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
