@@ -346,7 +346,8 @@ echo apply_filters('the_content', $text);?>
 global $post;
 $args = array(
    'post_type'=>'boards',
-   'publish' => true
+   'publish' => true,
+  'numberposts' => 20     !!!!!!!!!!!!!!!! очень важно!!! по умолчанию выводит тоько 5 постов. нужно указывать этот аргумент если постов будет боьше 5!  все аргументы !!!!!!!!
   );
 $slider_boards = get_posts($args);
 foreach($slider_boards as $post){
