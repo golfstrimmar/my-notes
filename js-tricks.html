@@ -481,11 +481,22 @@ $(".js-overlay-campaign").fadeOut();
 });
 }),
 |||||||||||||||закрытие попап окна по клику вне формы, то есть по затемненной части окна||||||||||||||||||||||||||||||||
-$(document).mouseup(function (e) {
-var modalctr = $(".overlay-popup");
-var modal = $(".popup-link");
-if (!modal.is(e.target) && modal.has(e.target).length === 0) {
-modalctr.fadeOut();
+let meeting = $("#board24_create-meeting");  ---это кнопка открытия окна
+let meetPopup = $("#board24_meet-popup"); ----это весь попап
+let center = meetPopup.find($(".board24_meet__center")); --------здесь квадрат внутри с содержанием
+
+meetPopup.css("display","none");
+
+meeting.on("click",function(){  // здесь открытие всего  окна с оверлеем и блоком внутри
+meetPopup.fadeIn();
+});
+
+$(document).on("mouseup",function (e) {
+if (
+!center.is(e.target) && // если клик был не по нашему блоку
+center.has(e.target).length === 0// и не по его дочерним элементам
+) {
+meetPopup.fadeOut(); // скрываем его
 }
 });
 ///////////////////////////////////////////////////////////////////
