@@ -196,8 +196,10 @@ array(
 
 то есть wp сам сформировал контейнер по умолчанию и присвоил ему какой-то свой класс
 
-------------------------------
-
+-----------------// этот код добавляет ссылкам меню нужные классы. иначе к ссыкам не подобраться.
+function add_menuclass($ulclass) {
+return preg_replace('/<a /', '<a class="menu__link animation-letters"' , $ulclass); }
+  add_filter('wp_nav_menu','add_menuclass');
 
 
 
