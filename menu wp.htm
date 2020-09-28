@@ -197,6 +197,25 @@ array(
 то есть wp сам сформировал контейнер по умолчанию и присвоил ему какой-то свой класс
 
 -----------------// этот код добавляет ссылкам меню нужные классы. иначе к ссыкам не подобраться.
+
+
+--здесь если в разных меню разные классы для ссылок--
+
+function my_walker_nav_menu_start_el($item_output, $item, $depth, $args) {
+$menu_locations = get_nav_menu_locations();
+if ( has_term($menu_locations['menu-header'], 'nav_menu', $item) ) {
+$item_output = preg_replace('/<a /', '<a class="menu__link animation-letters" ' , $item_output, 1); } if (
+  has_term($menu_locations['menu-header-white'], 'nav_menu' , $item) ) { $item_output=preg_replace('/<a
+  /', '<a class="menu__link menu__link_black animation-letters" ' , $item_output, 1); } return $item_output; }
+  add_filter('walker_nav_menu_start_el', 'my_walker_nav_menu_start_el' , 10, 4);
+
+
+
+
+
+
+---здесь если меню одно на сайте и ссылки везде одинаковые
+
 function add_menuclass($ulclass) {
 return preg_replace('/<a /', '<a class="menu__link animation-letters"' , $ulclass); }
   add_filter('wp_nav_menu','add_menuclass');
