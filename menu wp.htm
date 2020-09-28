@@ -64,7 +64,7 @@ return $classes;
 
 ===================================================================================
 Например было так
-<div class="site_menu"></div>
+<div class="site_menu">
 <ul id="sdt_menu" class="sdt_menu ">
   <li>
     <a href="#"></a>
@@ -77,8 +77,9 @@ return $classes;
   </li>
 </ul>
 </div>
-если прописать такое меню
 
+
+если прописать такое меню
 register_nav_menus(
 array(
 'Header_menu' => esc_html__( 'Header_menu', 'port' ),
