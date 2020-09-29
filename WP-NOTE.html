@@ -148,10 +148,10 @@ add_action( 'wp_enqueue_scripts', 'transitive_scripts' );
 
 
 
-\\\\\\\\\\удаление ненужного стиля\\\\\\\\\\
+\\\\\\\\\\   удаление ненужного стиля  \\\\\\\\\\
 remove_action( 'wp_head', 'wp_generator' );
 
-\\\\\\\\\\\\\\\\\\\\\удаление скрипта отвечающего за поддержку видео youtube если не нужен\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\  удаление скрипта отвечающего за поддержку видео youtube если не нужен  \\\\\\\\\\\\\\\\\\\
 // --------удаление ненужного скрипта--------
 function my_deregister_scripts(){
 wp_deregister_script( 'wp-embed' );
@@ -180,10 +180,10 @@ add_theme_support('post-thumbnails');
 --язык сайта----    <?php language_attributes(); ?>
 
 
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\показать-скрыть админпанель\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\   показать-скрыть админпанель   \\\\\\\\\\\\\\\\\\\\
 add_filter('show_admin_bar', '__return_false');
 
-//////////////////////////ibg--поставить в самый низ. после него ничего не работает///////////////////
+//////////////////////////   ibg--поставить в самый низ. после него ничего не работает  ///////////////////
 на сервере не работает в той форме. изменить на
 $(Document).ready(function ibg(){
 $.each($('.ibg'),function(index,val){
@@ -192,7 +192,7 @@ $(this).css('background-image','url("'+$(this).find('img').attr('src')+'")');
 }
 });
 });
-/////////////////////////////////////////картинки/////////////////////////////////////
+/////////////////////////////////////////  картинки   /////////////////////////////////////
 в замене набирать img/
 менять на <?php echo get_template_directory_uri()?>/assets/img/
 <img src="<?php echo get_template_directory_uri()?>/assets/img/logo/logo.svg" alt="logo">
@@ -205,7 +205,7 @@ echo get_template_directory_uri() . '/assets/img/' . $name;
 }
 и прописывать путь к картинке <img src="<?php loft_images("bg-head.gif");?>" alt="bg-head">
 
-///////////////sidebar/////////////////////////
+///////////////   sidebar   /////////////////////////
 register_sidebar(
 array(
 'name' => esc_html__( 'sidebar-header', 'jkpark' ),
@@ -227,8 +227,6 @@ array(
 
 
 \\\\\\\\\\\\\\\ header \\\\\\\\\\\\\\\\
-
---------------для header ---- в админке--внешний вид--темы---настроить-----------------------------
 
 <body <?php body_class(); ?>> эта штука может подвести. вывести body нулевой ширины
   <?php language_attributes();?> --менять язык сайта <html <?php language_attributes();?>>
@@ -304,11 +302,7 @@ endif;
 
 
 
-///////////////////   acf  /////////////////
 
-
-  <?php the_field('board_img'); ?> ---это поля acf
-  <?php the_field('price') ?> ---это поля acf
 
 
   \\\\\\\\\\\\\\\вывод кастомного типа полей в верстку\\\\\\\\\\\
@@ -318,8 +312,49 @@ endif;
   https://wp-kama.ru/search?searchid=1771092&text=getpost&l10n=ru&q=getpost ---get_post
 
 
+  <!------перебор слайдов в цикле и вывод их на экран--сначала массив перевернул array_reverse, а потом циклил. в этом случае в конце нового  массива будет первый элемент. то есть перебор начнется с последнего элемента и закончится первым. ------------ -->
+ 
+   <?php  
+      global $post;
+      $args = array(       <!-- здесь тип кастомных полей 'slider-garant'. его выбираю в массив $args -->
+         'post_type'=>'slider-garant',
+         'publish' => true,
+         'numberposts' => 20
+        );
+        
+      $slider_garant = get_posts($args);  <!-- из этого массива выбираю все посты в  $slider_garant -->
+      $reversed = array_reverse($slider_garant);
+      foreach($reversed as $post){
+        $post_id = get_the_ID(); 
+        $post = get_post($post_id); 
+        $number_plyr = $post->post_title;
+        $text=$post->post_content;
+        // echo $text; 
+        ?>
+  <!-- &mdash; -->
+  <!-- <?php  
+                          // echo $number_plyr; 
+                        // wp_reset_postdata();
+                        //?> -->
+  <!-- <br> -->
+  
+  <div class="gs__item">
+    <img src="<?php echo get_the_post_thumbnail_url($post_id, 'slider-garant');?>" alt="img">
+    <div class="js-button js-button<?php echo $number_plyr ?>">
+      <img src="<?php echo get_template_directory_uri()?>/assets/img/garant/gs-point.png" alt="">
+    </div>
+  </div>
+  
+  <?php 
+                       }
+                     ?>
+
+
+///////////////////   acf  /////////////////
+
   <?php the_field('board_img'); ?> ---это поля acf
   <?php the_field('price') ?> ---это поля acf
+
 
 
 
@@ -341,8 +376,12 @@ $text = $post->post_content;
 echo apply_filters('the_content', $text); 
 ?>
 
-  <?php unset($post_id); $post_id = get_the_ID(); $post = get_post($post_id); $text=$post->post_content; 
-echo apply_filters('the_content', $text);?>
+  <?php unset($post_id);
+     $post_id = get_the_ID();
+    $post = get_post($post_id);
+    $text=$post->post_content; 
+    echo apply_filters('the_content', $text);?>
+
   --здесь:
   ---unset($post_id);--сброс переменной $post_id
   ---$post_id = get_the_ID();--получаем id поста и записываем в переменную
