@@ -329,14 +329,13 @@ endif;
         $post = get_post($post_id); 
         $number_plyr = $post->post_title;
         $text=$post->post_content;
-        // echo $text; 
         ?>
-  <!-- &mdash; -->
-  <!-- <?php  
-                          // echo $number_plyr; 
-                        // wp_reset_postdata();
-                        //?> -->
-  <!-- <br> -->
+ <?php  
+  }
+  
+   wp_reset_postdata(); <!-- сброс всех данных после прохождения цикла. без этого не работает с другими плеерами. -->
+
+                       ?> 
   
   <div class="gs__item">
     <img src="<?php echo get_the_post_thumbnail_url($post_id, 'slider-garant');?>" alt="img">
