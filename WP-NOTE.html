@@ -368,6 +368,27 @@ endif;
   <?php the_field('price') ?> ---это поля acf
 
 
+  ---повторитель---
+<?php 
+$rows = get_field('repiter_name');
+if($rows)
+{
+	foreach($rows as $row)
+	{
+ $first =   $row['first_option'];
+ $second =  $row['second_option'];
+ $third =  $row['third_option'];
+}
+?>
+
+<?php echo $first; ?>
+<?php echo $second; ?>
+<?php echo $third; ?>
+
+<?php 
+}
+?>
+
 
 
   \\\\\\\\\\\\\\\\\\\\\\\ вывод записей и страниц по id\\\\\\\\\\\\\\\\\\
