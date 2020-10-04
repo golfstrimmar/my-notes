@@ -455,6 +455,9 @@ acf_add_options_sub_page(array(
 ---вывод таких полей в верстку
 <?php the_field('link_upwork','option'); ?>
 
+
+
+
   \\\\\\\\\\\\\\\\\\\\\\\ вывод записей и страниц по id\\\\\\\\\\\\\\\\\\
 
   создаём страницу где заголовок номер телефона и в шаблоне ее дергаем по id
@@ -464,7 +467,16 @@ $post_id_44 = get_post($my_id);
 $post_title = $post_id_44->post_title;
 echo $post_title;
 ?>
-  <?php the_title(); ?> --это выведет заголовок поста. это не поле acf
+
+
+<?php the_date(); ?> - выводит дату новости
+<?php the_title(); ?> - выводит заголовок новости
+<?php the_excerpt(); ?> - выводит краткое описание
+<?php the_post_thumbnail(); ?> - выводит превью новости - картинку
+
+
+
+
 
   а вот так выйдет содержимое поста 27
   <?php
@@ -513,6 +525,8 @@ $price = get_post_meta(get_the_ID(), 'price', true);      -----здесь имя
 
         <img src="<?php the_field('board_img'); ?>" ---здесь выводится поле acf. в случае вывода изображения ПРИ
           СОЗДАНИИ ПОЛЯ ОБЯЗАТЕЛЬНО УКАЗЫВАТЬ ОВЗВРАЩАЕМЫЙ ФОРМАТ -ССЫЛКА НА ИЗОБРАЖЕНИЕ <img
+          
+          
           src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'board-slider');?>" alt=""> ---здесь выводится
         картинка
         записи.
@@ -567,13 +581,19 @@ wp_reset_postdata();
 <?php  include(get_template_directory(  ).'/includes/part-designers.php'); ?>
 
 
- \\\\\\\\\\\\\шаблон для записей\\\\\\\\\\
-  должен содержать такой коментарий
+
+
+ \\\\\\\\\//////////////\\\\шаблон для записей\\\\\////////////////\\\\\
+ должен содержать такой коментарий
   <?php
 /**
 *Template Post Type: post, page, product
 */
 ?>
+
+https://wpschool.ru/custom-templates/
+
+
 
 
 
