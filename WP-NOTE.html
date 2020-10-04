@@ -374,17 +374,25 @@ endif;
 $projects = get_field('progets');
 if($projects){
 	foreach($projects as $project){
- $f =   $project['progect_name_what'];
- $s =  $project['project_link_what'];
+ $a =  $project[''];
+ $b =  $project[''];
+ $c =  $project[''];
+ $d =  $project[''];
+ $e =  $project[''];
+ $f =  $project[''];
  ?>
 
-<?php echo $s; ?>
-<?php echo $f; ?>   ---вывод содержимого одного пункта
+<?php echo $a; ?>
+<?php echo $b; ?>   
+<?php echo $c; ?>   
+<?php echo $d; ?>   
+<?php echo $e; ?>   
+<?php echo $f; ?>   
 
 
 <?php
-}           ---- окончание foreach
-}           ---- окончание if 
+}           
+}           
 wp_reset_postdata();
 ?>
 
