@@ -369,25 +369,28 @@ endif;
 
 
   ---повторитель---http://acf.wp-book.ru/povtoritel/
-<?php 
-$rows = get_field('repiter_name');
-if($rows)
-{
-	foreach($rows as $row)
-	{
- $first =   $row['first_option'];
- $second =  $row['second_option'];
- $third =  $row['third_option'];
-}
-?>
-
-<?php echo $first; ?>
-<?php echo $second; ?>
-<?php echo $third; ?>
 
 <?php 
-}
+$projects = get_field('progets');
+if($projects){
+	foreach($projects as $project){
+ $f =   $project['progect_name_what'];
+ $s =  $project['project_link_what'];
+ ?>
+
+<a href="<?php echo $s; ?>"><?php echo $f; ?></a>   ---вывод содержимого одного пункта
+
+
+<?php
+}           ---- окончание foreach
+}           ---- окончание if 
+wp_reset_postdata();
 ?>
+
+
+
+
+
 -------// в funtions.php -- это создает в админке новый раздел.там обращение к полям общим для всех страниц и вообще чего угодно. например разные шапки, подвалы-------------------------------------------------------
 if( function_exists('acf_add_options_page') ) {
 
