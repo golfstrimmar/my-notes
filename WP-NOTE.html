@@ -399,10 +399,8 @@ if($repiter){
 
 <a href="<?php echo $s; ?>"><?php echo $f; ?></a> ---вывод содержимого одного пункта
 
-
-
 <?php 
-	foreach($repiter['projects'] as $project){ <!-- если повторитель имеет один из пунктов тоже повторитель projects -->
+	foreach($rep['projects'] as $project){ <!-- если повторитель имеет один из пунктов тоже повторитель projects -->
  $name =   $project['prоject_name_what'];
  $link =  $project['project_link_what'];
  ?>
@@ -411,8 +409,6 @@ if($repiter){
   }
 wp_reset_postdata();
 ?>
-
-
 
 <?php
 }           ---- окончание foreach
