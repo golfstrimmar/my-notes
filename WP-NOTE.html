@@ -387,6 +387,38 @@ if($projects){
 wp_reset_postdata();
 ?>
 
+-----повторитель в повторителе.--------
+
+<?php 
+$repiter = get_field('repiter');
+if($repiter){
+	foreach($repiter as $rep){
+ $f =   $rep['какой-то подпункт'];
+ $s =   $rep['какой-то подпункт'];
+ ?>
+
+<a href="<?php echo $s; ?>"><?php echo $f; ?></a> ---вывод содержимого одного пункта
+
+
+
+<?php 
+	foreach($repiter['projects'] as $project){ <!-- если повторитель имеет один из пунктов тоже повторитель projects -->
+ $name =   $project['prоject_name_what'];
+ $link =  $project['project_link_what'];
+ ?>
+<a href="<?php echo $name; ?>"><?php echo $link; ?></a>
+<?php
+  }
+wp_reset_postdata();
+?>
+
+
+
+<?php
+}           ---- окончание foreach
+}           ---- окончание if 
+wp_reset_postdata();
+?>
 
 
 
