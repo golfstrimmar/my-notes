@@ -329,7 +329,7 @@ endif;
  
    <?php  
       global $post;
-      $args = array(       <!-- здесь тип кастомных полей 'slider-garant'. его выбираю в массив $args -->
+      $args = array(       <!-- здесь тип кастомных полей 'slider-garant'. его выбираю в массив $args обязательно указать количество выбираемых полей 'numberposts' иначе выведет 5 по умолчанию-->
          'post_type'=>'slider-garant',
          'publish' => true,
          'numberposts' => 20
@@ -361,14 +361,13 @@ endif;
                 }
             ?>
 
+///////////////////////////////////////////////////////////////////////////////
+///////////////////   acf  /////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+  
+<?php the_field(''); ?> 
 
-///////////////////   acf  /////////////////
-
-  <?php the_field('board_img'); ?> ---это поля acf
-  <?php the_field('price') ?> ---это поля acf
-
-
-  ---повторитель---http://acf.wp-book.ru/povtoritel/
+  ---------------повторитель-------------http://acf.wp-book.ru/povtoritel/
 
 <?php 
 $projects = get_field('progets');
@@ -426,7 +425,8 @@ wp_reset_postdata();
 ?>
 
 
--------// в funtions.php -- это создает в админке новый раздел.там обращение к полям общим для всех страниц и вообще чего угодно. например разные шапки, подвалы-------------------------------------------------------
+------- в funtions.php -- это создает в админке новый раздел.там обращение к полям общим для всех страниц и вообще чего угодно. например разные шапки, подвалы-------------------------------------------------------
+
 if( function_exists('acf_add_options_page') ) {
 
 acf_add_options_page(array(
@@ -456,6 +456,88 @@ acf_add_options_sub_page(array(
 
 
 
+
+
+////////////вывод записей из определенной рубрики//////////////////////////
+
+https://wp-kama.ru/id_767/3-sposoba-postroeniya-tsiklov-v-wordpress.html
+
+<?php
+global $post;                     // не обязательно
+$myposts = get_posts( array(
+  'category' => 8                  
+  'numberposts' => 5,     // 5 записей по умолчанию из рубрики 8 !!!!
+) );
+
+foreach( $myposts as $post ){
+    setup_postdata( $post );
+    ?>
+здесь код записи из верстки. можно даже с полями acf. для этого в полях нужно поставить условие отображения- записи
+определенной рубрики и в самой записи подключить рубрику.
+<?php
+}
+wp_reset_postdata(); 
+?>
+
+
+
+
+
+/////////////////////////стандартный цикл wp---вывод записей///////////////////////////////////
+<?php
+// проверяем есть ли посты в глобальном запросе - переменная $wp_query
+if( have_posts() ){
+	// перебираем все имеющиеся посты и выводим их
+	while( have_posts() ){
+		the_post();
+		?>
+
+<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+  <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+
+  <?php the_content();?> --------выводит контент
+  <?php the_date(); ?> - выводит дату новости
+  <?php the_title(); ?> - выводит заголовок новости
+  <?php the_excerpt(); ?> - выводит краткое описание
+  <?php the_post_thumbnail(); ?> - выводит превью новости - картинку
+
+</div>
+
+<?php
+	}
+	?>
+
+<div class="navigation">
+  <div class="next-posts"><?php next_posts_link(); ?></div>
+  <div class="prev-posts"><?php previous_posts_link(); ?></div>
+</div>
+<?php
+}
+// постов нет
+else {
+	echo "<h2>Записей нет.</h2>";
+}
+wp_reset_postdata();
+  ?>
+
+///////////////вывод содержимого всех записей//////////////
+это то, что в самой записи- без полей acf
+
+<?php $posts = get_posts (); ?>
+<?php if ($posts) : ?>
+<?php foreach ($posts as $post) : setup_postdata ($post); ?>
+
+<?php the_content();?> --------выводит контент
+<?php the_date(); ?> - выводит дату новости
+<?php the_title(); ?> - выводит заголовок новости
+<?php the_excerpt(); ?> - выводит краткое описание
+<?php the_post_thumbnail(); ?> - выводит превью новости - картинку
+
+<?php endforeach; ?>
+<?php endif; ?>
+<?php wp_reset_postdata();?>
+
+
   \\\\\\\\\\\\\\\\\\\\\\\ вывод  по id\\\\\\\\\\\\\\\\\\
 
   создаём страницу где заголовок номер телефона и в шаблоне ее дергаем по id
@@ -466,11 +548,8 @@ acf_add_options_sub_page(array(
   echo $post_title;
   $text = $post->post_content; 
   echo apply_filters('the_content', $text); 
+  wp_reset_postdata();
   ?>
-
-
-
-
 
 
   <?php unset($post_id);
@@ -549,7 +628,15 @@ $price = get_post_meta(get_the_ID(), 'price', true);      -----здесь имя
 wp_reset_postdata();
 ?>
 
+\\\\\\\\\//////////////\\\\шаблон для записей\\\\\////////////////\\\\\
+должен содержать такой коментарий
+<?php
+/**
+*Template Post Type: post, page, product
+*/
+?>
 
+https://wpschool.ru/custom-templates/
 
   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\повторяющиеся части кода\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   6.40 https://www.youtube.com/watch?v=z92F_sZYDV4&list=PLyKl7JlkPve6wRFRgVgImBWZ3xMQnYUQa&index=3
@@ -571,97 +658,12 @@ wp_reset_postdata();
 
 
 
- \\\\\\\\\//////////////\\\\шаблон для записей\\\\\////////////////\\\\\
- должен содержать такой коментарий
-  <?php
-/**
-*Template Post Type: post, page, product
-*/
-?>
-
-https://wpschool.ru/custom-templates/
+ 
 
 
 
 
 
-
-
-
-
-
-/////////////////////////стандартный цикл wp---вывод записей///////////////////////////////////
-<?php
-// проверяем есть ли посты в глобальном запросе - переменная $wp_query
-if( have_posts() ){
-	// перебираем все имеющиеся посты и выводим их
-	while( have_posts() ){
-		the_post();
-		?>
-
-<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-  <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-
-<?php the_content();?> --------выводит контент
-<?php the_date(); ?> - выводит дату новости
-<?php the_title(); ?> - выводит заголовок новости
-<?php the_excerpt(); ?> - выводит краткое описание
-<?php the_post_thumbnail(); ?> - выводит превью новости - картинку
-
-</div>
-
-<?php
-	}
-	?>
-
-<div class="navigation">
-  <div class="next-posts"><?php next_posts_link(); ?></div>
-  <div class="prev-posts"><?php previous_posts_link(); ?></div>
-</div>
-<?php
-}
-// постов нет
-else {
-	echo "<h2>Записей нет.</h2>";
-}
-  ?>
-
-///////////////вывод  содержимого всех  записей//////////////
-это то, что в самой записи- без полей acf
-
-<?php $posts = get_posts (); ?>
-<?php if ($posts) : ?>
-<?php foreach ($posts as $post) : setup_postdata ($post); ?>
-
-<?php the_content();?> --------выводит контент
-<?php the_date(); ?> - выводит дату новости
-<?php the_title(); ?> - выводит заголовок новости
-<?php the_excerpt(); ?> - выводит краткое описание
-<?php the_post_thumbnail(); ?> - выводит превью новости - картинку
-
-<?php endforeach; ?>
-<?php endif; ?>
-
-
-
-////////////вывод записей из определенной рубрики//////////////////////////
-https://wp-kama.ru/id_767/3-sposoba-postroeniya-tsiklov-v-wordpress.html
-
-
-<?php
-global $post;                     // не обязательно
-$myposts = get_posts( array(
-	'category' => 8                  // 5 записей из рубрики 8
-) );
-
-foreach( $myposts as $post ){
-    setup_postdata( $post );
-    ?>
-здесь код записи из верстки. можно даже с полями acf. для этого в полях нужно поставить условие отображения- записи определенной рубрики и в самой записи подключить рубрику. 
-<?php
-}
-wp_reset_postdata(); 
-?>
 
 
   \\\\\\\\\\\\\\\\\\\\\\\вставка шорткода\\\\\\\\\\\\\\\\\\\
