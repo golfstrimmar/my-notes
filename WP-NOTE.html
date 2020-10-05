@@ -426,8 +426,6 @@ wp_reset_postdata();
 ?>
 
 
-
-
 -------// в funtions.php -- это создает в админке новый раздел.там обращение к полям общим для всех страниц и вообще чего угодно. например разные шапки, подвалы-------------------------------------------------------
 if( function_exists('acf_add_options_page') ) {
 
@@ -458,32 +456,22 @@ acf_add_options_sub_page(array(
 
 
 
-  \\\\\\\\\\\\\\\\\\\\\\\ вывод записей и страниц по id\\\\\\\\\\\\\\\\\\
+  \\\\\\\\\\\\\\\\\\\\\\\ вывод  по id\\\\\\\\\\\\\\\\\\
 
   создаём страницу где заголовок номер телефона и в шаблоне ее дергаем по id
   <?php
-$my_id = 44;
-$post_id_44 = get_post($my_id); 
-$post_title = $post_id_44->post_title;
-echo $post_title;
-?>
-
-
-<?php the_date(); ?> - выводит дату новости
-<?php the_title(); ?> - выводит заголовок новости
-<?php the_excerpt(); ?> - выводит краткое описание
-<?php the_post_thumbnail(); ?> - выводит превью новости - картинку
+  $my_id = 395;
+  $post = get_post($my_id); 
+  $post_title = $post->post_title;
+  echo $post_title;
+  $text = $post->post_content; 
+  echo apply_filters('the_content', $text); 
+  ?>
 
 
 
 
 
-  а вот так выйдет содержимое поста 27
-  <?php
-$post = get_post( 27 );
-$text = $post->post_content; 
-echo apply_filters('the_content', $text); 
-?>
 
   <?php unset($post_id);
      $post_id = get_the_ID();
@@ -499,7 +487,7 @@ echo apply_filters('the_content', $text);
   ---- echo apply_filters('the_content', $text); ---распечатаваем через фильтр контент поста
   ----так можно выводить текст записи например.
 
-  =-=-=-=-=-=-=-=-=-=-=-=-=--=-=--==здесь js класс для slick-=-=--= все что ниже и есть слайдер
+-=--==здесь js класс для slick-=-=--= все что ниже и есть слайдер
 
   <?php
 global $post;
@@ -595,6 +583,85 @@ https://wpschool.ru/custom-templates/
 
 
 
+
+
+
+
+
+
+
+/////////////////////////стандартный цикл wp---вывод записей///////////////////////////////////
+<?php
+// проверяем есть ли посты в глобальном запросе - переменная $wp_query
+if( have_posts() ){
+	// перебираем все имеющиеся посты и выводим их
+	while( have_posts() ){
+		the_post();
+		?>
+
+<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+  <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+
+<?php the_content();?> --------выводит контент
+<?php the_date(); ?> - выводит дату новости
+<?php the_title(); ?> - выводит заголовок новости
+<?php the_excerpt(); ?> - выводит краткое описание
+<?php the_post_thumbnail(); ?> - выводит превью новости - картинку
+
+</div>
+
+<?php
+	}
+	?>
+
+<div class="navigation">
+  <div class="next-posts"><?php next_posts_link(); ?></div>
+  <div class="prev-posts"><?php previous_posts_link(); ?></div>
+</div>
+<?php
+}
+// постов нет
+else {
+	echo "<h2>Записей нет.</h2>";
+}
+  ?>
+
+///////////////вывод  содержимого всех  записей//////////////
+это то, что в самой записи- без полей acf
+
+<?php $posts = get_posts (); ?>
+<?php if ($posts) : ?>
+<?php foreach ($posts as $post) : setup_postdata ($post); ?>
+
+<?php the_content();?> --------выводит контент
+<?php the_date(); ?> - выводит дату новости
+<?php the_title(); ?> - выводит заголовок новости
+<?php the_excerpt(); ?> - выводит краткое описание
+<?php the_post_thumbnail(); ?> - выводит превью новости - картинку
+
+<?php endforeach; ?>
+<?php endif; ?>
+
+
+
+////////////вывод записей из определенной рубрики//////////////////////////
+https://wp-kama.ru/id_767/3-sposoba-postroeniya-tsiklov-v-wordpress.html
+
+
+<?php
+global $post;                     // не обязательно
+$myposts = get_posts( array(
+	'category' => 8                  // 5 записей из рубрики 8
+) );
+
+foreach( $myposts as $post ){
+    setup_postdata( $post );
+    ?>
+здесь код записи из верстки. можно даже с полями acf. для этого в полях нужно поставить условие отображения- записи определенной рубрики и в самой записи подключить рубрику. 
+<?php
+}
+wp_reset_postdata(); 
+?>
 
 
   \\\\\\\\\\\\\\\\\\\\\\\вставка шорткода\\\\\\\\\\\\\\\\\\\
