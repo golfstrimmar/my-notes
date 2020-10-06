@@ -1,21 +1,21 @@
-||||||||||||||||||||||||плагины||||||||||||||||||||||||||||||||||||||||
-нужно устанавливать
+<section>плагины 
+
+  нужно устанавливать
 Robin image optimizer    ---сжимает каринки
 
-||||||||||||||||||| защита сайта |||||||||||||||||||||||||||||||||
-https://www.youtube.com/watch?v=BSr4sUE_490&ab_channel=БытьПрграммистом  --Сокирка подробно описывает защиту сайта
+</section>
+<section>защита сайта
+
+  https://www.youtube.com/watch?v=BSr4sUE_490&ab_channel=БытьПрграммистом  --Сокирка подробно описывает защиту сайта
 плагины
   updraft            --делает backup
   iThemes Security     --защита
 
 iThemes Brute Force Protection Network   --- API KEY: YY1a0r3Mej7uJ68h750hmwe6E0LVoQ5t
 
+</section>
+<section>мои сайты на zzz.com.ua
 
----------------------------------------------------------------------------------------
-|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-|||||||||||||||||||||||||мои сайты на zzz.com.ua|||||||||||||||||||||||||||||||||||||||
 
 вход в панель управления   https://www.zzz.com.ua/panel/ru/main
 ===========================================================
@@ -53,13 +53,8 @@ present-flash.zzz.com.ua --домен
 имя пользователя ---yushinbox
 пароль --- 8eftH6adJGg3X6qC!B
 
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-------------------------------------------------------------------------------
-
-
+</section>
+<section>woocommerce
 \===================woocommerce=========================================
 
 https://www.youtube.com/watch?v=1SBQpXrMAOY&list=PLzFj4L-LMRzt5BsX_ho5rt5hCc5ynnReu&index=2
@@ -88,7 +83,9 @@ index.php используется когда не используются др
 в него можно положить верстку и прописать связь с header и footer/
 ниже есть описание по page.php
 
-\\\\\\\\\\\\\\\\создание шаблонов страниц\\\\\\\\\\\\\\\\\\\
+</section>
+<section>создание шаблонов страниц
+
 https://misha.blog/wordpress/page-templates.html
 создается новый файл например page-contacts.php. его можно даже поместить в папку template-parts.
 только нужно переназначить снова шаблон на странице настроек страниц
@@ -103,14 +100,10 @@ Template Name: контакты
 теперь при создании новой страницы появится виджет выбора шаблона.
 так создаются разные шаблоны для разных страниц
 
+</section>
+<section>functions.php
 
-
-
-
-
-\\\\\\\\functions.php\\\\\\\
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++стили скрипты++++
++++++++++стили скрипты++++
 function loft_scripts() {
 wp_enqueue_style( 'loft-style', get_template_directory_uri(). '/assets/css/style.css');--!!!--если создал папку assets и
 туда сбросил всю статику
@@ -163,9 +156,8 @@ wp_deregister_script( 'wp-embed' );
 }
 add_action( 'wp_footer', 'my_deregister_scripts' );
 
-
-++++++++     вывод логотипа. названия сайта.миниатюр запсей      +++
-
+</section>
+<section>вывод логотипа. названия сайта.миниатюр запсей.языка сайта 
 
 -----в functions.php------
 // подписываемся на момент формирования контента
@@ -184,13 +176,12 @@ add_theme_support('post-thumbnails');
 --заголовок ----    <?php bloginfo('name'); ?> 
 --язык сайта----    <?php language_attributes(); ?>
 
-
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\   показать-скрыть админпанель   \\\\\\\\\\\\\\\\\\\\
+</section>
+<section>показать-скрыть админпанель
 add_filter('show_admin_bar', '__return_false');
+</section> 
+<section>ibg--поставить в самый низ. после него ничего не работает
 
-
-
-//////////////////////////   ibg--поставить в самый низ. после него ничего не работает  ///////////////////
 на сервере не работает в той форме. изменить на
 $(Document).ready(function ibg(){
 $.each($('.ibg'),function(index,val){
@@ -199,10 +190,9 @@ $(this).css('background-image','url("'+$(this).find('img').attr('src')+'")');
 }
 });
 });
+</section>
+<section>картинки
 
-
-
-/////////////////////////////////////////  картинки   /////////////////////////////////////
 в замене набирать img/
 менять на <?php echo get_template_directory_uri()?>/assets/img/
 <img src="<?php echo get_template_directory_uri()?>/assets/img/logo/logo.svg" alt="logo">
@@ -215,10 +205,8 @@ echo get_template_directory_uri() . '/assets/img/' . $name;
 }
 и прописывать путь к картинке <img src="<?php loft_images("bg-head.gif");?>" alt="bg-head">
 
-
-
-
-///////////////   sidebar   /////////////////////////
+</section>
+<section>sidebar
 register_sidebar(
 array(
 'name' => esc_html__( 'sidebar-header', 'jkpark' ),
@@ -237,9 +225,8 @@ array(
   <?php dynamic_sidebar( 'sidebar-header' ); ?>
 </div>
 <?php endif; ?>
-
-
-\\\\\\\\\\\\\\\ header \\\\\\\\\\\\\\\\
+</section>
+<section>header
 
 <body <?php body_class(); ?>> эта штука может подвести. вывести body нулевой ширины
   <?php language_attributes();?> --менять язык сайта <html <?php language_attributes();?>>
@@ -268,12 +255,8 @@ else:
   <?php
 endif;
 ?>
-
-
-  
-
-
-  /////////////////////////////регистрация кастомных полей: //////////////////////////
+</section>
+<section>регистрация кастомных полей:
 
   https://www.youtube.com/watch?v=eNURjX3L7oM
   https://www.youtube.com/watch?v=O9j-R-GwCt4
@@ -313,12 +296,8 @@ endif;
   add_image_size('board-slider',225,490,true);
   }
 
-
-
-
-
-
-  \\\\\\\\\\\\\\\вывод кастомного типа полей в верстку\\\\\\\\\\\
+</section>
+<section>вывод кастомного типа полей в верстку
 
   https://www.youtube.com/watch?v=r84jByqP-B8
   https://wp-kama.ru/function/get_posts
@@ -360,10 +339,8 @@ endif;
   <?php 
                 }
             ?>
-
-///////////////////////////////////////////////////////////////////////////////
-///////////////////   acf  /////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
+</section>
+<section>acf
   
 <?php the_field(''); ?> 
 
@@ -453,12 +430,8 @@ acf_add_options_sub_page(array(
 ---вывод таких полей в верстку
 <?php the_field('link_upwork','option'); ?>
 
-
-
-
-
-
-////////////вывод записей из определенной рубрики//////////////////////////
+</section>
+<section>вывод записей из определенной рубрики
 
 https://wp-kama.ru/id_767/3-sposoba-postroeniya-tsiklov-v-wordpress.html
 
@@ -479,11 +452,8 @@ foreach( $myposts as $post ){
 wp_reset_postdata(); 
 ?>
 
-
-
-
-
-/////////////////////////стандартный цикл wp---вывод записей///////////////////////////////////
+</section>
+<section>стандартный цикл wp---вывод записей
 <?php
 // проверяем есть ли посты в глобальном запросе - переменная $wp_query
 if( have_posts() ){
@@ -520,7 +490,9 @@ else {
 wp_reset_postdata();
   ?>
 
-///////////////вывод содержимого всех записей//////////////
+</section>
+<section>вывод содержимого всех Записей
+
 это то, что в самой записи- без полей acf
 
 <?php $posts = get_posts (); ?>
@@ -536,9 +508,8 @@ wp_reset_postdata();
 <?php endforeach; ?>
 <?php endif; ?>
 <?php wp_reset_postdata();?>
-
-
-  \\\\\\\\\\\\\\\\\\\\\\\ вывод  по id\\\\\\\\\\\\\\\\\\
+</section>
+<section>вывод  по id
 
   создаём страницу где заголовок номер телефона и в шаблоне ее дергаем по id
   <?php
@@ -628,7 +599,8 @@ $price = get_post_meta(get_the_ID(), 'price', true);      -----здесь имя
 wp_reset_postdata();
 ?>
 
-\\\\\\\\\//////////////\\\\шаблон для записей\\\\\////////////////\\\\\
+</section>
+<section>шаблон для записей
 должен содержать такой коментарий
 <?php
 /**
@@ -637,8 +609,8 @@ wp_reset_postdata();
 ?>
 
 https://wpschool.ru/custom-templates/
-
-  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\повторяющиеся части кода\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+</section>
+<section>повторяющиеся части кода
   6.40 https://www.youtube.com/watch?v=z92F_sZYDV4&list=PLyKl7JlkPve6wRFRgVgImBWZ3xMQnYUQa&index=3
   если есть несколько разновидностей одного и того же включения(например header) и на разных страницах используется
   разные header
@@ -655,120 +627,109 @@ https://wpschool.ru/custom-templates/
   ----- любое включение части кода --
 <?php  include(get_template_directory(  ).'/includes/part-designers.php'); ?>
 
-
-
-
-
-
-
-
-  \\\\\\\\\\\\\\\\\\\\\\\вставка шорткода\\\\\\\\\\\\\\\\\\\
+</section>
+<section>вставка шорткода
   <?php echo do_shortcode( '[ваш_шорткод]' ); ?>
-
-
-
-
-  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\создание своего виджета\\\\\\\\\\\\\\\\\
-  https://www.youtube.com/watch?v=0WIn_pVyN0c&list=PLY4rE9dstrJyvr3-ssA_ai5xnvSOI5tr6&index=5
-  со*даем папку widgets
-  в нее вкладываем файлы виджетов например widget-sidebar-header.php и файл инициализации widgets.php
-
-  прописываем все это в functions.php
-  /**
-  * Widgets Settings
-  */
-  require get_template_directory() . '/widgets/widget-sidebar-header.php';
-  require get_template_directory() . '/widgets/widgets.php';
-
-  в vidget-sidebar-header заносим код
-  <?php
-// --------------------------------------
-/**
- * Adds Slide_Widget widget.
- */
-class Slide_Widget extends WP_Widget {
-
-	/**
-	 * Register widget with WordPress.
-	 */
-	function __construct() {
-		parent::__construct(
-			'Slide_widget', // Base ID-------------менять
-			esc_html__( 'Slide_widget', 'text_domain' ), // Name-------------менять
-			array( 'description' => esc_html__( 'Выезжающий сайтбар с этим виджетом в шапке сайта', 'text_domain' ), ) // Args
-		);
-	}
-
-	/**
-	 * Front-end display of widget.
-	 *
-	 * @see WP_Widget::widget()
-	 *
-	 * @param array $args     Widget arguments.
-	 * @param array $instance Saved values from database.
-	 */
-	public function widget( $args, $instance ) {
-		echo $args['before_widget'];
-		if ( ! empty( $instance['title'] ) ) {
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
-		}
-		echo esc_html__( 'Hello, World!', 'text_domain' );
-		echo $args['after_widget'];
-	}
-
-	/**
-	 * Back-end widget form.
-	 *
-	 * @see WP_Widget::form()
-	 *
-	 * @param array $instance Previously saved values from database.
-	 */
-	public function form( $instance ) {
-		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
-		?>
-  <p>
-    <label
-      for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
-    <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
-      name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text"
-      value="<?php echo esc_attr( $title ); ?>">
-  </p>
-  <?php 
-	}
-
-	/**
-	 * Sanitize widget form values as they are saved.
-	 *
-	 * @see WP_Widget::update()
-	 *
-	 * @param array $new_instance Values just sent to be saved.
-	 * @param array $old_instance Previously saved values from database.
-	 *
-	 * @return array Updated safe values to be saved.
-	 */
-	public function update( $new_instance, $old_instance ) {
-		$instance = array();
-		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
-
-		return $instance;
-	}
-
-} // class Foo_Widget
-
-// ----------------------------------------------------------------------
-
- в файл widgets заносим код
-<?php
-// register Foo_Widget widget
-function register_foo_widget() {
-    register_widget( 'Slide_Widget' );
-}
-add_action( 'widgets_init', 'register_foo_widget' );
-
-
-
-
-/////////////////////contact form 7/////////////////////
+</section>
+<section>создание своего виджета
+          <!-- https://www.youtube.com/watch?v=0WIn_pVyN0c&list=PLY4rE9dstrJyvr3-ssA_ai5xnvSOI5tr6&index=5
+          со*даем папку widgets
+          в нее вкладываем файлы виджетов например widget-sidebar-header.php и файл инициализации widgets.php
+          
+          прописываем все это в functions.php
+          /**
+          * Widgets Settings
+          */
+          require get_template_directory() . '/widgets/widget-sidebar-header.php';
+          require get_template_directory() . '/widgets/widgets.php';
+          
+          в vidget-sidebar-header заносим код
+          <?php
+              // --------------------------------------
+              /**
+               * Adds Slide_Widget widget.
+               */
+              class Slide_Widget extends WP_Widget {
+              
+              	/**
+              	 * Register widget with WordPress.
+              	 */
+              	function __construct() {
+              		parent::__construct(
+              			'Slide_widget', // Base ID-------------менять
+              			esc_html__( 'Slide_widget', 'text_domain' ), // Name-------------менять
+              			array( 'description' => esc_html__( 'Выезжающий сайтбар с этим виджетом в шапке сайта',     'text_domain' ), ) // Args
+              		);
+              	}
+              
+              	/**
+              	 * Front-end display of widget.
+              	 *
+              	 * @see WP_Widget::widget()
+              	 *
+              	 * @param array $args     Widget arguments.
+              	 * @param array $instance Saved values from database.
+              	 */
+              	public function widget( $args, $instance ) {
+              		echo $args['before_widget'];
+              		if ( ! empty( $instance['title'] ) ) {
+              			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args    ['after_title'];
+              		}
+              		echo esc_html__( 'Hello, World!', 'text_domain' );
+              		echo $args['after_widget'];
+              	}
+              
+              	/**
+              	 * Back-end widget form.
+              	 *
+              	 * @see WP_Widget::form()
+              	 *
+              	 * @param array $instance Previously saved values from database.
+              	 */
+              	public function form( $instance ) {
+              		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title',    'text_domain' );
+              		?>
+          <p>
+            <label
+              for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:',     'text_domain' ); ?></label>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+              name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text"
+              value="<?php echo esc_attr( $title ); ?>">
+          </p>
+          <?php 
+              	}
+              
+              	/**
+              	 * Sanitize widget form values as they are saved.
+              	 *
+              	 * @see WP_Widget::update()
+              	 *
+              	 * @param array $new_instance Values just sent to be saved.
+              	 * @param array $old_instance Previously saved values from database.
+              	 *
+              	 * @return array Updated safe values to be saved.
+              	 */
+              	public function update( $new_instance, $old_instance ) {
+              		$instance = array();
+              		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance   ['title'] ) : '';
+                
+              		return $instance;
+              	}
+              
+              } // class Foo_Widget
+              
+              // ----------------------------------------------------------------------
+              
+               в файл widgets заносим код
+              <?php
+              // register Foo_Widget widget
+              function register_foo_widget() {
+                  register_widget( 'Slide_Widget' );
+              }
+              add_action( 'widgets_init', 'register_foo_widget' ); -->
+   
+</section>
+<section>contact form 7
 =======================================================================
 этот код нужно вставлять в functions.php
 он делает переход на страницу спасибо после успешной отправки формы. 
@@ -816,13 +777,13 @@ add_action('wp_footer', function(){
       <a href="#"> <span> обработку персональных данных </span> </a>
     </div>
   </section>
-
+<section></section>
   ///////////////просто вставка видео на сайт без ничего///////////////////////
   <iframe width="560" height="315" src="https://www.youtube.com/embed/3jT_q7dt-cM" frameborder="0" allowfullscreen>
   </iframe>
-
-
-  \\\\\\\\\\\\\\\\\\\\\\\\\\carbon-fields\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+</section>
+<section>carbon-fields
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   https://docs.carbonfields.net/#/plugin-quickstart
   пункт Without Composer.
   смотреть на сайте подключение в functions и создание папки includes?
@@ -840,9 +801,9 @@ add_action('wp_footer', function(){
 
   поля из глобальной переменной
   <?php print_r($GLOBALS['pizza_time']['address']);?>
-
-  
-  ///////////////создание страницы политика конфиденциальности////////////////////////
+</section>
+<section>создание страницы политика конфиденциальности
+  ///////////////////////////////////////
   https://tools.joomlatown.net/152/index.php
   .текст из созданной ссылки скопировать в буфер.
   .создать отдельную страницу. в нее занести этот текст.
@@ -862,7 +823,9 @@ add_action('wp_footer', function(){
   ?>
   .переключить щаблон страницы на шаблон страница 'Политика конфиденциальности'
 
-  //////////////поле ввода телефона по маске в contact form 7/////////////////////
+</section>
+<section>поле ввода телефона по маске в contact form 7
+  ///////////////////////////////////
 https://www.youtube.com/watch?v=00cV8FbGnjo&ab_channel=InwebPress-отлендингадоинтернетмагазина
 скачать плагин и установить https://ru.wordpress.org/plugins/cf7-phone-mask-field/
 открыть соответствующую фориу в админке. найти новое поле "маска ввода"
@@ -891,5 +854,7 @@ https://www.youtube.com/watch?v=00cV8FbGnjo&ab_channel=InwebPress-отленди
   <div class="button-color"></div>
 </div>
 
-|||||||||||||||плагин перенаправляет на страницу с указанным адресом и если нужно еще выполняет скрипты||||||||||||||||||||||
+</section>
+<section>плагин перенаправляет на страницу с указанным адресом и если нужно еще выполняет скрипты
 Redirection for Contact Form 7
+</section>
