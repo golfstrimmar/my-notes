@@ -505,6 +505,15 @@ wp_reset_postdata();
 <?php the_excerpt(); ?> - выводит краткое описание
 <?php the_post_thumbnail(); ?> - выводит превью новости - картинку
 
+<?php echo get_the_post_thumbnail_url($post_id, 'slider-garant');?>
+
+
+the_    --- получает и непосредственно выводит ( ничего ее надо делать- выйдет на сайте)
+get_  ---получает , но не выводит(можно заносить в переменную и потом echo ...)
+
+
+
+
 <?php endforeach; ?>
 <?php endif; ?>
 <?php wp_reset_postdata();?>
