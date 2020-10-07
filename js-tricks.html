@@ -480,7 +480,10 @@ $(".js-close-campaign").click(function () {
 $(".js-overlay-campaign").fadeOut();
 });
 }),
-|||||||||||||||закрытие попап окна по клику вне формы, то есть по затемненной части окна||||||||||||||||||||||||||||||||
+
+
+
+<div>||||||закрытие попап окна по клику вне формы, то есть по затемненной части окна|||||||
 let meeting = $("#board24_create-meeting");  ---это кнопка открытия окна
 let meetPopup = $("#board24_meet-popup"); ----это весь попап
 let center = meetPopup.find($(".board24_meet__center")); --------здесь квадрат внутри с содержанием
@@ -502,3 +505,191 @@ meetPopup.fadeOut(); // скрываем его
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
+</div>
+
+<div>/////селект выезжает по клику///////
+--pug-------
+    .board24_bot
+        span.board24_form-span.icon-arrow_drop_down
+        select.board24_ts-7.select(name="Ответственный")
+            option(disabled) Стадия
+            option(value="Ответственный 1") Стадия 1
+            option(value="Ответственный 2") Стадия 2
+            option(value="Ответственный 3") Стадия 3
+
+----scss-------------
+.board24_bot {
+width: 19.7%;
+min-width: 130px;
+height: 30px;
+margin: 0 10px 0 0;
+position: relative;
+
+span.board24_form-span {
+position: absolute;
+width: 15px;
+height: 15px;
+font-size: 15px;
+right: 10px;
+top: 50%;
+transform: translate(0, -50%);
+z-index: 2;
+}
+.select {
+display: block;
+// max-width: 215px;
+width: 100%;
+height: 100%;
+position: relative;
+font-family: OpenSans;
+font-style: normal;
+font-weight: 400;
+line-height: 18px;
+letter-spacing: .1px;
+color: #6a707e;
+}
+
+.new-select {
+position: relative;
+// border: 1px solid #ced4da;
+// padding: 10px 15px;
+cursor: pointer;
+user-select: none;
+width: 100%;
+height: 100%;
+border-radius: 4px;
+border: solid 1px #e5e5e5;
+background-color: $white;
+box-sizing: border-box;
+@include alic();
+font-size: 10px !important;
+padding: 3px 10px;
+
+}
+.new-select__list {
+position: absolute;
+top: 31px;
+left: 0;
+border-radius: 4px;
+border: solid 1px #e5e5e5;
+cursor: pointer;
+width: 100%;
+z-index: 2;
+background: #fff;
+user-select: none;
+box-sizing: border-box;
+
+}
+.new-select__list.on {
+display: block;
+
+}
+
+.new-select__item span {
+display: block;
+padding: 10px 15px;
+font-size: 10px !important;
+
+}
+
+.new-select__item span:hover {
+color: #109cf1;
+}
+
+.new-select:after {
+content: "";
+display: block;
+width: 25px;
+height: 25px;
+position: absolute;
+right: 9px;
+top: 9px;
+// background: url('path-to-image') no-repeat right center / cover;
+opacity: 0.6;
+
+-webkit-transition: all 0.27s ease-in-out;
+-o-transition: all 0.27s ease-in-out;
+transition: all 0.27s ease-in-out;
+
+-webkit-transform: rotate(0deg);
+-ms-transform: rotate(0deg);
+-o-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+
+.new-select.on:after {
+-webkit-transform: rotate(180deg);
+-ms-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+transform: rotate(180deg);
+}
+
+}
+
+
+----js----------------
+<!-- $(".select").each(function () {
+const _this = $(this),
+selectOption = _this.find("option"),
+selectOptionLength = selectOption.length,
+selectedOption = selectOption.filter(":selected"),
+duration = 200; // длительность анимации
+
+_this.hide();
+_this.wrap('<div class="select"></div>');
+$("<div>", {
+    class: "new-select",
+    text: _this.children("option:disabled").text(),
+    }).insertAfter(_this);
+
+    const selectHead = _this.next(".new-select");
+    $("<div>", {
+        class: "new-select__list",
+        }).insertAfter(selectHead);
+
+        const selectList = selectHead.next(".new-select__list");
+        for (let i = 1; i < selectOptionLength; i++) { $("<div>", {
+            class: "new-select__item",
+            html: $("<span>", {
+                text: selectOption.eq(i).text(),
+                }),
+                })
+                .attr("data-value", selectOption.eq(i).val())
+                .appendTo(selectList);
+                }
+
+                const selectItem = selectList.find(".new-select__item");
+                selectList.slideUp(0);
+                selectHead.on("click", function () {
+                if (!$(this).hasClass("on")) {
+                $(this).addClass("on");
+                selectList.slideDown(duration);
+                $(this).parent().siblings
+                (".board24_form-span")
+                .css("transform", "translate( 0, -50%) rotate(180deg)");
+
+                selectItem.on("click", function () {
+                let chooseItem = $(this).data("value");
+                $("select").val(chooseItem).attr("selected", "selected");
+                selectHead.text($(this).find("span").text());
+                selectList.slideUp(duration);
+                selectHead.removeClass("on");
+                $(this)
+                .closest(".select")
+                .siblings(".board24_form-span")
+                .css("transform", "translate( 0, -50%)");
+                });
+
+                } else {
+                $(this).removeClass("on");
+                selectList.slideUp(duration);
+                $(this)
+                .parent()
+                .siblings(".board24_form-span")
+                .css("transform", "translate( 0, -50%)");
+                }
+                });
+                }); -->
+
+
+</div>
