@@ -286,7 +286,8 @@ endif;
   'menu_position' => 5,
   'menu_icon' =>'dashicons-palmtree', -----тут меняется иконка на панели возле названия
   https://developer.wordpress.org/resource/dashicons
-  'supports' => array('title','editor','thumbnail','excerpt','comments','post-format')
+  'supports' => array('title','editor','thumbnail','excerpt','comments','post-format'),
+  'taxonomies' => array( 'category' ), ---------будет выводить рубрики и можно будет прикрепить запись к определенной рубрике и вывести ее по рубрике
   ) );
   }
   add_action('init', 'my_custom_init');
