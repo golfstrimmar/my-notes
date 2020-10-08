@@ -304,45 +304,52 @@ endif;
   https://wp-kama.ru/function/get_posts
   https://wp-kama.ru/search?searchid=1771092&text=getpost&l10n=ru&q=getpost ---get_post
 
-
-  <!------перебор слайдов в цикле и вывод их на экран--сначала массив перевернул array_reverse, а потом циклил. в этом случае в конце нового  массива будет первый элемент. то есть перебор начнется с последнего элемента и закончится первым. ------------ -->
- 
-   <?php  
-      global $post;
-      $args = array(       <!-- здесь тип кастомных полей 'slider-garant'. его выбираю в массив $args обязательно указать количество выбираемых полей 'numberposts' иначе выведет 5 по умолчанию
+<!-- здесь тип кастомных полей 'slider-garant'. его выбираю в массив $args обязательно указать количество выбираемых полей 'numberposts' иначе выведет 5 по умолчанию
       можно задать рубрику к которой пренадлежит запись и вывести только по рубрике. для этого должна быть возможность присваивать рубрикики таким записям. 'taxonomies' => array( 'category' ), --вот это добавляется при регистрации типа записи
       -->
+
+      <?php  
+      global $post;
+      $args = array(       
          'post_type'=>'projects',
          'publish' => true,
-         'numberposts' => 20
-          'category' => 9,     
+         'numberposts' => 20,
+          'category' => 10, 
+          'p' => здесь id поста. который нужно вывести.<!--  --выйдет один пост -->
         );
         
-      $slider_garant = get_posts($args);  <!-- из этого массива выбираю все посты в  $slider_garant -->
-      $reversed = array_reverse($slider_garant);
-      foreach($reversed as $post){
-        $post_id = get_the_ID(); 
-        $post = get_post($post_id); 
-        $number_plyr = $post->post_title;
-        $text=$post->post_content;
+      $projects = get_posts($args);  
+      $reversed = array_reverse($projects);
+     
+     if ($projects ) {
+     
+      foreach($projects as $post){
+        $post_id = $post->ID;
+        $post_title = $post->post_title;
+        $post_text=$post->post_content;
+        setup_postdata( $post );
         ?>
- <?php  
-  }
-  
-   wp_reset_postdata(); <!-- сброс всех данных после прохождения цикла. без этого не работает с другими плеерами. -->
+<?php 
+echo $post_id;
+echo $post_title;
+?>
+<!-- html -->
+<!-- html -->
+<!-- html -->
+<!-- html -->
+<!-- html -->
+<?php 
+  	}
+  } else {
+    ?>
+<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php  
+    }
+     wp_reset_postdata(); 
+                  
+              ?>
 
-                       ?> 
-  
-  <div class="gs__item">
-    <img src="<?php echo get_the_post_thumbnail_url($post_id, 'slider-garant');?>" alt="img">
-    <div class="js-button js-button<?php echo $number_plyr ?>">
-      <img src="<?php echo get_template_directory_uri()?>/assets/img/garant/gs-point.png" alt="">
-    </div>
-  </div>
-  
-  <?php 
-                }
-            ?>
+
 </section>
 <section>acf
   
