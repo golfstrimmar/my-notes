@@ -1,0 +1,44 @@
+<!-- https://www.kunkalabs.com/mixitup/ -->
+<!-- https://webformyself.com/sortirovka-i-filtraciya-elementov-s-pomoshhyu-plagina-jquery-mixitup/ -->
+<!-- здесь реализован вариант с возможностью выботра по двум критериям/ можно и по другому. см. https://www.kunkalabs.com/mixitup/ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MixItUp Demo - Basic</title>
+  <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+<div class="controls">
+  <button type="button" class="control" data-filter="all">All</button>
+  <button type="button" class="control" data-toggle=".green">Green</button>
+  <button type="button" class="control" data-toggle=".blue">Blue</button>
+  <button type="button" class="control" data-toggle=".pink">Pink</button>
+</div>
+
+<div id="Container">
+  <div class="mix green blue"></div>
+  <div class="mix green"></div>
+  <div class="mix blue"></div>
+  <div class="mix pink"></div>
+  <div class="mix green pink"></div>
+  <div class="mix blue"></div>
+  <div class="mix pink"></div>
+  <div class="mix blue pink"></div>
+
+  <div class="gap"></div>
+  <div class="gap"></div>
+  <div class="gap"></div>
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="jquery.js"></script> -->
+  <script src="mixitup.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
