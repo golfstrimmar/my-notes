@@ -304,7 +304,7 @@ endif;
   https://wp-kama.ru/function/get_posts
   https://wp-kama.ru/search?searchid=1771092&text=getpost&l10n=ru&q=getpost ---get_post
 
-<!-- здесь тип кастомных полей 'slider-garant'. его выбираю в массив $args обязательно указать количество выбираемых полей 'numberposts' иначе выведет 5 по умолчанию
+<!-- здесь тип кастомных полей 'projects'. его выбираю в массив $args обязательно указать количество выбираемых полей 'numberposts' иначе выведет 5 по умолчанию
       можно задать рубрику к которой пренадлежит запись и вывести только по рубрике. для этого должна быть возможность присваивать рубрикики таким записям. 'taxonomies' => array( 'category' ), --вот это добавляется при регистрации типа записи
       -->
 
@@ -316,6 +316,7 @@ endif;
          'numberposts' => 20,
           'category' => 10, 
           'p' => здесь id поста. который нужно вывести.<!--  --выйдет один пост -->
+
         );
         
       $projects = get_posts($args);  
@@ -328,6 +329,17 @@ endif;
         $post_title = $post->post_title;
         $post_text=$post->post_content;
         setup_postdata( $post );
+<!-- если нужно оганизовать переход из записи на отдельную страницу, на которой будет отображаться только содержимое этой записи. содержимое организовывается по шаблону записи. создается шаблон например template-projects-post.php  прописывается вверху если тип записи projects <?php
+/**
+*Template Name: Шаблон отдельного проекта
+*Template Post Type: post,projects
+ */
+get_header();
+?>
+потом в самой записи выбирается в виджете выбора этот шаблон. теперь по ссылке будет переход на такую страницу и открываться именно информация для этого проекта. полями acf прописывается нужная информация прямо в админке записи. все это реализовано на https://split.splitdev.pro/ -->
+
+
+        $link = sprintf( esc_url( get_permalink( $post_id ) ), $post_id );
         ?>
 <?php 
 echo $post_id;
@@ -336,6 +348,8 @@ echo $post_title;
 <!-- html -->
 <!-- html -->
 <!-- html -->
+<!-- здесь как раз линк на страницу записи. -->
+<a  href="<?php echo $link ?>">See Case</a>
 <!-- html -->
 <!-- html -->
 <?php 
@@ -351,8 +365,56 @@ echo $post_title;
 
 
 </section>
+<section>страница опций
+  http://acf.wp-book.ru/poluchenie-znacheniya-dlya-stranicy-s-op/
+http://acf.wp-book.ru/stranica-s-opciyami-options-page/
+
+<!-- в functions.php -->
+if( function_exists('acf_add_options_page') ) {
+
+acf_add_options_page(array(
+'page_title' => 'Основные настройки',
+'menu_title' => 'Настройки темы',
+'menu_slug' => 'theme-general-settings',
+'capability' => 'edit_posts',
+'redirect' => false
+));
+
+acf_add_options_sub_page(array(
+'page_title' => 'Настройки шапки',
+'menu_title' => 'Шапка',
+'parent_slug' => 'theme-general-settings',
+));
+
+acf_add_options_sub_page(array(
+'page_title' => 'Настройки подвала',
+'menu_title' => 'Подвал',
+'parent_slug' => 'theme-general-settings',
+));
+
+}
+
+<!-- после этого в админке появится раздел. там затребуют создания полей для страницы опций. после заполнения полей их можно вывести в любом месте сайта, а не только на отлдельной странице -->
+
+<!-- --Вывод поля---- -->
+<?php the_field('имя_поля', 'option'); ?>
+<?php
+<!-- ---Возвращение значения поля----- -->
+$variable = get_field('имя_поля', 'option');
+// дальнейшие действия с переменной $variable
+?>
+<!-- --Вывод подполя------ -->
+<?php if( have_rows('repeater', 'option') ): ?>
+<ul>
+  <?php while( have_rows('repeater', 'option') ): the_row(); ?>
+  <li><?php the_sub_field('title'); ?></li>
+  <?php endwhile; ?>
+</ul>
+<?php endif; ?>
+</section>
 <section>acf
-  
+http://acf.wp-book.ru/category/documentation/
+
 <?php the_field(''); ?> 
 
 
@@ -908,4 +970,18 @@ Redirection for Contact Form 7
 </section>
 <section>изменить url 
 в постоянных ссылках нужно изменить в поле Настройки постоянных ссылок-- Произвольно ... на /%postname%/
+</section>
+<section> как задать глобальную переменную и использовать ее на всем сайте
+//add category string
+function setup_filter_query_vars( $query_vars ) {
+$query_vars[] = 'phone';
+return $query_vars;
+}
+add_filter( 'query_vars', 'setup_filter_query_vars' );
+function add_my_endpoint() {
+add_rewrite_endpoint( 'phone', EP_PAGES ); //ендпоинт 'phone' на всех индивидуальных страниц
+}
+add_action( 'init', 'add_my_endpoint' );
+//использование
+$parent_category = get_query_var( 'phone' );
 </section>
