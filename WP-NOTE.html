@@ -429,36 +429,6 @@ if( $hero ): ?>
 <?php endif; ?>
 
 
-
-
-------- в funtions.php -- это создает в админке новый раздел.там обращение к полям общим для всех страниц и вообще чего угодно. например разные шапки, подвалы-------------------------------------------------------
-
-if( function_exists('acf_add_options_page') ) {
-
-acf_add_options_page(array(
-'page_title' => 'Основные настройки',
-'menu_title' => 'Настройки темы',
-'menu_slug' => 'theme-general-settings',
-'capability' => 'edit_posts',
-'redirect' => false
-));
-
-acf_add_options_sub_page(array(
-'page_title' => 'Настройки шапки',
-'menu_title' => 'Шапка',
-'parent_slug' => 'theme-general-settings',
-));
-
-acf_add_options_sub_page(array(
-'page_title' => 'Настройки подвала',
-'menu_title' => 'Подвал',
-'parent_slug' => 'theme-general-settings',
-));
-
-}
----вывод таких полей в верстку
-<?php the_field('link_upwork','option'); ?>
-
 </section>
 <section>acf повторитель(варианты)
 
@@ -472,7 +442,9 @@ https://veraxo.com/blog/acf-repeater/
 <?php the_sub_field('fieldname_sub'); ?>
 <?php the_sub_field('fieldname_sub'); ?>
 <?php endwhile; ?>
-<?php endif; ?>
+<?php endif; 
+wp_reset_postdata(); 
+?>
 
  
  - Репитер в репитере------------------
@@ -488,7 +460,9 @@ https://veraxo.com/blog/acf-repeater/
 // Конец второго репитера
 <?php endif; ?>
 <?php endwhile; ?>
-<?php endif; ?>
+<?php endif; 
+wp_reset_postdata(); 
+?>
 
 --------- Repeater с условием: убираем любые данные, если какое-то поле репитера не заполнено.
 
@@ -502,7 +476,9 @@ $fieldname_sub = get_sub_field('fieldname_sub');
 <?php } ?>
 <?php if( $fieldname_sub ): ?> style="background-color:<?= $fieldname_sub; ?>;"<?php endif; ?>
 <?php endwhile; ?>
-<?php endif; ?>
+<?php endif; 
+wp_reset_postdata(); 
+?>
 
 ----------- Repeater с установленным размером картинки. Вы можете добавить в репитер поле «изображение», далее выводить
 это изображение в полном размере, либо с предустановленным своим размером.
@@ -518,7 +494,9 @@ $fieldname_sub = get_sub_field('fieldname_sub');
 <?php echo $imageurl[0]; ?>
 <?php if( $fieldname_sub ): ?><?php echo $fieldname_sub[0]; ?><?php endif; ?>
 <?php endwhile; ?>
-<?php endif; ?>
+<?php endif; 
+wp_reset_postdata(); 
+?>
 
 
 </section>
