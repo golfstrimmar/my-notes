@@ -330,7 +330,7 @@ endif;
         $post_id = $post->ID;
         $post_title = $post->post_title; <!-- выйдет заголовок записи. не acf -->
         $post_text=$post->post_content;  <!-- выйдет содержание записи. не acf -->
-        $image=get_the_post_thumbnail_url($post_id, 'team');  <!-- выйдет изображение записи. не acf -->
+        $image=get_the_post_thumbnail_url($post_id, 'projects');  <!-- выйдет изображение записи. не acf -->
 
 <!-- если нужно оганизовать переход из записи на отдельную страницу, на которой будет отображаться только содержимое этой записи. содержимое организовывается по шаблону записи. создается шаблон например template-projects-post.php  прописывается вверху если тип записи projects <?php
 /**
