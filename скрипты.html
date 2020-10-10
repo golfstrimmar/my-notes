@@ -737,3 +737,30 @@ $(this).find(".icon-arrow_drop_down").css("transform","rotate(180deg)");
 //- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 </div>
 
+ <!--найти  параллакс эффект rellax. - -->
+http://milkywaydoor.ru/znania/web-stat/biblioteka-rellax/
+
+
+<!-- разобраться    еще табы---хорошо под wordpress------https://qna.habr.com/q/586136 -->
+$(document).ready(function () {
+var $tabs = $('.s-services__tab_item');
+$tabs.first().addClass('active');
+$tabs.not('.active').hide();
+$('.s-services__controls_item').on('click',function (e) {
+e.preventDefault();
+
+var tabItem = $(this).closest('.s-services__controls_item'),
+tabContentItem = $('.s-services__tab_item'),
+tabItemPosition = tabItem.data('services');
+
+tabContentItem.filter('.s-services__tab_item-' + tabItemPosition)
+.fadeIn()
+.siblings()
+.hide();
+
+$(e.currentTarget)
+.addClass('active')
+.siblings()
+.removeClass('active');
+});
+});
