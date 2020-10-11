@@ -404,3 +404,30 @@ border-bottom: 1px solid #fa333c;
   font-weight: 400;
   font-style: normal;
 }
+
+/* если форма contactform-7 */
+/* $(".wpcf7-form-control").blur(function() {
+  $(this)
+    .parent()
+    .siblings(".red-first-letter")
+    .css("transform", "translateY(0)");
+    $(this)
+      .parent(".textarea-568")
+      .parent()
+      .siblings()
+      .find(".red-first-letter")
+      .css("transform", "translateY(0)");
+});
+
+$(".wpcf7-form-control").focus(function() {
+$(this)
+  .parent()
+  .siblings(".red-first-letter")
+  .css("transform", "translateY(-34px)");
+$(this)
+  .parent(".textarea-568")
+  .parent()
+  .siblings()
+  .find(".red-first-letter")
+  .css("transform", "translateY(-34px)");
+}); */
