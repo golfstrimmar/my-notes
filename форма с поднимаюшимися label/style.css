@@ -1,0 +1,406 @@
+/* ------------------------ */
+/* 
+
+<!-- &:focus по фокусу
+:placeholder-shown ----Определяет стиль элемента <input> или <textarea>, который в данный момент отображает текст подсказки, заданной атрибутом placeholder. 
+&:-webkit-autofill ---описывает режим автозаполнения. например здесь тег Label поднимется над input на 34px -->
+
+/* ----------------------- */
+
+/* в данном случае если текст не соответствует формату написания адреса почты-- он будет красным с красным подчеркиванием и картинкой с восклицательным знаком в конце. смотрится очень круто!!! это с сайта split
+
+&:not(:placeholder-shown) {
+&:invalid {
+color: #fa333c;
+border-bottom: 1px solid #fa333c;
+ background-image: url("images/contact/warning.svg");
+}
+
+-------------------------------------- */ 
+/* .connect__form {
+	background-color: white;
+	box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.83);
+}
+.connect__form-item {
+	position: relative;
+	margin-bottom: 52px;
+	label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: 0.3s;
+		transform: translateY(0);
+		pointer-events: none;
+		color: #0d0d0d;
+		width: 100%;
+		font-family: "Montserrat", sans-serif;
+		font-size: 19px;
+		line-height: 25px;
+		font-weight: 500;
+	}
+	input {
+		width: 100%;
+		outline: none;
+		border: 1px solid transparent;
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-position: 100% 5px;
+		border-bottom: 1px solid #d8d8d8;
+		padding-bottom: 17px;
+		resize: none;
+		font-family: "Montserrat", sans-serif;
+		font-size: 19px;
+		line-height: 25px;
+		font-weight: 500;
+		&:focus {
+			+ {
+				label {
+					transform: translateY(-34px);
+					transform: translateY(-34px);
+				}
+			}
+		}
+		&:not(:placeholder-shown) {
+			+ {
+				label {
+					transform: translateY(-34px);
+					transform: translateY(-34px);
+				}
+			}
+			&:invalid {
+				color: #fa333c;
+				border-bottom: 1px solid #fa333c;
+				background-image: url("warning.svg");
+				font-family: "Montserrat", sans-serif;
+				font-size: 15px;
+				font-weight: 400;
+			}
+		}
+		&:-webkit-autofill {
+			+ {
+				label {
+					transform: translateY(-34px);
+					transform: translateY(-34px);
+				}
+			}
+		}
+		&::-webkit-input-placeholder {
+			color: transparent;
+		}
+		&::-moz-placeholder {
+			color: transparent;
+		}
+		&:-ms-input-placeholder {
+			color: transparent;
+		}
+		&:-moz-placeholder {
+			color: transparent;
+		}
+	}
+	textarea {
+		width: 100%;
+		outline: none;
+		border: 1px solid transparent;
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-position: 100% 5px;
+		border-bottom: 1px solid #d8d8d8;
+		padding-bottom: 17px;
+		resize: none;
+		font-family: "Montserrat", sans-serif;
+		font-size: 19px;
+		line-height: 25px;
+		font-weight: 500;
+		&:focus {
+			+ {
+				label {
+					transform: translateY(-34px);
+					transform: translateY(-34px);
+				}
+			}
+		}
+		&:not(:placeholder-shown) {
+			+ {
+				label {
+					transform: translateY(-34px);
+					transform: translateY(-34px);
+				}
+			}
+			&:invalid {
+				color: #fa333c;
+				border-bottom: 1px solid #fa333c;
+				background-image: url("warning.svg");
+				font-family: "Montserrat", sans-serif;
+				font-size: 15px;
+				font-weight: 400;
+			}
+		}
+		&:-webkit-autofill {
+			+ {
+				label {
+					transform: translateY(-34px);
+					transform: translateY(-34px);
+				}
+			}
+		}
+		&::-webkit-input-placeholder {
+			color: transparent;
+		}
+		&::-moz-placeholder {
+			color: transparent;
+		}
+		&:-ms-input-placeholder {
+			color: transparent;
+		}
+		&:-moz-placeholder {
+			color: transparent;
+		}
+	}
+}
+.connect__file-add {
+	margin-top: 92px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #d8d8d8;
+	cursor: pointer;
+}
+.custom-file {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-direction: row;
+	input {
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+		left: 0;
+		pointer-events: none;
+		font-family: "Montserrat", sans-serif;
+		font-size: 15px;
+		line-height: 25px;
+		font-weight: 400;
+	}
+	label {
+		transform: translateY(0) !important;
+		font-family: "Montserrat", sans-serif;
+		font-size: 19px;
+		line-height: 25px;
+		font-weight: 400;
+	}
+}
+.custom-file__lb {
+	display: inline-block;
+	width: 100%;
+	height: 24px;
+	border: none;
+	position: relative;
+	margin: 0;
+	.bg {
+		width: 27px;
+		height: 27px;
+		left: 100%;
+		transform: translate(-120%);
+	}
+}
+.custom-file__lb.close {
+	width: 24px;
+	&:before {
+		transform: rotate(405deg);
+	}
+}
+@media (max-width: 767px) {
+	.connect__form {
+		padding-bottom: 100px;
+	}
+}
+@media (max-width: 576px) {
+	.connect__form {
+		padding-bottom: 40px;
+	}
+}
+@media (max-width:767px) {
+	.form__submit-button {
+		button {
+			width: 100%;
+		}
+	}
+}
+@media (max-width: 450px) {
+	.btn {
+		width: 100%;
+	}
+	.btn__inner {
+		width: 100%;
+	}
+} */
+/* ------------------------------------ */
+.connect__form {
+	 background-color: white;
+	 box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.83);
+}
+ @media (max-width: 767px) {
+	 .connect__form {
+		 padding-bottom: 100px;
+	}
+}
+ @media (max-width: 576px) {
+	 .connect__form {
+		 padding-bottom: 40px;
+	}
+}
+ .connect__form-item {
+	 position: relative;
+	 margin-bottom: 52px;
+}
+ .connect__form-item label {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 transition: 0.3s;
+	 transform: translateY(0);
+	 pointer-events: none;
+	 color: #0d0d0d;
+	 width: 100%;
+   font-family: "Montserrat", sans-serif;
+	 font-size: 19px;
+	 line-height: 25px;
+	 font-weight: 500;
+}
+ .connect__form-item input, .connect__form-item textarea {
+	 width: 100%;
+	 outline: none;
+	 border: 1px solid transparent;
+	 background-color: transparent;
+	 background-repeat: no-repeat;
+	 background-position: 100% 5px;
+	 border-bottom: 1px solid #d8d8d8;
+	 padding-bottom: 17px;
+   resize: none;
+   font-family: "Montserrat", sans-serif;
+	 font-size: 19px;
+	 line-height: 25px;
+	 font-weight: 500;
+}
+ .connect__form-item input:focus + label,
+  .connect__form-item textarea:focus + label,
+   .connect__form-item input:not(:placeholder-shown) + label,
+    .connect__form-item textarea:not(:placeholder-shown) + label,
+     .connect__form-item input:-webkit-autofill + label,
+      .connect__form-item textarea:-webkit-autofill + label {
+	 transform: translateY(-34px);
+}
+/* ------------------------ */
+.connect__form-item input:focus + label{
+  transform: translateY(-34px);
+}
+
+.connect__form-item textarea:focus + label{
+  transform: translateY(-34px);
+}
+.connect__form-item input:not(:placeholder-shown) + label{
+  transform: translateY(-34px);
+} 
+
+ .connect__form-item textarea:not(:placeholder-shown) + label{
+ transform: translateY(-34px);
+}
+.connect__form-item input:-webkit-autofill + label{
+ transform: translateY(-34px);
+}
+.connect__form-item textarea:-webkit-autofill + label{
+ transform: translateY(-34px);
+}
+/* -------------------------------------- */
+
+ .connect__form-item input::-webkit-input-placeholder, .connect__form-item textarea::-webkit-input-placeholder {
+   color: transparent;
+  
+}
+ .connect__form-item input::-moz-placeholder, .connect__form-item textarea::-moz-placeholder {
+   color: transparent;
+   
+}
+ .connect__form-item input:-ms-input-placeholder, .connect__form-item textarea:-ms-input-placeholder {
+   color: transparent;
+  
+}
+ .connect__form-item input:-moz-placeholder, .connect__form-item textarea:-moz-placeholder {
+   color: transparent;
+  
+}
+ .connect__form-item input:not(:placeholder-shown):invalid, .connect__form-item textarea:not(:placeholder-shown):invalid {
+	 color: #fa333c;
+	 border-bottom: 1px solid #fa333c;
+   background-image: url("warning.svg");
+    font-family: "Montserrat", sans-serif;
+	 font-size: 15px;
+	 font-weight: 400;
+}
+ .connect__file-add {
+	 margin-top: 92px;
+	 padding-bottom: 15px;
+	 border-bottom: 1px solid #d8d8d8;
+	 cursor: pointer;
+}
+ @media (max-width:767px) {
+.form__submit-button button{
+	 width: 100%;
+}
+ }
+ @media (max-width: 450px) {
+	 .btn, .btn__inner {
+		 width: 100%;
+	}
+}
+ .custom-file {
+	 display: flex;
+	 justify-content: flex-end;
+	 align-items: center;
+   flex-direction: row;
+  
+}
+ .custom-file input {
+	 opacity: 0;
+	 visibility: hidden;
+	 position: absolute;
+	 left: 0;
+   pointer-events: none;
+   font-family: "Montserrat", sans-serif;
+	 font-size: 15px;
+	 line-height: 25px;
+	 font-weight: 400;
+}
+ .custom-file label {
+	 transform: translateY(0) !important;
+	 font-family: "Montserrat", sans-serif;
+	 font-size: 19px;
+	 line-height: 25px;
+	 font-weight: 400;
+}
+ .custom-file__lb {
+	 display: inline-block;
+	 width: 100%;
+	 height: 24px;
+	 border: none;
+	 position: relative;
+	 margin: 0;
+}
+ .custom-file__lb.close {
+	 width: 24px;
+}
+ .custom-file__lb.close:before {
+	 transform: rotate(405deg);
+}
+ .custom-file__lb .bg {
+	 width: 27px;
+	 height: 27px;
+	 left: 100%;
+	 transform: translate(-120%);
+}
+ 
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(Montserrat-Regular.eot),url(Montserrat-Regular.eot) format("embedded-opentype"),url(Montserrat-Regular.woff2) format("woff2"),url(Montserrat-Regular.woff) format("woff"),url(Montserrat-Regular.ttf) format("truetype"),url(Montserrat-Regular.svg) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
