@@ -250,6 +250,8 @@ border-bottom: 1px solid #fa333c;
  .connect__form-item {
 	 position: relative;
 	 margin-bottom: 52px;
+	 	 background-color: #9e9e9e;
+
 }
  .connect__form-item label {
 	 position: absolute;
@@ -356,7 +358,7 @@ border-bottom: 1px solid #fa333c;
 	 justify-content: flex-end;
 	 align-items: center;
    flex-direction: row;
-  
+  height: 33px;
 }
  .custom-file input {
 	 opacity: 0;
