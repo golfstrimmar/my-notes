@@ -328,6 +328,16 @@ endif;
   if (function_exists( 'add_image_size' )){
   add_image_size('board-slider',225,490,true);
   }
+---------------- регистрация вывода меток именно для этого типа поста
+https://wp-kama.ru/function/register_taxonomy_for_object_type
+
+add_action( 'init', 'post_tag_for_pages' );
+function post_tag_for_pages(){
+register_taxonomy_for_object_type( 'post_tag', 'projects');
+}
+
+
+
 
 </section>
 <section>вывод кастомного типа полей в верстку
