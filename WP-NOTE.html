@@ -159,22 +159,54 @@ add_action( 'wp_footer', 'my_deregister_scripts' );
 </section>
 <section>вывод логотипа. названия сайта.миниатюр запсей.языка сайта 
 
------в functions.php------
-// подписываемся на момент формирования контента
-add_action( 'after_setup_theme', 'loft_setup' );
-function loft_setup(){
-// выводит логотип
-add_theme_support('custom-logo');
-// выводит название сайта
-add_theme_support('title-tag');
-// выводит миниатюру записи
-add_theme_support('post-thumbnails');
-}
+ ------ в functions.php------
+<?php add_theme_support('custom-logo');?>
+<?php add_theme_support('title-tag');?>
+<?php add_theme_support('post-thumbnails');?>
+<?php language_attributes(); ?>
 
-----в верстку--------
----логотип-----     <?php the_custom_logo();?> 
---заголовок ----    <?php bloginfo('name'); ?> 
---язык сайта----    <?php language_attributes(); ?>
+------в верстку----
+<?php bloginfo('name') ?>
+
+name
+название сайта, установленное в Параметры > Общее
+description
+краткое описание сайта, указанное в Параметры > Общее
+wpurl
+URL установки WordPress, результат действия функции site_url()
+url
+адрес сайта, полученный через функцию home_url()
+admin_email
+адрес email, указанный в общих параметрах
+charset
+кодировка, используемая на блоге и в RSS
+version
+используемая версия WordPress
+html_type
+тип содержимого (Content-Type) для HTML страниц (по умолчанию text/html)
+text_direction
+направление текста
+language
+используемый язык на блоге
+stylesheet_url
+URL таблицы стилей style.css, получаемый через функцию get_stylesheet_uri()
+stylesheet_directory
+абсолютный URL директории с активной темой, аналог функции get_stylesheet_directory_uri()
+template_url
+аналог функции get_template_directory_uri()
+template_directory
+второй аналог функции get_template_directory_uri(), ничем не отличающийся от template_url
+pingback_url
+URL файла xmplrpc.php
+rdf_url
+URL ленты RDF/RSS 1.0 (/feed/rfd)
+rss_url
+URL ленты RSS 0.92 (/feed/rss)
+rss2_url
+URL ленты RSS 2.0 (/feed)
+comments_rss2_url
+URL ленты комментариев RSS 2.0 (/comments/feed)
+
 
 </section>
 <section>показать-скрыть админпанель
