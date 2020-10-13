@@ -252,6 +252,25 @@ bt-lr
 white-space: normal | nowrap | pre | pre-line | pre-wrap | inherit
 
 
+/////////// form //////////////////
+form
+input.custom-checkbox(type="radio" name="dzen" value="1" id="yes")
+label(for="yes") Да
+.board24_flex
+input.custom-checkbox(type="radio" name="dzen" value="2" id="no")
+label(for="no") Против
+.board24_flex
+input.custom-checkbox(type="radio" name="dzen" value="3" id="abstained")
+label(for="abstained") Воздержался
+.board24_flex
+input.custom-checkbox(type="radio" name="dzen" value="4" id="else")
+label(for="else") Дополнительный вариант ответа
+
+.board24_button-blue
+input(type="submit" value="Голосовать")
+
+
+
 ////////////////стилизация checkbox/////////////////////////
 https://itchief.ru/html-and-css/styling-checkbox-and-radio
 
