@@ -381,20 +381,25 @@ let meeting = $("#board24_create-meeting");  ---это кнопка открыт
 let meetPopup = $("#board24_meet-popup"); ----это весь попап
 let center = meetPopup.find($(".board24_meet__center")); --------здесь квадрат внутри с содержанием
 
+<!-- // здесь открытие всего  окна с оверлеем и блоком внутри -->
 meetPopup.css("display","none");
-
-meeting.on("click",function(){  // здесь открытие всего  окна с оверлеем и блоком внутри
+meeting.on("click",function(){  
 meetPopup.fadeIn();
 });
 
+
+<!-- обязательно писать function (e) -->
+<!-- // если клик был не по нашему блоку// и не по его дочерним элементам -->
 $(document).on("mouseup",function (e) {
 if (
-!center.is(e.target) && // если клик был не по нашему блоку
-center.has(e.target).length === 0// и не по его дочерним элементам
+!center.is(e.target) && 
+center.has(e.target).length === 0
 ) {
-meetPopup.fadeOut(); // скрываем его
+meetPopup.fadeOut(); 
 }
 });
+
+
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
