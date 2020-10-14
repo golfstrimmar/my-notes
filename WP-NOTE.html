@@ -1,3 +1,24 @@
+<section>Операторы сравнения и Логические операторы
+  <!-- https://www.php.net/manual/ru/language.operators.comparison.php -->
+$a == $b Равно TRUE если $a равно $b после преобразования типов.
+$a === $b Тождественно равно TRUE если $a равно $b и имеет тот же тип.
+$a != $b Не равно TRUE если $a не равно $b после преобразования типов.
+$a <> $b Не равно TRUE если $a не равно $b после преобразования типов.
+$a !== $b Тождественно не равно TRUE если $a не равно $b, или они разных типов.
+$a < $b Меньше TRUE если $a строго меньше $b. $a> $b Больше TRUE если $a строго больше $b.
+$a <= $b Меньше или равно TRUE если $a меньше или равно $b. $a>= $b Больше или равно TRUE если $a больше или равно $b.
+$a <=> $b Космический корабль (spaceship) Число типа integer меньше, больше или равное нулю, когда $a
+        соответственно меньше, больше или равно $b. Доступно c PHP 7.
+
+
+$a and $b   И                 TRUE, если и $a, и $b TRUE.
+$a or $b    Или               TRUE, если или $a, или $b TRUE.
+$a xor $b   Исключающее или   TRUE, если $a, или $b TRUE, но не оба.
+! $a        Отрицание         TRUE, если $a не TRUE.
+$a && $b    И                 TRUE, если и $a, и $b TRUE.
+$a || $b    Или               TRUE, если или $a, или $b TRUE.
+
+</section>
 <section>плагины 
 
   нужно устанавливать
@@ -337,7 +358,6 @@ register_taxonomy_for_object_type( 'post_tag', 'projects');
 }
 
 </section>
-
 <section>вывод кастомного типа полей по рубрикам и меткам одновременно
 <!-- ------------- регистрация вывода меток именно для этого типа поста  -->
 https://wp-kama.ru/function/register_taxonomy_for_object_type
@@ -775,6 +795,60 @@ wp_reset_postdata();
 <?php edit_post_link(__('Редактировать')); ?>
 <?php endwhile; ?>
 <?php wp_reset_postdata();?>
+
+
+
+</section>
+<section>если нужно вывести что-то только на одной странице или нескольких страницах
+<!-- how-we-work  <-- слаг страницы -->
+  <!-- например нужно на одной из страниц убрать отступ у body. для этого прописываем дополнительный класс для body  "portfolio-transparent" и добавляем его тоько на одной странице -->
+
+<?php
+   if (get_page_by_path("how-we-work")->ID == get_the_ID()) { 
+  ?>
+  <body class="scroll_container portfolio portfolio-transparent">
+    <?php
+  }
+  else{
+  ?>
+    <body class="scroll_container portfolio">
+      <?php
+  }
+  ?>
+
+
+  <!-- то же самое только по id  -->
+<?php
+$id=15;<!-- id страницы  -->
+if( is_page($id) ) {
+?>
+<body class="scroll_container portfolio portfolio-transparent">
+  <?php
+}
+else{
+?>
+  <body class="scroll_container portfolio">
+    <?php
+}
+?>
+
+<!-- так --- на нескольких страницаx. здесь  how-we-work и   contacts-->
+  <?php
+   if (get_page_by_path("how-we-work" )->ID || get_page_by_path("contacts" )->ID == get_the_ID()) { 
+  ?>
+  
+  <body class="scroll_container portfolio portfolio-transparent">
+    <?php
+  }
+  else{
+  ?>
+  
+    <body class="scroll_container portfolio">
+      <?php
+  }
+  ?>
+
+
 
 
 
