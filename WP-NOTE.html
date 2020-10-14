@@ -324,7 +324,7 @@ endif;
   }
   add_action('init', 'my_custom_init');
 
-  //--- можно задать размер превью картинки----
+ --------------- можно задать размер превью картинки----
   if (function_exists( 'add_image_size' )){
   add_image_size('board-slider',225,490,true);
   }
@@ -336,7 +336,55 @@ function post_tag_for_pages(){
 register_taxonomy_for_object_type( 'post_tag', 'projects');
 }
 
+</section>
 
+<section>вывод кастомного типа полей по рубрикам и меткам одновременно
+<!-- ------------- регистрация вывода меток именно для этого типа поста  -->
+https://wp-kama.ru/function/register_taxonomy_for_object_type
+
+add_action( 'init', 'post_tag_for_pages' );
+function post_tag_for_pages(){
+register_taxonomy_for_object_type( 'post_tag', 'projects');
+}
+<!-- после этого в записи появится виджет меток. там нужно прописать какое-нибудь название метки. потом по этому названию можно выводить записи и совмещать с выводом по рубрикам.  -->
+
+<!-- в верстку -->
+<?php
+                    global $post; 
+                    $myposts = get_posts( array(
+                      'post_type'=>'projects',
+                      'category' => 10,                  
+                      'numberposts' => 15, 
+                      'tag'=>'image-left' <!-- название метки -->
+                    ) );
+                    $reversed = array_reverse($myposts);
+                    foreach( $reversed as $post ){
+                        setup_postdata( $post );
+                        $post_id = $post->ID;
+                        $post_title = $post->post_title;
+                        $link = sprintf(  esc_url( get_permalink( $post_id ) ), $post_id );
+                    ?>
+<!-- здесь html  -->
+<!--по  $link можно сделать переход на запись с шаблоном для этой записи-->
+<?php
+                    }
+                    wp_reset_postdata(); 
+                    ?>
+</section>
+<section>вывод меток
+  <?php the_tags( $before, $separator, $after ); ?>
+ 
+  $before(строка)
+  Текст перед ссылками.
+  По умолчанию: 'Tags: '
+  $separator(строка)
+  Разделитель между ссылками.
+  По умолчанию: ', '
+  $after(строка)
+  Текст после ссылок.
+  По умолчанию: нет
+
+<?php the_tags( 'Связи поста: ', ' > '); ?><!-- выведет   Связи поста: WordPress > Computers > Blogging -->
 
 
 </section>
