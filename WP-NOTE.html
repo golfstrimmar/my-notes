@@ -833,22 +833,31 @@ else{
 ?>
 
 <!-- так --- на нескольких страницаx. здесь  how-we-work и   contacts-->
-  <?php
-   if (get_page_by_path("how-we-work" )->ID || get_page_by_path("contacts" )->ID == get_the_ID()) { 
-  ?>
-  
-  <body class="scroll_container portfolio portfolio-transparent">
     <?php
-  }
-  else{
-  ?>
-  
-    <body class="scroll_container portfolio">
+     if (get_page_by_path("how-we-work" )->ID  == get_the_ID()) { 
+    ?>
+    
+    <body class="scroll_container portfolio portfolio-transparent">
       <?php
-  }
-  ?>
-
-
+    }
+    else{
+    
+    if (get_page_by_path("contacts" )->ID  == get_the_ID()){
+    ?>
+    
+      <body class="scroll_container portfolio portfolio-transparent">
+    
+        <?php
+    }
+    else{
+    
+    ?>
+    
+        <body class="scroll_container portfolio">
+          <?php
+    }
+    }
+    ?>
 
 
 
