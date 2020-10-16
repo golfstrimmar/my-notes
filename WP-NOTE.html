@@ -187,6 +187,21 @@ add_action( 'wp_footer', 'my_deregister_scripts' );
 <?php language_attributes(); ?>
 
 ------в верстку----
+для изменения заголовка
+  add_filter( 'pre_get_document_title', 'my_get_document_title' );
+  function my_get_document_title(){
+  // Генерируем динамический заголовок для каждой страницы.
+  // За основу можно взять код этой функции и поправить его под себя.
+  $title = 'Это динамически созданный заголовок';
+  return $title;
+  }
+
+для вставки слэша внутрь заголовка
+add_filter( 'document_title_separator', function(){
+return ' | ';
+} );
+
+
 <?php bloginfo('name') ?>
 
 name
