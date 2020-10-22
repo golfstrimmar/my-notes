@@ -457,6 +457,8 @@ register_taxonomy_for_object_type( 'post_tag', 'projects');
         $post_text=$post->post_content;  <!-- выйдет содержание записи. не acf -->
         $image=get_the_post_thumbnail_url($post_id, 'projects');  <!-- выйдет изображение записи. не acf -->
 
+
+
 <!-- если нужно оганизовать переход из записи на отдельную страницу, на которой будет отображаться только содержимое этой записи. содержимое организовывается по шаблону записи. создается шаблон например template-projects-post.php  прописывается вверху если тип записи projects <?php
 /**
 *Template Name: Шаблон отдельного проекта
@@ -469,15 +471,20 @@ get_header();
 
         $link = sprintf( esc_url( get_permalink( $post_id ) ), $post_id );
         ?>
-<?php 
-echo $post_id;
-echo $post_title;
-?>
+
 <!-- html -->
 <!-- html -->
 <!-- html -->
 <!-- здесь как раз линк на страницу записи. -->
 <a  href="<?php echo $link ?>">See Case</a>
+
+<?php echo $link ?>
+<?php echo $post_title ?>
+<?php echo $post_id ?>
+<?php echo $post_text ?>
+<?php echo $image ?>
+
+
 <!-- html -->
 <!-- html -->
 <?php 
