@@ -402,9 +402,16 @@ register_taxonomy_for_object_type( 'post_tag', 'projects');
                         setup_postdata( $post );
                         $post_id = $post->ID;
                         $post_title = $post->post_title;
-                        $link = sprintf(  esc_url( get_permalink( $post_id ) ), $post_id );
+                        $link = esc_url( get_permalink( $post_id ) );
                     ?>
 <!-- здесь html  -->
+
+<?php echo $link ?>
+<?php echo $post_title ?>
+<?php echo $post_id ?>
+<?php echo $post_text ?>
+<?php echo $image ?>
+
 <!--по  $link можно сделать переход на запись с шаблоном для этой записи-->
 <?php
                     }
@@ -474,7 +481,7 @@ get_header();
 потом в самой записи выбирается в виджете выбора этот шаблон. теперь по ссылке будет переход на такую страницу и открываться именно информация для этого проекта. полями acf прописывается нужная информация прямо в админке записи. все это реализовано на https://split.splitdev.pro/ -->
 
 
-        $link = sprintf( esc_url( get_permalink( $post_id ) ), $post_id );
+        $link = esc_url( get_permalink( $post_id ) );
         ?>
 
 <!-- html -->
