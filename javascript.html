@@ -1,0 +1,105 @@
+document.querySelector(selector);
+document.querySelectorAll(selector);
+document.querySelector('button');
+.addEventListener('click',foo);
+.removeEventListener('click',foo);
+document.createElement(tagName);
+ele.appendChild(childEle)
+ele.removeChild(strong);
+ele.replaceChild(newChildEle, oldChileEle)
+ele.cloneNode(true);
+ele.insertBefore(newEle, refEle);
+getComputedStyle(ele, [pseudoEle])
+ele.setAttribute(name, value);
+ele.getAttribute(name);
+ele.removeAttribute(name);
+
+
+
+<!-- Метод querySelector() возвращает первый элемент, который соответствует одному или более CSS селекторам. Если совпадения
+не будет, то он вернет null. -->
+querySelector()
+var ele = document.querySelector(selector);
+
+ <!-- возвращает все элементы, которые подходят под указанный CSS селектор. -->
+ querySelectorAll()
+var eles = document.querySelectorAll(selector);
+<!-- пример -->
+var paragraphs = document.querySelectorAll('p');
+for(var p of paragraphs)
+p.style.color = 'blue';
+
+
+<!-- События отображают то, что случается с HTML элементом, например клик, фокусировка или загрузка — то на что можно
+реагировать с JavaScript. Мы можем назначить JS функции, чтобы слушать эти события в элементах и соответственно делать
+какие-либо действия когда это событие происходит. -->
+<!-- https://medium.com/@stasonmars/15-javascript-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D0%B2%D0%B5%D0%B1-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%BE%D0%B2-e92ea6c22e32 -->
+addEventListener()
+<!-- пример -->
+var btn = document.querySelector('button');
+btn.addEventListener('click',foo);
+function foo() { alert('hello'); }
+
+
+<!-- удаляет слушатель события по клику по имени foo из элемента <button>. -->
+ele.removeEventListener(evt, listener, [options]);
+<!-- пример -->
+btn.removeEventListener('click',foo);
+
+<!-- создаёт HTML элемент, используя имя HTML тега, такое как ‘p’ или ‘div’. -->
+document.createElement(tagName);
+
+<!-- добавляет элемент, как последний потомок HTML элементу, который включен в этот метод. -->
+ele.appendChild(childEle)
+
+<!-- удаляет указанный элемент потомок из HTML элемента, который вызывает этот метод. -->
+div.removeChild(strong);
+
+<!-- заменяет элемент потомок другим элементом, -->
+ele.replaceChild(newChildEle, oldChileEle)
+
+<!-- --создает копию элемента---- -->
+var dupeEle = ele.cloneNode([deep])
+<!-- пример -->
+var strong = document.querySelector('strong');
+var copy = strong.cloneNode(true);
+var div = document.querySelector('div');
+div.appendChild(copy);
+
+<!-- Метод insertBefore() добавляет указанный элемент потомок перед другим элементом потомком. Этот метод вызывается родительским элементом. -->
+ele.insertBefore(newEle, refEle);
+ele — родительский элемент.
+newEle — новый HTML элемент, который вставится.
+refEle — элемент потомок ele, перед которым будет вставлен newEle.
+
+<!-- возвращает read-only вычисленные значения всех CSS свойств указанного HTML элемента. -->
+var style = getComputedStyle(ele, [pseudoEle])
+<!-- пример -->
+var style = getComputedStyle(document.querySelector('div'));
+alert(style.width);
+
+
+<!-- Метод setAttribute() добавляет новый атрибут HTML элементу, так и меняет его значение для уже существующих. -->
+ele.setAttribute(name, value);
+ele — это HTML элемент, к которому будет добавлен атрибут или чей атрибут будет изменен.
+name — имя атрибута
+value — значение атрибута
+<!-- пример -->
+var div = document.querySelector('div');
+div.setAttribute('contenteditable', '')
+
+<!-- возвращает значение указанного атрибута, -->
+ele.getAttribute(name);
+ele — HTML элемент, чей атрибут запрашивается.
+name — имя атрибута.
+<!-- пример -->
+var div = document.querySelector('div');
+alert(div.getAttribute('contenteditable'))
+
+<!-- удаляет заданное значение конкретного элемента HTML. -->
+ele.removeAttribute(name);
+ele — HTML элемент чей атрибут будет удален.
+name — имя атрибута.
+<!-- пример -->
+var div = document.querySelector('div');
+div.removeAttribute('contenteditable');
