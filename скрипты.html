@@ -742,6 +742,22 @@ $(this).find(".icon-arrow_drop_down").css("transform","rotate(180deg)");
 //- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 </div>
 
+===============
+скроллинг
+===============
+<div>
+
+$(Document).ready(function (e) {
+$('a[href^="#plaza-video"]').click(function () {
+var target = $(this).attr("href");
+$("html, body").animate({ scrollTop: $(target).offset().top }, 800); //800 - длительность скроллинга в мс
+return false;
+});
+}),
+
+</div> 
+
+
  <!--найти  параллакс эффект rellax. - -->
 http://milkywaydoor.ru/znania/web-stat/biblioteka-rellax/
 
