@@ -506,7 +506,7 @@ get_header();
 <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 <?php  
     }
-     wp_reset_postdata(); 
+    	
                   
               ?>
 
@@ -1198,4 +1198,10 @@ $strRest = trim(str_replace($strFirst, '', $strInput ));
 <span class="red-span"> <?php echo $strFirst; ?> </span><?php echo $strRest; ?>
 
 </section>
-
+<section>вывод чего-либо если есть заполненное поле. если нет- пустота
+  <?php $href = get_field('img-16');if( !empty($href) ): ?>
+  <div class="tres__img">
+    <div class="ibg bg"><img src="<?php echo $href; ?>	" alt=""></div>
+  </div>
+  <?php endif;  wp_reset_postdata(); ?>
+</section>
