@@ -1,4 +1,7 @@
 document.querySelector(selector);
+document.getElementById()
+document.getElementsByTagName(имяТега)
+document.getElementsByClassName()
 document.querySelectorAll(selector);
 document.querySelector('button');
 .addEventListener('click',foo);
@@ -13,6 +16,13 @@ getComputedStyle(ele, [pseudoEle])
 ele.setAttribute(name, value);
 ele.getAttribute(name);
 ele.removeAttribute(name);
+elem.classList.add/remove("class")
+elem.classList.toggle("class")
+elem.classList.contains("class")  
+elem.style.backgroundColor = "red"
+div.style.cssText=`background-color: yellow;width: 100px;`
+div.setAttribute('style', 'color: red...')
+four.style.background="red";  ---обращение напрямую по id = four
 
 
 
@@ -28,6 +38,22 @@ var eles = document.querySelectorAll(selector);
 var paragraphs = document.querySelectorAll('p');
 for(var p of paragraphs)
 p.style.color = 'blue';
+
+
+ <!-- возвращает ссылку на элемент, который имеет атрибут id с указанным значением. -->
+document.getElementById()
+
+<!-- возвращает массив, содержащий ссылки на все элементы указанного типа, находящиеся в HTML-документе. Ссылки на элементы в
+массиве будут представлены в том же порядке, в каком эти элементы расположены в исходном коде документа.Если в качестве передаваемого аргумента указать символ "*" (звёздочка), метод вернёт все элементы, расположенные в
+HTML-документе. -->
+document.getElementsByTagName(имяТега)
+
+
+<!-- Метод  возвращает объект NodeList, содержащий все элементы, у которых значение атрибута
+class совпадает с переданной методу строкой.При вызове метода getElementsByClassName() для объекта document, выполняется поиск по всему документу, включая корневой
+элемент. Если метод вызывается для объекта element, то поиск выполняется только среди потомков данного элемента. -->
+document.getElementsByClassName()
+
 
 
 <!-- События отображают то, что случается с HTML элементом, например клик, фокусировка или загрузка — то на что можно
@@ -103,3 +129,34 @@ name — имя атрибута.
 <!-- пример -->
 var div = document.querySelector('div');
 div.removeAttribute('contenteditable');
+
+<!-- – добавить/удалить класс. -->
+elem.classList.add/remove("class")
+
+<!-- – добавить класс, если его нет, иначе удалить. -->
+elem.classList.toggle("class")
+
+<!-- – проверка наличия класса, возвращает true/false. -->
+elem.classList.contains("class") 
+
+<!-- Для свойства из нескольких слов используется camelCase: -->
+elem.style.backgroundColor ="red";
+
+
+<!-- Стили с браузерным префиксом, например, -moz-border-radius, -webkit-border-radius преобразуются по тому же принципу:дефис означает заглавную букву. -->
+button.style.MozBorderRadius = '5px';
+
+
+<!-- Для задания нескольких стилей в одной строке используется специальное свойство style.cssText: -->
+div.style.cssText=`color: red !important;
+background-color: yellow;
+width: 100px;
+text-align: center;
+`;
+
+<!-- То же самое можно сделать установкой атрибута: -->
+div.setAttribute('style', 'color: red...').
+
+
+
+
