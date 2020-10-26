@@ -306,98 +306,46 @@ left: 0;
 </div>
 
 
-=======================================================================================
-пример формы на попап окне. появляется по клику на кнопку. это уже форма сформированная contact-form-7/ниже скрипты открытия-закрытия
-=======================================================================================
-<div>
-<div class="overlay-popup js-overlay-campaign" style="display: block;">
-    <div role="form" class="wpcf7" id="wpcf7-f73-o3" lang="ru-RU" dir="ltr">
-        <div class="screen-reader-response" role="alert" aria-live="polite">Спасибо за Ваше сообщение. Оно успешно
-            отправлено.</div>
-        <form action="/#wpcf7-f73-o3" method="post" class="wpcf7-form sent" novalidate="novalidate">
-            <div style="display: none;">
-                <input type="hidden" name="_wpcf7" value="73">
-                <input type="hidden" name="_wpcf7_version" value="5.2">
-                <input type="hidden" name="_wpcf7_locale" value="ru_RU">
-                <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f73-o3">
-                <input type="hidden" name="_wpcf7_container_post" value="0">
-                <input type="hidden" name="_wpcf7_posted_data_hash" value="d3561a25d7495830a78f30ec60db7c8b">
-            </div>
-            <section class="popup-link">
-                <div class="cont-column__form">
-                    <div class="cont-column__in">
-                        <span class="wpcf7-form-control-wrap text-942"><input type="text" name="text-942" value=""
-                                size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
-                                id="username" aria-required="true" aria-invalid="false"
-                                placeholder="Введите имя"></span><br>
-                        <img src="https://new.j-uno.ru/wp-content/themes/j-uno/assets/img/link/link-pers.png" alt="img">
-                    </div>
-                    <div class="cont-column__in">
-                        <span class="wpcf7-form-control-wrap mask-784"><input type="tel" name="mask-784" value=""
-                                class="wpcf7-form-control wpcf7mf-mask wpcf7-mask wpcf7-validates-as-required" size="40"
-                                aria-required="1" placeholder="+7(___)-___-__-__"
-                                data-mask="+7(___)-___-__-__"></span><br>
-                        <img src="https://new.j-uno.ru/wp-content/themes/j-uno/assets/img/link/link-phone.png"
-                            alt="img">
-                    </div>
-                    <div class="cont-column__button">
-                        <input type="submit" value="Отправить" class="wpcf7-form-control wpcf7-submit"><span
-                            class="ajax-loader"></span>
-                    </div>
-                    <p></p>
-                </div>
-                <div class="cont-column__confidence">Нажимая кнопку вы соглашаетесь на<br>
-                    <a href="https://new.j-uno.ru/политика-конфиденциальности/" target="_blank"> <span> обработку
-                            персональных данных </span> </a>
-                </div>
-                <div class="close-popup js-close-campaign"></div>
-            </section>
-            <div class="wpcf7-response-output" role="alert" aria-hidden="true" style="">Спасибо за Ваше сообщение. Оно
-                успешно отправлено.</div>
-        </form>
-    </div>
-</div>
-
-/////////////открытие попап окна по клику на какую-то кнопку/////////////////////
-$(Document).ready(function (e) {
-$(".js-button-campaign").click(function () {
-$(".js-overlay-campaign").fadeIn();
-});
-}),
-///////////////////закрытие попап окна по клику на крестик/////////////////
-$(Document).ready(function (e) {
-$(".js-close-campaign").click(function () {
-$(".js-overlay-campaign").fadeOut();
-});
-}),
-
-</div>
-
 ==============================================================================
 закрытие попап окна по клику вне формы, то есть по затемненной части окна
 ==============================================================================
 <div>
-let meeting = $("#board24_create-meeting");  ---это кнопка открытия окна
-let meetPopup = $("#board24_meet-popup"); ----это весь попап
-let center = meetPopup.find($(".board24_meet__center")); --------здесь квадрат внутри с содержанием
+оверлей нужно делать как подложку. отдельно от всего.!
+<div class="popup">
+    <div class="overlay "></div>
+    <div class="center">
+    </div>
+</div>
 
-<!-- // здесь открытие всего  окна с оверлеем и блоком внутри -->
-meetPopup.css("display","none");
-meeting.on("click",function(){  
-meetPopup.fadeIn();
-});
+.overlay-popup{
+background-color: rgba(0,0,0,.95);
+position: fixed;
+width: 100vw;
+height: 100vh;
+z-index: 2;
+display: none;
+}
+
+.center{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 70%;
+height: 70%;
+border-radius: 10px;
+background-color: #363c52;
+z-index: 20;
+}
 
 
 <!-- обязательно писать function (e) -->
-<!-- // если клик был не по нашему блоку// и не по его дочерним элементам -->
-$(document).on("mouseup",function (e) {
+$(".overlay-popup ").click(function (e) {
 if (
-!center.is(e.target) && 
-center.has(e.target).length === 0
+!$(".center").is(e.target)
 ) {
-meetPopup.fadeOut(); 
-}
-});
+meetPopup.fadeOut()	
+	}
 
 
 ///////////////////////////////////////////////////////////////////
