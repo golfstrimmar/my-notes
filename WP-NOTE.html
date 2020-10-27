@@ -1205,6 +1205,15 @@ $strRest = trim(str_replace($strFirst, '', $strInput ));
 <span class="red-span"> <?php echo $strFirst; ?> </span><?php echo $strRest; ?>
 
 </section>
+<section>отловить определенный символ в слове и работать с ним
+  <h2 class="hire-us__title">
+    <?php 
+  	          $text = get_field('main_title', 'option'); --в данном случае это поле acf
+              $text = str_replace("’", "<span class='red-span'>’</span>", $text); 
+              echo $text;
+              ?>
+  </h2>
+</section>
 <section>плагин fancybox
        $(document).ready(function () {
         $(".gallery").fancybox({
