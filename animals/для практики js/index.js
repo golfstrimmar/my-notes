@@ -11,6 +11,3 @@
 // // console.log(child)
 // console.log(div.firstChild);
 
-
-
-
