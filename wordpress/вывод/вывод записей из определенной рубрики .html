@@ -1,0 +1,21 @@
+вывод записей из определенной рубрики
+
+https://wp-kama.ru/id_767/3-sposoba-postroeniya-tsiklov-v-wordpress.html
+
+<?php
+global $post;                     // не обязательно
+$myposts = get_posts( array(
+  'post_type'=>'projects',
+  'category' => 8,                  
+  'numberposts' => 5,     // 5 записей по умолчанию из рубрики 8 !!!!
+) );
+
+foreach( $myposts as $post ){
+    setup_postdata( $post );
+    ?>
+здесь код записи из верстки. можно даже с полями acf. для этого в полях нужно поставить условие отображения- записи
+определенной рубрики и в самой записи подключить рубрику.
+<?php
+}
+wp_reset_postdata(); 
+?>

@@ -1,0 +1,8 @@
+отловить определенный символ в слове и работать с ним
+<h2 class="hire-us__title">
+  <?php 
+  	          $text = get_field('main_title', 'option'); --в данном случае это поле acf
+              $text = str_replace("’", "<span class='red-span'>’</span>", $text); 
+              echo $text;
+              ?>
+</h2>

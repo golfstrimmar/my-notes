@@ -1,0 +1,27 @@
+<body <?php body_class(); ?>> эта штука может подвести. вывести body нулевой ширины
+  <?php language_attributes();?> --менять язык сайта <html <?php language_attributes();?>>
+  <? bloginfo('charset'); ?> --менять кодировку сайта
+  <meta charset="<? bloginfo('charset'); ?>">
+  <?php wp_head(); ?> --для связи с файлом index.php вставлять перед </head>
+  <?php the_custom_logo();?> --для вывода логотипа из админки.
+  этим нужно заменить всю ссылку для логотипа. например такую
+  <a href="#">
+    <img src="<?php loft_images("icons/logo.gif");?>" alt="logo">
+  </a>
+
+  \\------------------https://www.youtube.com/watch?v=wJwjWF87aF4 27sec
+  здесь проверка- если страница главная, то нет ссылки. если не главная то есть ссылка на главную
+  картинка сделана полями carbon fields
+
+  <?php if ( is_front_page())  :	?>
+  <img class="logo__img " src="<?php echo wp_get_attachment_image_url(carbon_get_theme_option( 'site_logo' )); ?>">
+  <?php
+else:
+?>
+  <a href="<?php echo get_home_url() ?>">
+    <img class="logo__img " src="<?php echo wp_get_attachment_image_url(carbon_get_theme_option( 'site_logo' )); ?>">
+  </a>
+
+  <?php
+endif;
+?>

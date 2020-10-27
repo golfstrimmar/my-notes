@@ -1,0 +1,72 @@
+стандартный цикл wp---вывод записей
+-------------------------------------------------------------------------------
+<?php
+// проверяем есть ли посты в глобальном запросе - переменная $wp_query
+if( have_posts() ){
+	// перебираем все имеющиеся посты и выводим их
+	while( have_posts() ){
+		the_post();
+		?>
+
+<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+  <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+
+  <?php the_content();?> --------выводит контент
+  <?php the_date(); ?> - выводит дату новости
+  <?php the_title(); ?> - выводит заголовок новости
+  <?php the_excerpt(); ?> - выводит краткое описание
+  <?php the_post_thumbnail(); ?> - выводит превью новости - картинку
+
+</div>
+
+<?php
+	}
+	?>
+
+<div class="navigation">
+  <div class="next-posts"><?php next_posts_link(); ?></div>
+  <div class="prev-posts"><?php previous_posts_link(); ?></div>
+</div>
+<?php
+}
+// постов нет
+else {
+	echo "<h2>Записей нет.</h2>";
+}
+wp_reset_postdata();
+  ?>
+
+---------------------
+короткий вариант
+----------------------
+это то, что в самой записи- без полей acf
+
+<?php $posts = get_posts (); ?>
+<?php if ($posts) : ?>
+<?php foreach ($posts as $post) : setup_postdata ($post); ?>
+
+<?php the_content();?> --------выводит контент
+<?php the_date(); ?> - выводит дату новости
+<?php the_title(); ?> - выводит заголовок новости
+<?php the_excerpt(); ?> - выводит краткое описание
+<?php the_post_thumbnail(); ?> - выводит превью новости - картинку
+
+<?php echo get_the_post_thumbnail_url($post_id, 'slider-garant');?>
+
+
+the_ --- получает и непосредственно выводит ( ничего ее надо делать- выйдет на сайте)
+get_ ---получает , но не выводит(можно заносить в переменную и потом echo ...)
+
+
+
+
+<?php endforeach; ?>
+<?php endif; ?>
+<?php wp_reset_postdata();?>
+
+
+
+
+
+
+

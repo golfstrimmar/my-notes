@@ -1,0 +1,63 @@
+если нужно вывести что-то только на одной странице или нескольких страницах
+<!-- how-we-work  <-- слаг страницы -->
+<!-- например нужно на одной из страниц убрать отступ у body. для этого прописываем дополнительный класс для body  "portfolio-transparent" и добавляем его тоько на одной странице -->
+
+<?php
+   if (get_page_by_path("how-we-work")->ID == get_the_ID()) { 
+  ?>
+
+<body class="scroll_container portfolio portfolio-transparent">
+  <?php
+  }
+  else{
+  ?>
+
+  <body class="scroll_container portfolio">
+    <?php
+  }
+  ?>
+
+
+    <!-- то же самое только по id  -->
+    <?php
+$id=15;<!-- id страницы  -->
+if( is_page($id) ) {
+?>
+
+    <body class="scroll_container portfolio portfolio-transparent">
+      <?php
+}
+else{
+?>
+
+      <body class="scroll_container portfolio">
+        <?php
+}
+?>
+
+        <!-- так --- на нескольких страницаx. здесь  how-we-work и   contacts-->
+        <?php
+     if (get_page_by_path("how-we-work" )->ID  == get_the_ID()) { 
+    ?>
+
+        <body class="scroll_container portfolio portfolio-transparent">
+          <?php
+    }
+    else{
+    
+    if (get_page_by_path("contacts" )->ID  == get_the_ID()){
+    ?>
+
+          <body class="scroll_container portfolio portfolio-transparent">
+
+            <?php
+    }
+    else{
+    
+    ?>
+
+            <body class="scroll_container portfolio">
+              <?php
+    }
+    }
+    ?>

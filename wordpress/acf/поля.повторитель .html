@@ -1,0 +1,83 @@
+acf
+http://acf.wp-book.ru/category/documentation/
+
+<?php the_field(''); ?>
+
+
+---группа---------------
+<?php
+$hero = get_field('project_platforms');	
+if( $hero ): ?>
+<?php echo $hero['platform_name']; ?>
+<?php endif; ?>
+
+
+acf повторитель(варианты)
+
+https://veraxo.com/blog/acf-repeater/
+
+
+<?php if(get_field('fieldname')): ?>
+<?php while(has_sub_field('fieldname')) : ?>
+<?php the_sub_field('fieldname_sub'); ?>
+<?php the_sub_field('fieldname_sub'); ?>
+<?php the_sub_field('fieldname_sub'); ?>
+<?php the_sub_field('fieldname_sub'); ?>
+<?php endwhile; ?>
+<?php endif; 
+wp_reset_postdata(); 
+?>
+
+
+- Репитер в репитере------------------
+
+<?php if(get_field('fieldname')): ?>
+<?php while(has_sub_field('fieldname')) : ?>
+<?php the_sub_field('fieldname_sub'); // Значение поля первого репитера ?>
+<?php if(get_sub_field('fieldname_subrepeater')): ?>
+// Начало второго репитера
+<?php while(has_sub_field('fieldname_subrepeater')) : ?>
+<?php the_sub_field('fieldname_subrepeater_sub'); // Значение поля второго репитера ?>
+<?php endwhile; ?>
+// Конец второго репитера
+<?php endif; ?>
+<?php endwhile; ?>
+<?php endif; 
+wp_reset_postdata(); 
+?>
+
+--------- Repeater с условием: убираем любые данные, если какое-то поле репитера не заполнено.
+
+<?php if( have_rows('fieldname') ): ?>
+<?php while( have_rows('fieldname') ): the_row(); 
+// Перечисляем поля репитера
+$fieldname_sub = get_sub_field('fieldname_sub');
+?>
+<?php if($image['url'] != ''){ ?>
+<?php echo $image['url']; ?>
+<?php } ?>
+<?php if( $fieldname_sub ): ?> style="background-color:<?= $fieldname_sub; ?>;"<?php endif; ?>
+<?php endwhile; ?>
+<?php endif; 
+wp_reset_postdata(); 
+?>
+
+----------- Repeater с установленным размером картинки. Вы можете добавить в репитер поле «изображение», далее выводить
+это изображение в полном размере, либо с предустановленным своим размером.
+
+<?php if( have_rows('fieldname') ): ?>
+<?php while( have_rows('fieldname') ): the_row(); 
+$attachment_id = get_sub_field('fieldname_sub');
+$imageurl = wp_get_attachment_image_src( $attachment_id, 'full' ); // если нужна ссылка на полный размер
+$fieldname_sub = wp_get_attachment_image_src( $attachment_id, "550x200" ); // если нужна ссылка на предустановленный размер миниатюры
+$fieldname_sub = get_sub_field('fieldname_sub');
+?>
+<?php echo $fieldname_sub; ?>
+<?php echo $imageurl[0]; ?>
+<?php if( $fieldname_sub ): ?><?php echo $fieldname_sub[0]; ?><?php endif; ?>
+<?php endwhile; ?>
+<?php endif; 
+wp_reset_postdata(); 
+?>
+
+

@@ -1,0 +1,102 @@
+вывод кастомного типа полей в верстку
+
+https://www.youtube.com/watch?v=r84jByqP-B8
+https://wp-kama.ru/function/get_posts
+https://wp-kama.ru/search?searchid=1771092&text=getpost&l10n=ru&q=getpost ---get_post
+
+<!-- здесь тип кастомных полей 'projects'. его выбираю в массив $args обязательно указать количество выбираемых полей 'numberposts' иначе выведет 5 по умолчанию
+      можно задать рубрику к которой пренадлежит запись и вывести только по рубрике. для этого должна быть возможность присваивать рубрикики таким записям. 'taxonomies' => array( 'category' ), --вот это добавляется при регистрации типа записи
+      -->
+
+<?php  
+      global $post;
+      $args = array(       
+         'post_type'=>'projects',
+         'publish' => true,
+         'numberposts' => 20,
+          'category' => 10, 
+          'p' => здесь id поста. который нужно вывести.<!--  --выйдет один пост -->
+        'tag'=>'image-left'<!-- название метки -->
+
+        );
+        
+      $projects = get_posts($args);  
+      $reversed = array_reverse($projects);
+     
+     if ($projects ) {
+     
+      foreach($projects as $post){
+        setup_postdata( $post );
+        $post_id = $post->ID;
+        $post_title = $post->post_title; <!-- выйдет заголовок записи. не acf -->
+        $post_text=$post->post_content;  <!-- выйдет содержание записи. не acf -->
+        $image=get_the_post_thumbnail_url($post_id, 'projects');  <!-- выйдет изображение записи. не acf -->
+
+
+
+<!-- если нужно оганизовать переход из записи на отдельную страницу, на которой будет отображаться только содержимое этой записи. содержимое организовывается по шаблону записи. создается шаблон например template-projects-post.php  прописывается вверху если тип записи projects <?php
+/**
+*Template Name: Шаблон отдельного проекта
+*Template Post Type: post,projects
+ */
+get_header();
+?>
+потом в самой записи выбирается в виджете выбора этот шаблон. теперь по ссылке будет переход на такую страницу и
+открываться именно информация для этого проекта. полями acf прописывается нужная информация прямо в админке записи. все
+это реализовано на https://split.splitdev.pro/ -->
+
+
+$link = esc_url( get_permalink( $post_id ) );
+?>
+
+<!-- html -->
+<!-- html -->
+<!-- html -->
+<!-- здесь как раз линк на страницу записи. -->
+<a href="<?php echo $link ?>">See Case</a>
+
+<?php echo $link ?>
+<?php echo $post_title ?>
+<?php echo $post_id ?>
+<?php echo $post_text ?>
+<?php echo $image ?>
+
+
+<!-- html -->
+<!-- html -->
+<?php 
+  	}
+  } else {
+    ?>
+<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php  
+    }
+    	
+                  
+              ?>
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+вывод меток
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<?php the_tags( $before, $separator, $after ); ?>
+
+$before(строка)
+Текст перед ссылками.
+По умолчанию: 'Tags: '
+$separator(строка)
+Разделитель между ссылками.
+По умолчанию: ', '
+$after(строка)
+Текст после ссылок.
+По умолчанию: нет
+
+<?php the_tags( 'Связи поста: ', ' > '); ?>
+<!-- выведет   Связи поста: WordPress > Computers > Blogging -->
+
+
+
+
+

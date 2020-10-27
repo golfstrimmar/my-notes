@@ -1,0 +1,16 @@
+повторяющиеся части кода
+6.40 https://www.youtube.com/watch?v=z92F_sZYDV4&list=PLyKl7JlkPve6wRFRgVgImBWZ3xMQnYUQa&index=3
+если есть несколько разновидностей одного и того же включения(например header) и на разных страницах используется
+разные header
+то соджается еще один файл например header-generic.php и тогда уже нужно прописывать в шаблонах с таким header только
+так:
+get_header('generic');
+! важно --- не header-generic а generic. слово header опускается
+
+
+кроме header.php и footer.php можно создавать еще файлы и в них заносить повторяющиеся части кода
+напрример создается файл nav.php
+<?php  get_template_part('nav') ?> ----это заносится или не заносится в файл нового шаблона в зависимости от дизайна
+
+----- любое включение части кода --
+<?php  include(get_template_directory(  ).'/includes/part-designers.php'); ?>

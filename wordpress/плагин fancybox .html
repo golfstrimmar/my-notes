@@ -1,0 +1,15 @@
+плагин fancybox
+$(document).ready(function () {
+$(".gallery").fancybox({
+padding: 20,
+frameWidth: 700,
+frameHeight: 600,
+});
+});
+и потом в верстке нужно выводить как ссылку с атрибутом rel. этот класс и атрибут объединяют группу
+изображений.остальное в настройках плагина
+<a class="gallery " rel="group" href="<?php echo $href;?>">
+  <div class="ibg bg">
+    <img src="<?php echo $href;?>	" alt="">
+  </div>
+</a>

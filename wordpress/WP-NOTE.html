@@ -1,0 +1,149 @@
+	
+<section>плагины 
+  --нужно устанавливать---
+Robin image optimizer    ---сжимает каринки
+FileBird Lite
+Redirection for Contact Form 7
+Безопасный SVG
+All In One WP Security
+Cyr to Lat enhanced
+UpdraftPlus - Backup/Restore
+Redirection for Contact Form 7<!-- плагин перенаправляет на страницу с указанным адресом и если нужно еще выполняет скрипты -->
+</section>
+<section>защита сайта
+
+  https://www.youtube.com/watch?v=BSr4sUE_490&ab_channel=БытьПрграммистом  --Сокирка подробно описывает защиту сайта
+плагины
+  updraft            --делает backup
+  iThemes Security     --защита
+
+iThemes Brute Force Protection Network   --- API KEY: YY1a0r3Mej7uJ68h750hmwe6E0LVoQ5t
+
+</section>
+	
+
+<section>создание шаблонов страниц
+
+https://misha.blog/wordpress/page-templates.html
+создается новый файл например page-contacts.php. его можно даже поместить в папку template-parts.
+только нужно переназначить снова шаблон на странице настроек страниц
+туда заносится нужная верстка.
+!!!!главное в нем должен быть коментарий
+<?php
+/*
+Template Name: контакты
+*/
+?>
+
+теперь при создании новой страницы появится виджет выбора шаблона.
+так создаются разные шаблоны для разных страниц
+
+</section>
+	
+<section>показать-скрыть админпанель
+add_filter('show_admin_bar', '__return_false');
+</section> 
+<section>ibg--поставить в самый низ. после него ничего не работает
+
+на сервере не работает в той форме. изменить на
+$(Document).ready(function ibg(){
+$.each($('.ibg'),function(index,val){
+if($(this).find('img').length>0){
+$(this).css('background-image','url("'+$(this).find('img').attr('src')+'")');
+}
+});
+});
+</section>
+<section>картинки
+
+в замене набирать img/
+менять на <?php echo get_template_directory_uri()?>/assets/img/
+<img src="<?php echo get_template_directory_uri()?>/assets/img/logo/logo.svg" alt="logo">
+
+еще можно сделать функцию в functions.php и заменить ею все пути к картинкам.
+но это неудобно потому как все картинки сразу не поменять!! это делается так
+
+function loft_images($name){
+echo get_template_directory_uri() . '/assets/img/' . $name;
+}
+и прописывать путь к картинке <img src="<?php loft_images("bg-head.gif");?>" alt="bg-head">
+
+</section>
+<section>sidebar
+register_sidebar(
+array(
+'name' => esc_html__( 'sidebar-header', 'jkpark' ),
+'id' => 'sidebar-header',
+'description' => esc_html__( 'Добавьте здесь виджеты', 'jkpark' ),
+// 'before_widget' => '<section id="%1$s" class="widget %2$s">',
+  // 'after_widget' => '</section>',
+// 'before_title' => '<h2 class="widget-title">',
+  // 'after_title' => '</h2>',
+)
+);
+
+вывод сайтбара
+<?php if ( is_active_sidebar( 'sidebar-header' ) ) : ?>
+<div id="sidebar-header">
+  <?php dynamic_sidebar( 'sidebar-header' ); ?>
+</div>
+<?php endif; ?>
+	
+
+
+
+
+
+	<section>шаблон для записей
+должен содержать такой коментарий
+<?php
+/**
+*Template Name: Шаблон отдельного проекта
+*Template Post Type: post,projects
+ */
+get_header();
+?>
+
+https://wpschool.ru/custom-templates/
+
+<section>вставка шорткода
+<?php echo do_shortcode( '[ваш_шорткод]' ); ?>
+
+
+ <section>	 ///////////////просто вставка видео на сайт без ничего///////////////////////
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/3jT_q7dt-cM" frameborder="0" allowfullscreen>
+  </iframe>
+</section>
+
+
+<section>поле ввода телефона по маске в contact form 7
+  ///////////////////////////////////
+https://www.youtube.com/watch?v=00cV8FbGnjo&ab_channel=InwebPress-отлендингадоинтернетмагазина
+скачать плагин и установить https://ru.wordpress.org/plugins/cf7-phone-mask-field/
+открыть соответствующую фориу в админке. найти новое поле "маска ввода"
+заполнить и заменить в соответствующем месте формы или если не было телефона---добавить именно такой шорткод(маска ввода)
+</section>
+
+<section>изменить url 
+в постоянных ссылках нужно изменить в поле Настройки постоянных ссылок-- Произвольно ... на /%postname%/
+</section>
+<section> как задать глобальную переменную и использовать ее на всем сайте
+//add category string
+function setup_filter_query_vars( $query_vars ) {
+$query_vars[] = 'phone';
+return $query_vars;
+}
+add_filter( 'query_vars', 'setup_filter_query_vars' );
+function add_my_endpoint() {
+add_rewrite_endpoint( 'phone', EP_PAGES ); //ендпоинт 'phone' на всех индивидуальных страниц
+}
+add_action( 'init', 'add_my_endpoint' );
+//использование
+$parent_category = get_query_var( 'phone' );
+</section>
+<section>для отображения информации о сайте в соцсетях нужно вставить метатеги в шапку
+    <meta property="og:title" content="Название страницы" />
+    <meta property="og:description" content="Описание страницы" />
+    <meta property="og:image"
+      content="https://split.splitdev.pro/wp-content/uploads/2020/10/Screenshot_2020-10-14-Nazvanie-stranitsy1.png" />
+

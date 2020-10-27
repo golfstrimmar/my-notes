@@ -1,0 +1,17 @@
+отловить первое слово фразы и обернуть его в span с классом "red-span"
+<?php 
+                                  $strInput =  get_field('contact_discription'); 
+                                  list($strFirst,) = explode(" ", $strInput );
+                                  $strRest = trim(str_replace($strFirst, '', $strInput ));
+                                  ?>
+<span class="red-span"> <?php echo $strFirst; ?> </span><?php echo $strRest; ?>
+
+
+здесь:
+$strInput = get_field('contact_discription'); ---берем содержимое поля acf --"contact_discription"
+list($strFirst,) = explode(" ", $strInput );
+$strRest = trim(str_replace($strFirst, '', $strInput ));
+делим это содержимое на две части. до первого пробела одна часть $strFirst
+после пробела--- остальное $strRest
+дальше просто делаем с этими частями что угодно. например оборачиваем в span с каким-то классом.
+<span class="red-span"> <?php echo $strFirst; ?> </span><?php echo $strRest; ?>

@@ -1,0 +1,48 @@
+регистрация кастомных полей:
+
+https://www.youtube.com/watch?v=eNURjX3L7oM
+https://www.youtube.com/watch?v=O9j-R-GwCt4
+https://wp-kama.ru/function/register_post_type
+https://developer.wordpress.org/resource/dashicons/#menu-alt2
+
+
+
+function my_custom_init(){
+register_post_type('boards', array(
+'labels' => array(
+'name' => 'Борды', // Основное название типа записи
+'singular_name' => 'Борды слайдера', // отдельное название записи типа Book
+'add_new' => 'Добавить новый борд',
+// 'add_new_item' => 'Добавить новую книгу',
+// 'edit_item' => 'Редактировать книгу',
+// 'new_item' => 'Новая книга',
+// 'view_item' => 'Посмотреть книгу',
+// 'search_items' => 'Найти книгу',
+// 'not_found' => 'Книг не найдено',
+// 'not_found_in_trash' => 'В корзине книг не найдено',
+// 'parent_item_colon' => '',
+// 'menu_name' => 'Книги'
+
+),
+'public' => true,
+'menu_position' => 5,
+'menu_icon' =>'dashicons-palmtree', -----тут меняется иконка на панели возле названия
+https://developer.wordpress.org/resource/dashicons
+'supports' => array('title','editor','thumbnail','excerpt','comments','post-format'),
+'taxonomies' => array( 'category' ), ---------будет выводить рубрики и можно будет прикрепить запись к определенной
+рубрике и вывести ее по рубрике
+) );
+}
+add_action('init', 'my_custom_init');
+
+--------------- можно задать размер превью картинки----
+if (function_exists( 'add_image_size' )){
+add_image_size('board-slider',225,490,true);
+}
+---------------- регистрация вывода меток именно для этого типа поста
+https://wp-kama.ru/function/register_taxonomy_for_object_type
+
+add_action( 'init', 'post_tag_for_pages' );
+function post_tag_for_pages(){
+register_taxonomy_for_object_type( 'post_tag', 'projects');
+}

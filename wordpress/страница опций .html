@@ -1,0 +1,46 @@
+страница опций
+http://acf.wp-book.ru/poluchenie-znacheniya-dlya-stranicy-s-op/
+http://acf.wp-book.ru/stranica-s-opciyami-options-page/
+
+<!-- в functions.php -->
+if( function_exists('acf_add_options_page') ) {
+
+acf_add_options_page(array(
+'page_title' => 'Основные настройки',
+'menu_title' => 'Настройки темы',
+'menu_slug' => 'theme-general-settings',
+'capability' => 'edit_posts',
+'redirect' => false
+));
+
+acf_add_options_sub_page(array(
+'page_title' => 'Настройки шапки',
+'menu_title' => 'Шапка',
+'parent_slug' => 'theme-general-settings',
+));
+
+acf_add_options_sub_page(array(
+'page_title' => 'Настройки подвала',
+'menu_title' => 'Подвал',
+'parent_slug' => 'theme-general-settings',
+));
+
+}
+
+<!-- после этого в админке появится раздел. там затребуют создания полей для страницы опций. после заполнения полей их можно вывести в любом месте сайта, а не только на отлдельной странице -->
+
+<!-- --Вывод поля---- -->
+<?php the_field('имя_поля', 'option'); ?>
+<?php
+<!-- ---Возвращение значения поля----- -->
+$variable = get_field('имя_поля', 'option');
+// дальнейшие действия с переменной $variable
+?>
+<!-- --Вывод подполя------ -->
+<?php if( have_rows('repeater', 'option') ): ?>
+<ul>
+  <?php while( have_rows('repeater', 'option') ): the_row(); ?>
+  <li><?php the_sub_field('title'); ?></li>
+  <?php endwhile; ?>
+</ul>
+<?php endif; ?>
