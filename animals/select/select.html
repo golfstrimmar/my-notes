@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>select</title>
+</head>
+<body>
+  <!-- объединены общей формой. в адресной строке отображается выбор. закрытие происходит вне селекта и по кнопке найти -->
+
+<style>
+.squadron{
+display: flex;
+justify-content: space-between;
+width: 50%;
+background-color: #b29c69;
+padding: 20px 10px ;
+}
+
+.bot{
+flex: 0 1 20%;
+}
+
+.select{
+background-color: #d24a4c;
+width: 100%;
+	}
+
+</style>
+
+<form class="squadron">
+  <div class="bot">
+    <select
+      class="select" name="stage">
+      <option disabled="disabled">Стадия</option>
+      <option value="Стадия 1">Стадия 1</option>
+      <option value="Стадия 2">Стадия 2</option>
+      <option value="Стадия 3">Стадия 3</option>
+    </select>
+  </div>
+  <div class="bot">
+    <select
+      class="select" name="participant">
+      <option disabled="disabled">Участник</option>
+      <option value="Участник 1">Участник 1</option>
+      <option value="Участник 2">Участник 2</option>
+      <option value="Участник 3">Участник 3</option>
+    </select>
+  </div>
+  <div class="bot">
+    <select
+      class="select" name="group">
+      <option disabled="disabled">Группа</option>
+      <option value="Группа 1">Группа 1</option>
+      <option value="Группа 2">Группа 2</option>
+      <option value="Группа 3">Группа 3</option>
+    </select>
+  </div>
+  <div class="submit" >
+    <input type="submit" name="submit" value="Найти">
+  </div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+  $(".select").each(function () {
+    const _this = $(this),
+      selectOption = _this.find("option"),
+      selectOptionLength = selectOption.length,
+      selectedOption = selectOption.filter(":selected"),
+      duration = 200; // длительность анимации
+
+    _this.hide();
+    _this.wrap('<div class="select"></div>');
+
+    $("<div>", {
+      class: "new-select",
+      text: _this.children("option:disabled").text(),
+    }).insertAfter(_this);
+
+    const selectHead = _this.next(".new-select");
+
+    $("<div>", {
+      class: "new-select__list",
+    }).insertAfter(selectHead);
+
+    const selectList = selectHead.next(".new-select__list");
+
+    for (let i = 1; i < selectOptionLength; i++) {
+      $("<div>", {
+        class: "new-select__item",
+        html: $("<span>", {
+          text: selectOption.eq(i).text(),
+        }),
+      })
+        .attr("data-value", selectOption.eq(i).val())
+        .appendTo(selectList);
+    }
+
+    const selectItem = selectList.find(".new-select__item");
+    selectList.slideUp(0);
+    //  --
+    selectHead.on("click", function () {
+      $(document).on("mouseup", function (e) {
+        if (
+          !selectHead.is(e.target) && // если клик был не по нашему блоку
+          selectHead.has(e.target).length === 0 // и не по его дочерним элементам
+        ) {
+          selectHead.removeClass("on");
+          selectList.slideUp(duration);
+        }
+      });
+
+      if (!$(this).hasClass("on")) {
+        //  открытие селекта
+        $(this).addClass("on");
+        selectList.slideDown(duration);
+        $(this)
+          .parent()
+          .siblings(".board24_form-span")
+          .css("transform", "translate( 0, -50%) rotate(180deg)");
+
+        selectItem.on("click", function () {
+          let chooseItem = $(this).data("value");
+
+          // $("select").val(chooseItem).attr("selected", "selected");
+
+          $(this)
+            .parent()
+            .parent()
+            .find("select")
+            .val(chooseItem)
+            .attr("selected", "selected");
+
+          selectHead.text($(this).find("span").text());
+          selectList.slideUp(duration);
+          selectHead.removeClass("on");
+        });
+      } else {
+        // закрытие селекта
+        $(this).removeClass("on");
+        selectList.slideUp(duration);
+      }
+    });
+    // --
+  });
+
+</script>
+	</body>
+</html>
