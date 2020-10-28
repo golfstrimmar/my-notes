@@ -1,0 +1,15 @@
+//////// для добавления скриптов в подвал--- нужно найти файл wp-includes/default-filters.php
+написать внизу такой код----
+
+remove_action( 'wp_head', 'wp_print_head_scripts', 9 );
+remove_action( 'wp_footer', 'wp_print_footer_scripts', 20 );
+
+add_action( 'my_print_stsc', 'wp_print_head_scripts' );
+add_action( 'my_print_stsc', 'wp_print_footer_scripts' );
+
+function the_my_js_scripts(){
+do_action('my_print_stsc');
+}
+
+потом в нужном месте шаблона вывести скрипты---
+<?php  the_my_js_scripts() ?>

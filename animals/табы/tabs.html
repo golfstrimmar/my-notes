@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tabs</title>
+  </head>
+  
+  <style>
+
+.wrapper{
+
+width: 50%;
+
+}
+.tabs{
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: space-between;
+}
+
+.tab {
+background-color: #bee1ff;
+flex: 0 1 25%;
+height: 40px;
+border: 1px solid blue;
+    }
+  
+    .active {
+      color: red;
+            background-color: #e74c45;
+
+    }
+
+.tab_content{
+margin: 20px 0 0 0;	
+border: 1px solid red;
+background-color: #9e9e9e;
+}
+
+  </style>
+
+
+<body>
+<div class="wrapper">
+  <div class="tabs">
+    <div class="tab">Вкладка 1</div>
+    <div class="tab">Вкладка 2</div>
+    <div class="tab">Вкладка 3</div>
+  </div>
+  <div class="tab_content">
+    <div class="tab_item">Содержимое 1
+      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, dolorem enim adipisci iusto ex eos excepturi voluptatibus minima. Dolores quo esse vero nam eius quod repellendus, tempore similique nemo fuga.</p>
+      </div>
+    <div class="tab_item">Содержимое 2<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, dolorem enim adipisci iusto ex eos excepturi
+      voluptatibus minima. Dolores quo esse vero nam eius quod repellendus, tempore similique nemo fuga.</p></div>
+    <div class="tab_item">Содержимое 3<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, dolorem enim adipisci iusto ex eos excepturi
+      voluptatibus minima. Dolores quo esse vero nam eius quod repellendus, tempore similique nemo fuga.</p></div>
+  </div>
+</div>
+  
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $(".tab_item").not(":first").hide();
+
+    $(".wrapper .tab").on("click", function () {
+      $(".wrapper .tab").removeClass("active").eq($(this).index()).addClass("active");
+      $(".tab_item").hide().eq($(this).index()).fadeIn()
+    }).eq(0).addClass("active");
+</script>
+
+
+
+
+
+</body>
+</html>

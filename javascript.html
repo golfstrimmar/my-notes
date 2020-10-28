@@ -23,9 +23,16 @@ elem.style.backgroundColor = "red"
 div.style.cssText=`background-color: yellow;width: 100px;`
 div.setAttribute('style', 'color: red...')
 four.style.background="red";  ---обращение напрямую по id = four
+.children;
+.parentElement;
+nextElementSibling
+.previousElementSibling
 
 
+.previousElementSibling, <!-- // элемент предшествует указанному элементу в списке дочерних элементов родительского элемента -->
 
+nextElementSibling<!-- следующий сразу за указанным в списке дочерних элементов родительского элемента, -->
+	
 <!-- Метод querySelector() возвращает первый элемент, который соответствует одному или более CSS селекторам. Если совпадения
 не будет, то он вернет null. -->
 querySelector()
@@ -38,8 +45,21 @@ var eles = document.querySelectorAll(selector);
 var paragraphs = document.querySelectorAll('p');
 for(var p of paragraphs)
 p.style.color = 'blue';
+===========================================
+childNodes<!-- хранит в себе псевдомассив дочерних узлов элемента (теги, комментарии и текстовые узлы). -->
+Получим все дочерние узлы элемента и выведем на экран их содержимое:
 
+<div id="parent">текст<p>абзац</p><!-- коментарий -->
+</div>
+let parent = document.querySelector('#parent');
+let nodes = parent.childNodes;
 
+for (let node of nodes) {
+console.log(node.textContent);
+}
+Выведем содержимое первого узла:
+console.log(parent.childNodes[0].textContent);
+======================================================
  <!-- возвращает ссылку на элемент, который имеет атрибут id с указанным значением. -->
 document.getElementById()
 
@@ -157,6 +177,16 @@ text-align: center;
 <!-- То же самое можно сделать установкой атрибута: -->
 div.setAttribute('style', 'color: red...').
 
+===============переберем в цикле всех потомков элемента и выведем их содержимое:
+let parent = document.querySelector('#parent');
+let elems = parent.children;
 
+for (let elem of elems) {
+console.log(elem.innerHTML);
+}
+===================
+parentElement содержит родительский элемент.
+let elem = document.querySelector('#elem');
+let id = elem.parentElement.id;
 
-
+console.log(id);
