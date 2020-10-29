@@ -25,6 +25,7 @@ background-color: #bee1ff;
 flex: 0 1 25%;
 height: 40px;
 border: 1px solid blue;
+transition: all .3s ease-out;
     }
   
     .active {
@@ -37,8 +38,11 @@ border: 1px solid blue;
 margin: 20px 0 0 0;	
 border: 1px solid red;
 background-color: #9e9e9e;
+transition: all .3s ease-out;
 }
-
+.tab_item{
+  transition: all .3s ease-out;
+}
   </style>
 
 
@@ -72,7 +76,7 @@ background-color: #9e9e9e;
 
     $(".wrapper .tab").on("click", function () {
       $(".wrapper .tab").removeClass("active").eq($(this).index()).addClass("active");
-      $(".tab_item").hide().eq($(this).index()).fadeIn()
+      $(".tab_item").hide().eq($(this).index()).fadeIn(500)
     }).eq(0).addClass("active");
 
 </script>

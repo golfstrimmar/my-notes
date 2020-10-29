@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>input по клику</title>
+</head>
+<body>
+
+<style>
+.bot{
+background-color: #9e9e9e;
+box-sizing: border-box;	
+width: 50%;
+position: relative;	
+
+}
+
+.bot__text{
+background-color: #b29c69;
+padding: 5px;	
+}
+
+.bot__click-area{
+background-color: #ff9419;
+margin: 10px 0 ;
+border: 2px solid #246eb9;	
+padding: 5px;	
+}
+
+.bot__input{
+background-color: #64c29e;
+position: absolute;
+width: 100%;
+height: 32px;
+top: 38px;
+left: 0%;
+box-sizing: border-box;	
+}
+
+
+</style>
+
+
+	  <div class="bot ">
+      <div class="bot__text ">При клике на "кликните здесь" всплывает инпут при клике вне иннпута- тонет</div>
+      <div class="bot__click-area board24_js-data">кликните здесь</div>
+      <input class=" bot__input" placeholder="Напиши здесь что-нибудь">
+    </div>
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+ let js_data = $(".board24_js-data");
+  js_data.siblings("input").fadeOut();
+
+  js_data.on("click", function () {
+    $(this).siblings("input").fadeIn().focus();
+  });
+
+  $(document).on("mouseup", function (e) {
+      if (
+        !js_data.siblings("input").is(e.target) && // если клик был не по нашему блоку
+        js_data.siblings("input").has(e.target).length === 0 // и не по его дочерним элементам
+      ) {
+        js_data.siblings("input").fadeOut();
+      }
+    });
+</script>
+  </body>
+</html>
