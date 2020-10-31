@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>header</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0 0 0 0;
+      box-sizing: border-box;
+    }
+
+    ul,
+    li {
+      margin: 0 0 0 0;
+      padding: 0 0 0 0;
+    }
+
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: .5s all;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      height: 80px;
+      background-color: rgba(36, 36, 36, 0.2);
+      transition: all .5s ease-out;
+      position: fixed; 
+      width: 100%;
+      /* height: 60px; */
+      top: 0;
+      left: 0;
+      /* padding: 5px 40px; */
+      box-sizing: border-box;	
+      /* transition: all .5s easy-out; */
+    }
+
+    .header__logo {
+      width: 100px;
+      height: 50px;
+      background-color: #d24a4c;
+      border-radius: 10px;
+    }
+
+    .header__menu ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header__menu ul li {
+      list-style: none;
+    }
+
+    .header__menu ul li a {
+      text-decoration: none;
+    }
+
+    .header__menu {
+      flex: 0 1 50%;
+      margin: 0 0 0 auto;
+    }
+
+    .header__phone {
+      margin: 0 0 0 50px;
+      font-size: 14px;
+      color: black;
+      display: flex;
+    }
+
+    .icon-close2 {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 30px;
+      right: 40px;
+      font-size: 20px;
+      display: none;
+      color: white;
+    }
+
+    .content p {
+      padding: 100px;
+    }
+
+    @media (min-width: 0px) and (max-width: 767px) {
+
+      .icon-close2 {
+        display: flex;
+      }
+
+      .header {
+        padding: 0 40px;
+        height: 80px;
+        background-color: rgba(36, 36, 36, 0.2);
+      }
+
+      .header__logo {
+        z-index: 2;
+      }
+
+      .header__menu {
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: -100vw;
+        background-color: rgba(0, 0, 0, 1);
+        padding: 80px 0 0 40px;
+        box-sizing: border-box;
+        transition: all .5s ease-out;
+      }
+
+      .header__menu_act {
+        left: 0;
+      }
+
+      .header__menu ul {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .header__menu ul li {
+        width: 100%;
+        margin: 20px 0 0 0;
+
+      }
+
+      .header__menu ul li:first-child {
+        margin: 0 0 0 0;
+      }
+
+      .header__link {
+        font-size: 30px;
+        color: white;
+      }
+
+      .header__burger {
+        margin: 0 0 0 auto;
+        font-size: 20px;
+      }
+
+      .header__phone {
+        display: none;
+        margin: 40px 0 0 0;
+        font-size: 20px;
+        color: white;
+      }
+
+      .header__phone_act {
+        display: flex;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .header__burger {
+        display: none;
+      }
+    }
+
+/* .scrollup {
+  position: fixed; 
+   background: -o-linear-gradient(357.31deg, #e74063 0, #755cdb 100%);
+  background: linear-gradient(92.69deg, #e74063, #755cdb);
+  right: 20px; 
+  bottom: 20px; 
+  padding: 20px; 
+  border-radius: 50%;
+  cursor: pointer; 
+  display: none;
+  z-index: 200;
+  opacity: .6;
+  transition: all 0.5s;
+ 
+}
+.scrollup span{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(135deg);
+ border-bottom: 2px solid  #fff;
+ border-left: 2px solid  #fff;
+}
+
+
+.scrollup:hover {
+  background: red; 
+  opacity: 1;
+} */
+
+.up_down_btn {
+   position: fixed; 
+   background: -o-linear-gradient(357.31deg, #87CEFA 0,#4169E1 100%);
+  background: linear-gradient(92.69deg,#87CEEB, #755cdb);
+  right: 20px; 
+  bottom: 20px; 
+  padding: 7px; 
+  border-radius: 50%;
+  cursor: pointer; 
+  display: none;
+  z-index: 200;
+  opacity: .5;
+  transition: all 0.5s;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.up_down_btn:hover {
+  text-decoration: none;
+  
+  opacity: 1;
+}
+
+.up_down_btn-show {
+  display: block;
+}
+
+.up_down_btn-disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0;
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+ .up_down_btn{
+   display: none;	
+ }
+}
+
+  </style>
+
+  <div class="wrapper">
+    <div class="header">
+      <div class="header__logo"></div>
+      <div class="header__menu">
+        <ul>
+          <li><a href="#!" class="header__link">portfolio</a></li>
+          <li><a href="#!" class="header__link">about us</a></li>
+          <li><a href="#!" class="header__link">team</a></li>
+          <li><a href="#!" class="header__link">partners</a></li>
+          <li><a href="#!" class="header__link">contacts</a></li>
+        </ul>
+        <span class="icon-close2"></span>
+      </div>
+      <div class="header__phone">наш телефон +309856565656</div>
+      <span class="header__burger icon-menu"></span>
+    </div>
+    <div class="content">
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam esse fugiat quis obcaecati impedit culpa
+        doloremque. Natus architecto alias, ducimus deleniti vero hic illum quam, nulla quibusdam nostrum placeat
+        repellendus enim culpa accusantium consequuntur, maiores eveniet. Aliquid eius autem accusantium sequi deserunt
+        nulla, sint porro illo nobis dicta amet temporibus commodi necessitatibus consectetur quae veritatis cum soluta
+        ratione officiis nemo cumque voluptas ex recusandae corrupti. Animi inventore earum atque reiciendis aliquid,
+        sit sequi numquam nemo aperiam perspiciatis saepe provident eum fugit, eveniet rerum cumque praesentium natus,
+        nulla sed tenetur. Quae explicabo magni in quam non vero cupiditate tenetur quibusdam harum.
+      </p>
+    </div>
+    <div class="up_down_btn" title="Наверх">&uarr;</div>
+  </div>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script>
+    function _(el) {
+        return document.querySelector(el);
+      }
+    let menu = _(".header__menu");
+    let header = _(".header");
+    let burger = _(".header__burger");
+    let close2 = _(".icon-close2");
+    let phone = _(".header__phone");
+    let body = _("body");
+    let scrollup = _(".up_down_btn");
+
+    burger.addEventListener('click', function (event) {
+      menu.classList.add("header__menu_act");
+      phone.classList.add("header__phone_act");
+      menu.appendChild(phone);
+      body.style.overflow = "hidden";
+    });
+
+    close2.addEventListener('click', function (event) {
+      menu.classList.remove("header__menu_act");
+      menu.removeChild(phone);
+      header.appendChild(phone);
+	    phone.classList.remove("header__phone_act");
+      body.style.overflow = "visible";
+    });
+
+    window.addEventListener('resize', function (event) {
+      if (document.documentElement.clientWidth > 768) {
+        menu.classList.remove("header__menu_act");
+        menu.removeChild(phone);
+        header.appendChild(phone);
+        body.style.overflow = "visible";
+      }
+      else {
+        menu.appendChild(phone);
+        header.removeChild(phone);
+        body.style.overflow = "hidden";
+      }
+    });
+
+    window.addEventListener('scroll', function (event) {
+      if (window.pageYOffset > 50) {
+        header.style.cssText = `height: 60px;	background-color: rgba(36, 36, 36, 0.8);`;
+      } else { header.style.cssText = `height: 80px;background-color: rgba(36, 36, 36, 0.2);`; };
+    });
+
+    // ============кнопка на начало
+      // $(document).ready(function (e) {
+      //     $(".scrollup").click(function () {
+      //       $("html, body").animate(
+      //         {
+      //           scrollTop: 0,
+      //         },
+      //         1000
+      //       );
+      //     });
+      //   }),
+      //     $(document).ready(function (e) {
+      //       $(window).scroll(function () {
+      //         if ($(this).scrollTop() > 200) {
+      //           $(".scrollup").fadeIn();
+      //         } else {
+      //           $(".scrollup").fadeOut();
+      //         }
+      //       });
+      //     }),
+     	
+  
+ 
+      (function () {
+        'use strict';
+
+        var upDownBtn = document.querySelector('.up_down_btn');
+        var check;
+
+        function trackScroll() {
+          var scrolled = window.pageYOffset;
+          var coords = 200;
+
+          if (scrolled > coords) {
+            upDownBtn.classList.add('up_down_btn-show');
+            upDownBtn.innerHTML = '&uarr;';
+            upDownBtn.setAttribute('title', 'Наверх');
+            check = false;
+          }
+          if (scrolled < coords) {
+            upDownBtn.innerHTML = '&darr;';
+            upDownBtn.setAttribute('title', 'Вниз');
+            check = true;
+          }
+        }
+
+        function backToTop() {
+          upDownBtn.classList.add('up_down_btn-disabled');
+          if (!check) {
+            (function goTop() {
+
+              if (window.pageYOffset !== 0) {
+                window.scrollBy(0, -15);
+                setTimeout(goTop, 0);
+              } else {
+                upDownBtn.classList.remove('up_down_btn-disabled');
+              }
+
+            })();
+            return;
+
+          } else if (check) {
+            (function goBottom() {
+              var match = Math.ceil(window.pageYOffset + document.documentElement.clientHeight);
+
+              if (match != document.documentElement.scrollHeight) {
+                window.scrollBy(0, 15);
+                setTimeout(goBottom, 0);
+              } else {
+                upDownBtn.classList.remove('up_down_btn-disabled');
+              }
+
+            })();
+            return;
+          }
+
+        }
+
+        window.addEventListener('scroll', trackScroll);
+        upDownBtn.addEventListener('click', backToTop);
+      })();
+		
+  </script>
+</body>
+
+</html>
