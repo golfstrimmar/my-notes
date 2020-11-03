@@ -4,8 +4,6 @@ document.getElementsByTagName(имяТега)
 document.getElementsByClassName()
 document.querySelectorAll(selector);
 document.querySelector('button');
-.addEventListener('click',foo);
-.removeEventListener('click',foo);
 document.createElement(tagName);
 ele.appendChild(childEle)
 ele.removeChild(strong);
@@ -16,9 +14,12 @@ getComputedStyle(ele, [pseudoEle])
 ele.setAttribute(name, value);
 ele.getAttribute(name);
 ele.removeAttribute(name);
-elem.classList.add/remove("class")
+
+elem.classList.add("class")
+elem.classList.remove("class")
 elem.classList.toggle("class")
 elem.classList.contains("class")  
+
 elem.style.backgroundColor = "red"
 div.style.cssText=`background-color: yellow;width: 100px;`
 div.setAttribute('style', 'color: red...')
@@ -27,6 +28,10 @@ four.style.background="red";  ---обращение напрямую по id = f
 .parentElement;
 nextElementSibling
 .previousElementSibling
+
+.addEventListener('click',foo);
+.removeEventListener('click',foo);
+
 .addEventListener('click', function (event) {});
 if (window.pageYOffset > 200) {};
 window.addEventListener('resize', function (event) {});
