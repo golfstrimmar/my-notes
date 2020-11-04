@@ -48,7 +48,12 @@ drop.style.display = "none";
 }, 200);
 
 
+this.querySelector(".icon");   ---ищет внутри this элемент с классом icon
 
+parent = document.querySelector('.parent');
+children = parent.children;   --найдет массив детей
+
+this.querySelectorAll(".icon");   ---ищет внутри this все  элементы с классом icon(массив)
 
 
 .previousElementSibling, <!-- // элемент предшествует указанному элементу в списке дочерних элементов родительского элемента -->
