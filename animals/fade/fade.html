@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>fade</title>
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <style>
   .wrapper {
@@ -16,16 +16,20 @@
     flex-direction: column;
   }
 
-  .block, .hidden {
++  .block,
+  .hidden {
     width: 200px;
     height: 300px;
     background-color: #bee1ff;
     transition: all .3s ease-out;
   }
-.hidden{
-  display: none;	
-}
-  .button,.button1 {
+
+  .hidden {
+    display: none;
+  }
+
+  .button,
+  .button1 {
     width: 200px;
     height: 40px;
     border-radius: 4px;
@@ -38,27 +42,32 @@
     position: relative;
   }
 
-.icon-arrow_drop_down{
-width: 16px;
-height: 16px;
-right: 10px;
-font-size: 16px;
-transition: all .3s ease-out;
-margin: 0 0 0 20px;	
-}
-.but{
-  width: 300px;
-  height: 50px; border-radius: 5px;
-background-color: #64c29e;
-display: flex;
+  .icon-arrow_drop_down {
+    width: 16px;
+    height: 16px;
+    right: 10px;
+    font-size: 16px;
+    transition: all .3s ease-out;
+    margin: 0 0 0 20px;
+  }
+
+  .but {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #64c29e;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-}
-.hid{
-  width: 500px;height: 300px;  background-color: #e74c45;
-margin: 20px 0 0 0;	
-}
+  }
+
+  .hid {
+    width: 500px;
+    height: 300px;
+    background-color: #e74c45;
+    margin: 20px 0 0 0;
+  }
 </style>
 
 <body class="container-js">
@@ -68,24 +77,28 @@ margin: 20px 0 0 0;
     </div>
     <div class="block"></div>
   </div>
-<hr>
-<div class="wrapper">
-  <div class="button1">закрытый вариант
-    <span class="icon-arrow_drop_down"></span>
+  <hr>
+  <div class="wrapper">
+    <div class="button1">закрытый вариант
+      <span class="icon-arrow_drop_down"></span>
+    </div>
+    <div class="hidden "></div>
   </div>
-  <div class="hidden "></div>
-</div>
-<hr>
-<div class="wrapper area-js">
-  <div class="but but-js">slideUp/Down
-    <span class="icon-arrow_drop_down icon-js"></span>
+  <hr>
+  <div class="wrapper area-js">
+    <div class="but but-js">slideUp/Down
+      <span class="icon-arrow_drop_down icon-js"></span>
+    </div>
+    <div class="hid hid-js "></div>
   </div>
-  <div class="hid hid-js "></div>
-</div>
-<hr>
+  <hr>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
+
+
+
+    // ----------чистый js неэффективно 
     function _(el) {
       return document.querySelector(el);
     }
@@ -94,8 +107,10 @@ margin: 20px 0 0 0;
     let button1 = _(".button1");
     let hidden = _(".hidden");
 
+
+
     button.addEventListener("click", function (event) {
-          let thisIcon = this.querySelector(".icon-arrow_drop_down");
+      let thisIcon = this.querySelector(".icon-arrow_drop_down");
       if (button.classList.contains("act")) {
         block.style.display = "block";
         setTimeout(function () {
@@ -108,57 +123,58 @@ margin: 20px 0 0 0;
         setTimeout(function () {
           block.style.display = "none";
         }, 200);
-       thisIcon.style.cssText = `transform: rotate(180deg);`;
+        thisIcon.style.cssText = `transform: rotate(180deg);`;
         button.classList.add("act");
       }
     });
 
-// ------------------------------------------------
+    // ----------------чистый js--неэффективно ------------------------------
 
-  button1.addEventListener("click", function (event) {
-        let thisIcon = this.querySelector(".icon-arrow_drop_down");
-	    if (button1.classList.contains("act")) {
-      hidden.style.opacity = "0";
-      setTimeout(function () {
-        hidden.style.display = "none";
-      }, 200);
-	thisIcon.style.cssText = `transform: rotate(0deg);`;
-      button1.classList.remove("act");
-    } else {
-      hidden.style.display = "block";	
-      setTimeout(function () {
-        hidden.style.opacity = "1";
-      }, 1);
-      thisIcon.style.cssText = `transform: rotate(180deg);`;
-		      button1.classList.add("act");
-    }
-  });
-// -----------подходит для всех случаев. просто добавить классы нужным полям-----------------
-let but= $(".but-js");
-let hid= $(".hid-js");
-let icon = $(".icon-js");
- let dataJs = $(".area-js");
+    button1.addEventListener("click", function (event) {
+      let thisIcon = this.querySelector(".icon-arrow_drop_down");
+      if (button1.classList.contains("act")) {
+        hidden.style.opacity = "0";
+        setTimeout(function () {
+          hidden.style.display = "none";
+        }, 200);
+        thisIcon.style.cssText = `transform: rotate(0deg);`;
+        button1.classList.remove("act");
+      } else {
+        hidden.style.display = "block";
+        setTimeout(function () {
+          hidden.style.opacity = "1";
+        }, 1);
+        thisIcon.style.cssText = `transform: rotate(180deg);`;
+        button1.classList.add("act");
+      }
+    });
 
-let container = $(".container-js")
-  hid.slideUp(1);
 
-but.on("click", function () {
-if (
-$(this).hasClass("act")
-  ){
-$(this).removeClass("act")
-  $(this).find(icon).css("transform", "rotate(0deg)")
-  hid.slideUp(300, function () {
-    hid.css({ 'background': 'red' })
-  });
-}else{
-$(this).addClass("act")
-$(this).find(icon).css("transform","rotate(180deg)")
-  hid.slideDown(300, function(){
-    hid.css({'background': 'green'})
-  });
-  }
-  });
+    // ------jquery-----подходит для всех случаев. просто добавить классы нужным полям-----------------
+    let but = $(".but-js");
+    let hid = $(".hid-js");
+    let icon = $(".icon-js");
+    let dataJs = $(".area-js");
+    let container = $(".container-js")
+    hid.slideUp(1);
+
+    but.on("click", function () {
+      if (
+        $(this).hasClass("act")
+      ) {
+        $(this).removeClass("act")
+        $(this).find(icon).css("transform", "rotate(0deg)")
+        hid.slideUp(300, function () {
+          hid.css({ 'background': 'red' })
+        });
+      } else {
+        $(this).addClass("act")
+        $(this).find(icon).css("transform", "rotate(180deg)")
+        hid.slideDown(300, function () {
+          hid.css({ 'background': 'green' })
+        });
+      }
+    });
 
     container.on("click", function () {
       if (but.hasClass("act")) {
