@@ -16,7 +16,7 @@
     flex-direction: column;
   } 
 
-  
+
   
   .block,
   .hidden {
@@ -87,6 +87,7 @@
     <div class="hidden "></div>
   </div>
   <hr>
+  <!-- --------------------------------------------- -->
   <div class="wrapper area-js">
     <div class="but but-js">slideUp/Down
       <span class="icon-arrow_drop_down icon-js"></span>
@@ -94,6 +95,7 @@
     <div class="hid hid-js "></div>
   </div>
   <hr>
+  
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
@@ -166,13 +168,13 @@
       ) {
         $(this).removeClass("act")
         $(this).find(icon).css("transform", "rotate(0deg)")
-        hid.slideUp(300, function () {
+        $(this).siblings(hid).slideUp(300, function () {
           hid.css({ 'background': 'red' })
         });
       } else {
         $(this).addClass("act")
         $(this).find(icon).css("transform", "rotate(180deg)")
-        hid.slideDown(300, function () {
+        $(this).siblings(hid).slideDown(300, function () {
           hid.css({ 'background': 'green' })
         });
       }
