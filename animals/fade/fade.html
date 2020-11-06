@@ -61,7 +61,7 @@ margin: 20px 0 0 0;
 }
 </style>
 
-<body>
+<body class="container-js">
   <div class="wrapper">
     <div class="button">открытый вариант
       <span class="icon-arrow_drop_down"></span>
@@ -76,11 +76,11 @@ margin: 20px 0 0 0;
   <div class="hidden "></div>
 </div>
 <hr>
-<div class="wrapper">
-  <div class="but">slideUp/Down
-    <span class="icon-arrow_drop_down"></span>
+<div class="wrapper area-js">
+  <div class="but but-js">slideUp/Down
+    <span class="icon-arrow_drop_down icon-js"></span>
   </div>
-  <div class="hid "></div>
+  <div class="hid hid-js "></div>
 </div>
 <hr>
 
@@ -134,9 +134,12 @@ margin: 20px 0 0 0;
     }
   });
 // ----------------------------
-let but= $(".but");
-let hid= $(".hid");
-let icon1 = $(".icon-arrow_drop_down")
+let but= $(".but-js");
+let hid= $(".hid-js");
+let icon = $(".icon-js");
+ let dataJs = $(".area-js");
+
+let container = $(".container-js")
   hid.slideUp(1);
 
 but.on("click", function () {
@@ -144,20 +147,31 @@ if (
 $(this).hasClass("act")
   ){
 $(this).removeClass("act")
-  $(this).find(icon1).css("transform", "rotate(0deg)")
+  $(this).find(icon).css("transform", "rotate(0deg)")
   hid.slideUp(300, function () {
     hid.css({ 'background': 'red' })
   });
 }else{
 $(this).addClass("act")
-$(this).find(icon1).css("transform","rotate(180deg)")
+$(this).find(icon).css("transform","rotate(180deg)")
   hid.slideDown(300, function(){
     hid.css({'background': 'green'})
   });
   }
   });				
 
-
+    container.on("click", function () {
+      if (but.hasClass("act")) {
+        if (
+          !dataJs.is(event.target) &&
+          dataJs.has(event.target).length === 0
+        ) {
+          but.removeClass("act");
+          $(this).find(icon).css("transform", "rotate(0deg)");
+          hid.slideUp(300);
+        }
+      }
+    });
 
   </script>
 </body>
