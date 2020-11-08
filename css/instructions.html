@@ -297,4 +297,24 @@ E > F { Описание правил стиля }
 }
 
 
+<!-- Например нужно покрасить предыдущий элемент. напрямую селектора нет.  -->
+<label for="yushinbox1">
+  Введите пароль
+</label>
+<input id="yushinbox1" type="password">
+<!-- для этого нужно поменять порядок -->
+<div class="item">
+  <input id="yushinbox" type="email" value="yushinbox">
+  <label for="yushinbox">
+    Введите email
+  </label>
+</div>
+<!-- и задать свойства кобы следующему элементу потом задать реверс -->
 
+#yushinbox + label{
+color: coral;
+}
+.item{
+direction: rtl;
+}
+<!-- ---------------------------------------------------------------- -->
