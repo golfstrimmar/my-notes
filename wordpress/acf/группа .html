@@ -1,0 +1,48 @@
+<!-- http://acf.wp-book.ru/gruppa-group/ -->
+
+
+если нужно сгруппировать какие-то тексты по принадлеежности к какому-то одному свойству
+   
+например есть поле -группа -----project_platforms----
+у группы- текстовые подполя  desktop и mobile
+
+тогда так---
+
+<?php if( have_rows('project_platforms') ): 
+            while( have_rows('project_platforms') ): the_row(); 
+            $platforms = get_field('project_platforms');
+    		?>
+    
+
+    <div class="portfolio-all__platforms-item " >
+      <?php echo  $platforms['desktop'] ?>
+    </div>
+
+
+    <div class="portfolio-all__platforms-item " >
+      <?php echo  $platforms['mobile'] ?>
+    </div>
+
+  
+    
+    <?php endwhile; ?>
+    <?php endif; ?>
+
+==================================================================================================
+более сложный вариант когда подполя еще и например поля да.нет. тода по значению поля да, например выводится что-то. по значению нет --- не выводится
+
+  <?php if( have_rows('project_platforms') ): 
+          while( have_rows('project_platforms') ): the_row(); 
+          $platforms = get_field('project_platforms');
+  		?>
+  
+  <?php if(  $platforms['desktop'] ): ?>
+  <div class="portfolio-all__platforms-item " >Desktop</div>
+  <?php endif; ?>
+  
+  <?php if(  $platforms['mobile'] ): ?>
+  <div class="portfolio-all__platforms-item " >Mobile</div>
+  <?php endif; ?>
+  
+  <?php endwhile; ?>
+  <?php endif; ?>
