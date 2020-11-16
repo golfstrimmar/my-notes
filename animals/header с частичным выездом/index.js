@@ -29,15 +29,6 @@ wrapper.addEventListener("click", function (event) {
 });
 
 
-
-
-
-
-
-
-
-
-
 // close2.addEventListener("click", function (event) {
 //    menu.classList.remove("header__menu_act");
 //    menu.removeChild(phone);
@@ -49,13 +40,10 @@ wrapper.addEventListener("click", function (event) {
 window.addEventListener("resize", function (event) {
   if (document.documentElement.clientWidth > 768) {
     menu.classList.remove("header__menu_act");
-    menu.removeChild(phone);
+    // menu.removeChild(phone);
     header.appendChild(phone);
-    body.style.overflow = "visible";
   } else {
     menu.appendChild(phone);
-    header.removeChild(phone);
-    body.style.overflow = "hidden";
   }
 });
 
