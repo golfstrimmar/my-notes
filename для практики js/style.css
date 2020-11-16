@@ -1,0 +1,25 @@
+*{
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body{
+  margin: 0 0 0 0;padding: 0 0 0 0;	
+}
+.sample{
+display: flex;
+    flex-wrap: wrap;
+   
+}	
+
+.board{
+  border: 5px solid red;
+}
+.sample-board	{
+   margin: 20px 10px;
+  background-color: #246eb9;
+ width: 200px;
+ height: 200px;
+  transition: all .3s ease-out;
+}

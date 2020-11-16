@@ -1,3 +1,31 @@
+window.onload=function(){}
+<!-- --------------------------------- -->
+function _(el) {
+return document.querySelector(el);
+}
+let sample= _(".sample");
+<!-- --------- -->
+sample.onclick = activeItem;
+
+function activeItem(){
+this.classList.toggle("board");
+ }
+ 
+	или
+sample.onclick = function activeItem(){
+this.classList.toggle("board");
+ }		
+<!-- ------- -->
+
+
+
+
+
+
+
+
+
+
 document.querySelector(selector);
 document.getElementById()
 document.getElementsByTagName(имяТега)
@@ -59,7 +87,20 @@ this.querySelectorAll(".icon");   ---ищет внутри this все  элем
 .previousElementSibling, <!-- // элемент предшествует указанному элементу в списке дочерних элементов родительского элемента -->
 
 nextElementSibling<!-- следующий сразу за указанным в списке дочерних элементов родительского элемента, -->
-	
+<!--
+	установить элементу текстовый контент. При этом все дочерние узлы будут удалены и заменены единственным текстовым узлом,содержащий этот контент. 
+Свойство textContent позволяет получить текстовый контент указанного узла и всех его потомков. Данное значение можно представить как конкатенацию (сложение) все текстовых узлов, которые являются потомками узла, для которого вызывается данное свойство.
+
+-->
+elem.textContent="sample";
+
+
+
+
+
+
+
+
 <!-- Метод querySelector() возвращает первый элемент, который соответствует одному или более CSS селекторам. Если совпадения
 не будет, то он вернет null. -->
 querySelector()

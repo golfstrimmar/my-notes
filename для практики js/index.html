@@ -3,65 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>js практика</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
+<body>
+<div class="sample">
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+  <div class="sample-board"> </div>
+
+ 
+</div>
 <body>
 
-<style>
-#out{
-  width: 50px;height: 20px;  background-color: #64c29e;
-display: flex;justify-content: center;
-}
-</style>
-<body onload="initfader();">
-  <div id="div1">
-    <h2>Hello World!</h2>
-  </div>
-  <input type="button" onclick="show.fadein();" value="in" />
-  <div id="out">out</div>
 
-
-<script>
-  function animator(element) {
-    this.el = element;
-    this.state = 0;
-    this.fadeout = function () {
-      var element = this.el;
-      var op = 1;
-      var timer = setInterval(function () {
-        if (op <= 0.0) {
-          clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= 0.1;
-      }, 15);
-    };
-    this.fadein = function () {
-      var element = this.el;
-      var op = 0.0;
-      var timer = setInterval(function () {
-        if (op >= 1.0) {
-          clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += 0.1;
-      }, 15);
-    };
-  }
-  function initfader() {
-    show = new animator(document.querySelector("#div1"));
-  }
-
-  let elem = document.getElementById("out");
-  elem.addEventListener('click', function (event) {
-     show.fadeout();
-  });
-
-
-
-</script>
-
+  <script src="index.js"></script>
 </body>
 </html>
