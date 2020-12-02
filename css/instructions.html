@@ -333,12 +333,11 @@ direction: rtl;
 <!-- ---------------------------------------------------------------- -->
 <!-- убирает плейсхолдер по фокусу --> 
 input:focus::-webkit-input-placeholder {color: transparent}
-
-
+<!-- для textarea -->
+resize:none;
 
 &:focus{
 outline: none;
-resize:none;
 }
 &:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
 &:focus + .board24_ts{
@@ -364,3 +363,11 @@ textarea {overflow:auto;}
 ---------------
 Решение HTML5 - placeholder. Этот атрибут в HTML5 помешает в текстовое поле textarea (для текстовых input'ов тоже актуально) светло-серый текст, который исчезает при клике на область. Если поле осталось пустым и вы делаете его неактивным, то текст появится вновь. Это свойство работает в Safari 5, Mobile Safari, Chrome 6 и Firefox 4 alpha.
 <textarea placeholder="ShuBlog!"></textarea>
+
+
+
+
+
+
+================================ разные фото для тестирования
+ <img src="https://picsum.photos/300/300" />
