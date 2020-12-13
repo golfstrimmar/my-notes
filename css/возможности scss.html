@@ -1,7 +1,8 @@
 .hoverable {.special & {}}======= класс меняет свойтва в зависимости от родителя (не работает)
 
 %prominent
-@extend %prominent;  --добавляет свойства без доьавления класса prominent
+  font-style: bold
+@extend %prominent  --добавляет свойства без доьавления класса prominent
 
 @extend .prominent; ---добавит все свойства класса .prominent  все-таки потянется в конечный файл css 
 color: lighten($color_success, 50%)
@@ -141,3 +142,86 @@ state_success_particular {
   border: 1px solid #f00;
 }
 
+**************************************************************************жесть 
+=================================
+$debug: false; // TODO: переместить в to _settings.scss
+
+article {
+    color: black;
+
+    @if ($debug) { // визуализация внутренних элементов разметки
+        border: 1px dotted red;
+    }
+}
+
+/* скомпилированный CSS */
+article {
+  color: black;
+}
+
+=========================================
+@each $name in 'save' 'cancel' 'help' {
+    .icon-#{$name} {
+        background-image: url('/images/#{$name}.png');
+    }
+}
+
+/* скомпилированный CSS */
+.icon-save {
+  background-image: url("/images/save.png");
+}
+.icon-cancel {
+  background-image: url("/images/cancel.png");
+}
+.icon-help {
+  background-image: url("/images/help.png");
+}
+
+=====================
+$buttonConfig: 'save' 50px, 'cancel' 50px, 'help' 100px; // TODO: move to _settings.scss
+
+@each $tuple in $buttonConfig {
+    .button-#{nth($tuple, 1)} {
+        width: nth($tuple, 2);
+    }
+}
+
+/* скомпилированный CSS */
+.button-save {
+  width: 50px;
+}
+.button-cancel {
+  width: 50px;
+}
+.button-help {
+  width: 100px;
+}
+
+============================================
+
+
+@function make-greener($value) {
+    @return $value + rgb(0,50,0); // арифметика цветов, кстати, в порядке
+}
+p {
+    background: make-greener(gray);
+}
+
+/* скомпилированный CSS */
+p {
+  background: #80b280;
+}
+
+=========================================================
+@mixin message($class, $color: yellow, $margin: 20px, $padding: 10px) {
+    .message-#{$class} {
+        border: 1px dotted $color;
+        color: $color;
+        margin: $margin;
+        padding: $padding;
+    }
+}
+
+@include message("subtle", $margin: 5px);
+
+=============================================================
