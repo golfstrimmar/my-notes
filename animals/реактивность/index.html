@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js практика</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+<body>
+
+<!-- <input id="TitleCheckbox2" name="TitleCheckbox2" value="your_value" type="checkbox" onclick="checkboxstatus(this);">
+    <p  id="TitleCheckText2">  Do you want to strike-out this text? </p>  -->
+ 
+         
+          <!-- <div class="board24_flex board24_inter-forma__item"> 
+                 <div class="board24_ts-7 board24-date" id="board24-date">
+                   Дата
+                 </div>
+            <input class="custom-checkbox" type="radio" name="data-choice" value="Месяц" id="yes5" onclick="checkboxstatus(this)">
+            <label for="yes5">Месяц</label>
+          
+            <input class="custom-checkbox" type="radio" name="data-choice" value="Текущая неделя" id="yes6" onclick="checkboxstatus(this)">
+            <label for="yes6">Текущая неделя</label>
+          
+          
+          
+          </div> 
+         -->
+        
+          <!-- <div class="board24_flex board24_inter-forma__item"> 
+            <input class="custom-checkbox" type="radio" name="data-choice" value="Месяц" id="yes10">
+            <label for="yes10">Месяц</label>
+          </div>
+          <div class="board24_flex board24_inter-forma__item"> 
+            <input class="custom-checkbox" type="radio" name="data-choice" value="Год" id="yes20">
+            <label for="yes20">Год</label>
+          </div>
+          <div class="board24_flex board24_inter-forma__item board24_inter-forma__item_last">
+            <input class="custom-checkbox" type="radio" name="data-choice" value="Дата 4" id="yes30">
+            <label for="yes30"></label>
+            <input class="board24_inter-forma__item_cube" type="text"><img src="assets/img/inter/schedule.svg" alt="img">
+          </div>-->
+
+
+
+   <div class="board24_bot board24_bot_data">
+        <div class="board24_ts-7"  id="board24-date" >Дата<span class="board24_form-span icon-arrow_drop_down"></span></div>
+        <div class="board24_hidden board24_inter-forma board24_flex">
+          <div class="board24_flex board24_inter-forma__item"> 
+            <input class="custom-checkbox" type="radio" name="data-choice" value="Текущая неделя" id="yes5"  onclick="checkboxstatus(this)" >
+            <label for="yes5">Текущая неделя</label>
+          </div>
+          <div class="board24_flex board24_inter-forma__item"> 
+            <input class="custom-checkbox" type="radio" name="data-choice" value="Месяц" id="yes10"  onclick="checkboxstatus(this)" >
+            <label for="yes10">Месяц</label>
+          </div>
+          <div class="board24_flex board24_inter-forma__item"> 
+            <input class="custom-checkbox" type="radio" name="data-choice" value="Год" id="yes20"  onclick="checkboxstatus(this)" >
+            <label for="yes20">Год</label>
+          </div>
+          <div class="board24_flex board24_inter-forma__item board24_inter-forma__item_last">
+            
+            <input class="custom-checkbox" type="radio" name="data-choice" value="valueNuumber" id="yes30" onclick="checkboxstatus(this)" >
+             <label for="yes30"></label>
+            
+            <input class="board24_inter-forma__item_cube" type="text" id="board24_cube" >
+            
+            
+            
+            
+                  <img src="assets/img/inter/schedule.svg" alt="img">
+            </div>
+        </div>
+
+
+
+
+
+        
+<script> 
+
+//  function checkboxstatus(currentObj){   
+//     if (currentObj.checked) {
+//     document.getElementById("TitleCheckText2").style.backgroundColor = "red";
+// } else {
+//     document.getElementById("TitleCheckText2").style.backgroundColor = "blue";
+// }
+// }
+
+
+
+
+function checkboxstatus(currentObj) {
+  if (currentObj.checked) {
+    let carentValue = currentObj.value;
+if(carentValue === "valueNuumber"){
+  let cubeValue =  document.getElementById("board24_cube").value;
+  console.log(cubeValue);
+  document.getElementById("board24-date").textContent = cubeValue;
+}else{
+   console.log(carentValue)
+    document.getElementById("board24-date").textContent = carentValue;
+}
+}
+}
+
+</script>
+
+
+</body>
+</html>

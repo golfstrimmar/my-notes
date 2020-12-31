@@ -463,3 +463,9 @@ textarea {overflow:auto;}
 
 ================================ разные фото для тестирования
  <img src="https://picsum.photos/300/300" />
+
+ 
+<!-- в sass перебор в цикле -->
+@for $i from 1 through 12
+  .col-#{$i}
+    background-color: lighten(#0D47A1, $i * 8%)

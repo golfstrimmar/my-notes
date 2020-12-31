@@ -47,14 +47,14 @@ clearfix
 col-auto
 col-sm-auto
 
-flex-column
+.flex-column
 
 -ширина высота в процентах
-w-25
-w-50
-w-75
-w-100
-h-25
+.w-25
+.w-50
+.w-75
+.w-100
+.h-25
 
 .align-self-start
 .align-items-center
@@ -235,23 +235,3 @@ $spacer - это SCSS переменная Bootstrap 4, значение кот�
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-@include flex-center;
-&:not(:last-child) {
-margin-right: 46px;
-}
-background-image: url(images/what-we-do/we-do-bg.jpg);
-background-repeat: no-repeat;
-background-size: cover;
-
-@include dm-sans-medium;
