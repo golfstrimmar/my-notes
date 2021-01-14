@@ -22,34 +22,35 @@ span.team-card__photo(style=`background-image: url(${img_src})`)
 
 
 ||||||||||||||||||цикл||хорошо для однотипных блоков|||||||||||||||||||||||
--
-  var nav = [
-  {
-  id: "home",
-  href: "index.html",
-  title: "Home",
-  img: "assets/img/work/tie.svg"
-  },
-  {
-  id: "about",
-  href: "about-us.html",
-  title: "About us",
-  img: "assets/img/work/tie.svg"
-  },
-  {
-  id: "portfolio",
-  href: "portfolio.html",
-  title: "Portfolio",
-  img: "assets/img/work/tie.svg"
-  }
-  ];
 
-nav.menu
-  ul.menu__list
-    each item in nav
-      li.menu__item(id=""+item.id)
-        a.menu__link(href=item.href)=item.title
-          img(src=item.img,alt="img")
+.wrapper
+  - 
+    items = [
+      { 
+        title: " ",
+            : " ",
+            : "  ",
+            : "  ",
+            : ""
+            },
+    ]
+
+  each item in items
+    ............html..................
+    ..............................
+
+------вывод одинаковых блоков в больших количествах
+- for (var x = 0; x < 30; x++)
+  li item
+
+)
+
+
+
+--------------ситуация. нужно вывести именно в pug bg какого-то блока. если нельза его прописать в sass 
+each item in items
+    .news-left__card.news-left-card(style=`background-image: url(${item.url})`)
+
 
 
 =======================================================
