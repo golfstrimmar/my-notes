@@ -249,6 +249,18 @@ text-align: center;
 <!-- То же самое можно сделать установкой атрибута: -->
 div.setAttribute('style', 'color: red...').
 
+
+<!-- insertAdjacentHTML -->
+разбирает указанный текст как HTML или XML и вставляет полученные узлы (nodes) в DOM дерево в указанную позицию. Данная функция не переписывает имеющиеся элементы, что предотвращает дополнительную сериализацию и поэтому работает быстрее, чем манипуляции с innerHTML.
+
+const $site = document.querySelector("#site");
+$site.insertAdjacentHTML("beforeend", html);
+
+<!-- map() -->
+Метод map() создаёт новый массив с результатом вызова указанной функции для каждого элемента массива.
+
+
+
 ===============переберем в цикле всех потомков элемента и выведем их содержимое:
 let parent = document.querySelector('#parent');
 let elems = parent.children;
