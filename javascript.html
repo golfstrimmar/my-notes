@@ -261,7 +261,48 @@ $site.insertAdjacentHTML("beforeend", html);
 
 
 
-===============переберем в цикле всех потомков элемента и выведем их содержимое:
+<!-- события изменения окна -->
+  <!-- // ----прокрутка окна - header меняется в размерах и цвете -->
+   window.addEventListener("scroll", function (event) {
+     if (window.pageYOffset > 100) {
+       document.querySelector(".header").classList.add("responciveHeader");
+       document
+         .querySelector(".header__menu")
+         .setAttribute("style", "top: 60px");
+     } else {
+       document.querySelector(".header").classList.remove("responciveHeader");
+       document
+         .querySelector(".header__menu")
+         .setAttribute("style", "top: 70px");
+     }
+     <!-- // header освобождается от свойств для мобилки -->
+     if (window.innerWidth >= 768) {
+       document
+         .querySelector(".header__menu")
+         .setAttribute("style", "top: 0px");
+     }
+   });
+
+   <!-- изменение ширины окна -->
+window.addEventListener("resize", function (event) {
+   if (window.innerWidth >= 768) {
+     document.querySelector(".header__menu").setAttribute("style", "top: 0px");
+   }else{
+      if (window.pageYOffset > 100) {
+        document
+          .querySelector(".header__menu")
+          .setAttribute("style", "top: 60px");
+      } else {
+        document.querySelector(".header__menu").setAttribute("style", "top: 70px");
+      }
+
+   }
+ });
+
+
+ 
+
+<!-- ===============переберем в цикле всех потомков элемента и выведем их содержимое: -->
 let parent = document.querySelector('#parent');
 let elems = parent.children;
 
@@ -338,7 +379,7 @@ let result = arr.find(function(item, index, array) {
 });
 
 
-================  filter  ==================
+<!-- ================  filter  ================== -->
 let results = arr.filter(function(item, index, array) {
   // если true - элемент добавляется к результату, и перебор продолжается
   // возвращается пустой массив в случае, если ничего не найдено
