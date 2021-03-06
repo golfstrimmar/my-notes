@@ -205,6 +205,62 @@ jQuery(function($){
 
 
 
+
+<!-- создание массива из дочерних блоков какого-то родителя и переббор массива с целью что-то сделать с элементами.  -->
+
+$(document).ready(function (e) {
+  $(".accordion__item--profile").each(function () {
+    <!-- создание массива из дочерних блоков -->
+    let array = Array.from($(this).find(".history .video-catalog__item"));
+
+<!-- переббор массива -->
+    $.each(array, function (index) {
+      if (2 < index) {
+        $(this).addClass("_hide");
+      }
+    });
+
+
+    let btn = $(this).find(".history__button");
+    let btnDelete = $(this).find(".history__button--delete");
+
+
+    $(this)
+      .find(".akr-title-js")
+      .on("click", function () {
+        // btnDelete.css("opacity", "0");
+        $.each(array, function (index) {
+          if (2 < index) {
+            $(this).addClass("_hide").slideUp();
+          }
+        });
+      });
+
+    btn.on("click", function () {
+      // btnDelete.css("opacity", "1");
+      let number = $(this).siblings("._hide:first").index();
+      $(this).prev().addClass("_last");
+      $.each(array, function (index) {
+        let i = number + 3;
+        if (i > index) {
+          $(this).slideDown(200).removeClass("_hide");
+          if ($(this).hasClass("_last") && !$(this).hasClass("_hide")) {
+            $(this).next().css("opacity", "0");
+          }
+        }
+      });
+    });
+  });
+});
+
+
+
+
+
+<!-- событие по скролу страницы -->
+.scroll()
+
+
  <!-- условия  -->
 if ($(window).width() >= 992) {}
 
